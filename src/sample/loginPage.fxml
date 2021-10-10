@@ -29,13 +29,14 @@
                   <Image url="@download%20(2).png" />
                </image>
             </ImageView>
-            <Label fx:id="userLabel" layoutX="14.0" layoutY="120.0" text="user ID" />
-            <TextField fx:id="userTextField" layoutX="80.0" layoutY="116.0" prefHeight="26.0" prefWidth="170.0" promptText="user ID" />
+            <Label fx:id="usernameLabel" layoutX="14.0" layoutY="120.0" text="username" />
+            <TextField fx:id="usernameTextField" layoutX="80.0" layoutY="116.0" prefHeight="26.0" prefWidth="170.0" promptText="username" />
             <Label fx:id="passwordLabel" layoutX="14.0" layoutY="161.0" text="password" />
             <PasswordField fx:id="enterPasswordField" layoutX="81.0" layoutY="157.0" prefHeight="26.0" prefWidth="170.0" promptText="password" />
-            <Button fx:id="loginButton" alignment="CENTER" layoutX="34.0" layoutY="227.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="220.0" style="-fx-background-color: #089408;" text="Login" textFill="WHITE" />
+            <Button fx:id="loginButton" alignment="CENTER" layoutX="34.0" layoutY="227.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #089408;" text="Login" textFill="WHITE" />
             <Button fx:id="cancelButton" alignment="CENTER" layoutX="34.0" layoutY="265.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="220.0" style="-fx-background-color: #089408;" text="Cancel" textFill="WHITE" />
             <Label fx:id="errorLabel" alignment="CENTER" layoutX="71.0" layoutY="199.0" textFill="RED" />
+            <Button fx:id="signupButton" alignment="CENTER" layoutX="151.0" layoutY="227.0" mnemonicParsing="false" onAction="#signupButtonOnAction" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #089408;" text="Sign Up" textFill="WHITE" />
          </children>
       </AnchorPane>
    </right>

@@ -19,20 +19,25 @@ public class loginController {
     @FXML
     private Button loginButton;
     @FXML
+    private Button signupButton;
+    @FXML
     private Label errorLabel;
     @FXML
     private PasswordField enterPasswordField;
     @FXML
-    private TextField userTextField;
+    private TextField usernameTextField;
 
     public void loginButtonOnAction(ActionEvent event) throws Exception {
-        if(userTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
-            createRegistrationPage();
+        if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
+            //sql injection
         }else{
-            errorLabel.setText("please enter userID/password");
+            errorLabel.setText("please enter username/password");
         }
     }
 
+    public void signupButtonOnAction(ActionEvent event) throws Exception{
+        createRegistrationPage();
+    }
     public void cancelButtonOnAction(ActionEvent event){
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
@@ -42,7 +47,7 @@ public class loginController {
         Parent root = FXMLLoader.load(getClass().getResource("registrationPage.fxml"));
         Stage registrationStage = new Stage();
         registrationStage.initStyle(StageStyle.UNDECORATED);
-        registrationStage.setScene(new Scene(root, 540, 580));
+        registrationStage.setScene(new Scene(root, 540, 550));
         registrationStage.show();
     }
 }

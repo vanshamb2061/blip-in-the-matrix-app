@@ -11,6 +11,11 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
 public class registrationController {
     @FXML
     private Button registerButton;
@@ -35,7 +40,31 @@ public class registrationController {
 
     public void registerButtonOnAction(ActionEvent event) throws Exception {
         //write backend code
+        // Password and Confirm Password are same or not I haven't checked it
+
         //sql injection
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String url = "jdbc:mysql://localhost:3306/userinfo";
+        Connection myConn = DriverManager.getConnection(url, "root", ""); //Connect to database (Requires JDBC) [Default username:root, pw empty]
+        Statement statement= myConn.createStatement();
+
+        try
+        {
+            String query="INSERT INTO `userdetails`(`First Name`, `Last Name`, `Age`, `UserId`, `Password`) VALUES (?,?,?,?,?)";
+            PreparedStatement preStat = myConn.prepareStatement(query);
+            preStat.setString(1,firstNameTextField.getText());
+            preStat.setString(2,lastNameTextField.getText());
+            preStat.setString(3,ageTextField.getText());
+            preStat.setString(4,usernameTextField.getText());
+            preStat.setString(5,setPasswordField.getText());
+            preStat.executeUpdate();
+
+            System.out.println("Registered Successfully");
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
     public void selectGenreButtonOnAction(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("selectGenre.fxml"));

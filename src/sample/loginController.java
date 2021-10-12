@@ -12,6 +12,11 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class loginController {
 
     @FXML
@@ -30,6 +35,41 @@ public class loginController {
     public void loginButtonOnAction(ActionEvent event) throws Exception {
         if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
             //sql injection
+            try
+            {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                String url = "jdbc:mysql://localhost:3306/userinfo";
+                Connection connection = DriverManager.getConnection(url, "root", "");
+
+                String username = usernameTextField.getText();
+                String password = enterPasswordField.getText();
+
+                Statement stm = connection.createStatement();
+
+                String sql = "select * from userdetails where UserId='" + username + "' and Password='" + password + "'";
+                ResultSet result = stm.executeQuery(sql);
+
+                if (result.next()) {
+                    String FirstName = result.getString("First Name");
+                    String LastName = result.getString("Last Name");
+                    int Age = result.getInt("Age");
+
+                    System.out.println("Login Accessed");
+                    System.out.println("Name - " + FirstName);
+                    System.out.println("Branch - " + LastName);
+                    System.out.println("Age - " + Age);
+                } else {
+                    //If username don't exist
+                    errorLabel.setText("Entered username/password is wrong");
+                    usernameTextField.setText("");
+                    enterPasswordField.setText("");
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+
         }else{
             errorLabel.setText("please enter username/password");
         }

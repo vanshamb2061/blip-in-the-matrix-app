@@ -35,41 +35,15 @@ public class loginController {
     public void loginButtonOnAction(ActionEvent event) throws Exception {
         if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
             //sql injection
-            try
-            {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                String url = "jdbc:mysql://localhost:3306/userinfo";
-                Connection connection = DriverManager.getConnection(url, "root", "");
+            Parent root = FXMLLoader.load(getClass().getResource("dashboardController.fxml"));
+            Stage dashboardStage = new Stage();
+            dashboardStage.initStyle(StageStyle.DECORATED);
+            dashboardStage.setTitle("watchlist");
+            dashboardStage.setScene(new Scene(root, 900, 700));
+            dashboardStage.show();
 
-                String username = usernameTextField.getText();
-                String password = enterPasswordField.getText();
-
-                Statement stm = connection.createStatement();
-
-                String sql = "select * from userdetails where UserId='" + username + "' and Password='" + password + "'";
-                ResultSet result = stm.executeQuery(sql);
-
-                if (result.next()) {
-                    String FirstName = result.getString("First Name");
-                    String LastName = result.getString("Last Name");
-                    int Age = result.getInt("Age");
-
-                    System.out.println("Login Accessed");
-                    System.out.println("Name - " + FirstName);
-                    System.out.println("Branch - " + LastName);
-                    System.out.println("Age - " + Age);
-                } else {
-                    //If username don't exist
-                    errorLabel.setText("Entered username/password is wrong");
-                    usernameTextField.setText("");
-                    enterPasswordField.setText("");
-                }
-            }
-            catch(Exception e)
-            {
-                System.out.println(e.getMessage());
-            }
-
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.close();
         }else{
             errorLabel.setText("please enter username/password");
         }

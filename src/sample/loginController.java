@@ -35,15 +35,42 @@ public class loginController {
     public void loginButtonOnAction(ActionEvent event) throws Exception {
         if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
             //sql injection
-            Parent root = FXMLLoader.load(getClass().getResource("dashboardController.fxml"));
-            Stage dashboardStage = new Stage();
-            dashboardStage.initStyle(StageStyle.DECORATED);
-            dashboardStage.setTitle("watchlist");
-            dashboardStage.setScene(new Scene(root, 900, 700));
-            dashboardStage.show();
+            try
+            {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                String url = "jdbc:mysql://localhost:3306/userinfo";
+                Connection connection = DriverManager.getConnection(url, "root", "");
 
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.close();
+                String username = usernameTextField.getText();
+                String password = enterPasswordField.getText();
+
+                Statement stm = connection.createStatement();
+
+                String sql = "select * from userdetails where UserId='" + username + "' and Password='" + password + "'";
+                ResultSet result = stm.executeQuery(sql);
+
+                if (result.next()) {
+                    Parent root = FXMLLoader.load(getClass().getResource("dashboardController.fxml"));
+                    Stage dashboardStage = new Stage();
+                    dashboardStage.initStyle(StageStyle.DECORATED);
+                    dashboardStage.setTitle("watchlist");
+                    dashboardStage.setScene(new Scene(root, 900, 700));
+                    dashboardStage.show();
+
+                    Stage stage = (Stage) loginButton.getScene().getWindow();
+                    stage.close();
+                } else {
+                    //If username don't exist
+                    errorLabel.setText("Entered username/password is wrong");
+                    usernameTextField.setText("");
+                    enterPasswordField.setText("");
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+
         }else{
             errorLabel.setText("please enter username/password");
         }

@@ -57,9 +57,27 @@ public class registrationController {
             preStat.setString(3,ageTextField.getText());
             preStat.setString(4,usernameTextField.getText());
             preStat.setString(5,setPasswordField.getText());
-            preStat.executeUpdate();
+            if(firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false
+                    && ageTextField.getText().isBlank()==false && usernameTextField.getText().isBlank()==false && setPasswordField.getText().isBlank()==false) {
+                preStat.executeUpdate();
+                Stage stage1 = (Stage) registerButton.getScene().getWindow();
+                stage1.close();
+                Parent root = FXMLLoader.load(getClass().getResource("loginController.fxml"));
+                Stage loginStage = new Stage();
+                loginStage.initStyle(StageStyle.DECORATED);
+                loginStage.setTitle("Login Page");
+                loginStage.setScene(new Scene(root, 530, 320));
+                loginStage.show();
 
-            System.out.println("Registered Successfully");
+                Stage stage = (Stage) registerButton.getScene().getWindow();
+                stage.close();
+            }
+            else{
+                //Put error Label Here
+            }
+
+
+
         }
         catch(Exception e){
             System.out.println(e.getMessage());

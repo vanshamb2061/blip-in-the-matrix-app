@@ -5,5 +5,7 @@ module WATCHLIST {
     requires java.sql;
     //requires mysql.connector.java;
     opens sample;
+    opens movies;
+    opens images;
 
 }

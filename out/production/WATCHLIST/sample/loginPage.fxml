@@ -13,20 +13,20 @@
    <left>
       <AnchorPane prefHeight="350.0" prefWidth="220.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="346.0" fitWidth="240.0" layoutX="-2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="320.0" fitWidth="240.0" layoutX="-2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/istockphoto-863970100-612x612.jpg" />
+                  <Image url="@../images/SeekPng.com_death-note-png_531199.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="322.0" prefWidth="296.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="320.0" prefWidth="312.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="63.0" fitWidth="158.0" layoutX="116.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/download%20(2).png" />
+                  <Image url="@../images/download%20(2).png" />
                </image>
             </ImageView>
             <Label fx:id="usernameLabel" layoutX="14.0" layoutY="120.0" text="username" />

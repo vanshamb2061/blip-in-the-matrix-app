@@ -15,7 +15,18 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root, 530, 320));
         primaryStage.show();
+
+        //added this line to access dashboard instant
+      /*
+        Parent root = FXMLLoader.load(getClass().getResource("dashboardController.fxml"));
+        Stage dashboardStage = new Stage();
+        dashboardStage.initStyle(StageStyle.DECORATED);
+        dashboardStage.setTitle("watchlist");
+        dashboardStage.setScene(new Scene(root, 900, 700));
+        dashboardStage.show();
+    */
     }
+
 
 
     public static void main(String[] args) {

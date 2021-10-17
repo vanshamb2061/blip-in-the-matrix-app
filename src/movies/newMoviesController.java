@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +25,10 @@ public class newMoviesController {
     @FXML
     private Label yearLabel;
 
+    @FXML
+    private ImageView likeImageView;
+
+    private boolean clicked = false;
     private newMovie tryNewMovie;
 
     public void setData(newMovie tryNewMovie){
@@ -46,7 +51,32 @@ public class newMoviesController {
     }
 
     public void mousePressedOnLike(MouseEvent mouseEvent) {
-        System.out.println("user liked this movie, added this to his favorites");
+        clicked = !clicked;
+        if(clicked == true) {
+            System.out.println("user liked this movie, added this to his favorites");
+            Image image = new Image(("/images/redLike.png"));
+            likeImageView.setImage(image);
+            likeImageView.setFitWidth(29);
+            likeImageView.setFitHeight(24);
+            ColorAdjust c = new ColorAdjust();
+            c.setBrightness(0);
+            c.setContrast(0);
+            c.setHue(0);
+            c.setSaturation(0);
+            likeImageView.setEffect(c);
+        }else{
+            System.out.println("user removed this movie from his favorites");
+            Image image = new Image(("/images/unfilledLike.png"));
+            likeImageView.setImage(image);
+            likeImageView.setFitWidth(29);
+            likeImageView.setFitHeight(24);
+            ColorAdjust c = new ColorAdjust();
+            c.setBrightness(0);
+            c.setContrast(1);
+            c.setHue(1);
+            c.setSaturation(1);
+            likeImageView.setEffect(c);
+        }
     }
 
     public void mousePressedOnCancel(MouseEvent mouseEvent) {

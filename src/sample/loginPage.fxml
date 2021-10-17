@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="530.0" style="-fx-border-radius: 20; -fx-background-radius: 10; -fx-border-color: red;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="530.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
    <left>
       <AnchorPane prefHeight="350.0" prefWidth="220.0" BorderPane.alignment="CENTER">
          <children>
@@ -74,16 +74,16 @@
                   <Insets left="20.0" />
                </padding>
             </HBox>
-            <Button fx:id="loginButton" alignment="CENTER" layoutX="34.0" layoutY="227.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #089408;" text="Login" textFill="WHITE">
+            <Button fx:id="loginButton" alignment="CENTER" layoutX="34.0" layoutY="227.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #089408; -fx-border-color: black; -fx-background-radius: 15; -fx-border-radius: 15;" text="Login" textFill="WHITE">
                <effect>
                   <DropShadow />
                </effect></Button>
-            <Button fx:id="cancelButton" alignment="CENTER" layoutX="34.0" layoutY="265.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="220.0" style="-fx-background-color: #089408;" text="Cancel" textFill="WHITE">
+            <Button fx:id="cancelButton" alignment="CENTER" layoutX="34.0" layoutY="265.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="220.0" style="-fx-background-color: #089408; -fx-border-color: black; -fx-background-radius: 15; -fx-border-radius: 15;" text="Cancel" textFill="WHITE">
                <effect>
                   <DropShadow />
                </effect></Button>
             <Label fx:id="errorLabel" alignment="CENTER" layoutX="71.0" layoutY="199.0" textFill="RED" />
-            <Button fx:id="signupButton" alignment="CENTER" layoutX="151.0" layoutY="227.0" mnemonicParsing="false" onAction="#signupButtonOnAction" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #089408;" text="Sign Up" textFill="WHITE">
+            <Button fx:id="signupButton" alignment="CENTER" layoutX="151.0" layoutY="227.0" mnemonicParsing="false" onAction="#signupButtonOnAction" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #089408; -fx-border-color: black; -fx-background-radius: 15; -fx-border-radius: 15;" text="Sign Up" textFill="WHITE">
                <effect>
                   <DropShadow />
                </effect></Button>
@@ -91,6 +91,6 @@
       </AnchorPane>
    </right>
    <effect>
-      <DropShadow spread="0.91" />
+      <DropShadow spread="0.79" />
    </effect>
 </BorderPane>

@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane id="scene" prefHeight="300.0" prefWidth="550.0" style="-fx-border-radius: 25; -fx-background-radius: 25;" styleClass="bodybg" stylesheets="@../CSS/bodybg.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.movieInfo">
    <children>
       <ImageView fitHeight="300.0" fitWidth="550.0" pickOnBounds="true" style="-fx-opacity: .9;">
@@ -91,7 +90,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="550.0" spacing="10.0">
                <children>
-                  <ImageView fitHeight="31.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="26.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/imdb.png" />
                      </image>
@@ -102,10 +101,13 @@
                         <DropShadow spread="0.64" />
                      </effect>
                   </ImageView>
-                  <Label fx:id="imdbRatingsLabel" text="9.8" textFill="WHITE">
+                  <Label fx:id="imdbRatingsLabel" prefHeight="27.0" prefWidth="41.0" text="9.8" textFill="WHITE">
                      <effect>
                         <DropShadow spread="0.64" />
                      </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </Label>
                </children>
                <padding>
@@ -114,9 +116,9 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="44.0" fitWidth="22.0" onMousePressed="#mousePressedOnAddToFavorites" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="likeImageView" fitHeight="30.0" fitWidth="29.0" onMousePressed="#mousePressedOnAddToFavorites" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/filled-like%20(1).png" />
+                        <Image url="@../images/unfilledLike.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="30.0" top="10.0" />
@@ -131,7 +133,7 @@
                   </ImageView>
                   <Label onMousePressed="#mousePressedOnAddToFavorites" text="ADD TO FAVORITES" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="16.0" />
                      </font>
                      <HBox.margin>
                         <Insets top="10.0" />

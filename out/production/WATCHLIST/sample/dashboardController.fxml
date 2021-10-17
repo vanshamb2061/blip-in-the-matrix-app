@@ -52,12 +52,15 @@
                               <Font name="Microsoft YaHei Bold" size="14.0" />
                            </font>
                            <effect>
-                              <DropShadow />
+                              <DropShadow spread="0.34" />
                            </effect>
                         </Label>
                      </children>
                   </HBox>
-                  <Separator opacity="0.4" prefHeight="1.0" prefWidth="100.0" />
+                  <Separator opacity="0.4" prefHeight="1.0" prefWidth="100.0">
+                     <effect>
+                        <DropShadow spread="0.72" />
+                     </effect></Separator>
                   <VBox spacing="25.0">
                      <children>
                         <HBox style="-fx-border-color: transparent #087608 transparent transparent; -fx-border-width: 5;" styleClass="selected" stylesheets="@../CSS/style.css">
@@ -66,13 +69,19 @@
                                  <image>
                                     <Image url="@../images/streaming-movies.png" />
                                  </image>
+                                 <HBox.margin>
+                                    <Insets left="-6.0" />
+                                 </HBox.margin>
+                                 <effect>
+                                    <DropShadow spread="0.34" />
+                                 </effect>
                               </ImageView>
                               <Label fx:id="moviesLabel" onMousePressed="#mousePressedOnMovies" text="Movies" textFill="#8da3c7" underline="true">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
                                  <effect>
-                                    <DropShadow />
+                                    <DropShadow spread="0.37" />
                                  </effect>
                                  <padding>
                                     <Insets left="5.0" />
@@ -89,13 +98,16 @@
                                  <image>
                                     <Image url="@../images/video-playlist.png" />
                                  </image>
+                                 <effect>
+                                    <DropShadow spread="0.34" />
+                                 </effect>
                               </ImageView>
                               <Label onMousePressed="#mousePressedOnWatchList" text="Watchlist" textFill="#8da3c7" underline="true">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
                                  <effect>
-                                    <DropShadow />
+                                    <DropShadow spread="0.37" />
                                  </effect>
                                  <padding>
                                     <Insets left="5.0" />
@@ -112,13 +124,16 @@
                                  <image>
                                     <Image url="@../images/filled-like.png" />
                                  </image>
+                                 <effect>
+                                    <DropShadow spread="0.34" />
+                                 </effect>
                               </ImageView>
                               <Label onMousePressed="#mousePressedOnLiked" text="Liked" textFill="#8da3c7" underline="true">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
                                  <effect>
-                                    <DropShadow />
+                                    <DropShadow spread="0.37" />
                                  </effect>
                                  <padding>
                                     <Insets left="5.0" />
@@ -135,13 +150,16 @@
                                  <image>
                                     <Image url="@../images/group.png" />
                                  </image>
+                                 <effect>
+                                    <DropShadow spread="0.34" />
+                                 </effect>
                               </ImageView>
                               <Label onMousePressed="#mousePressedOnFriends" text="Friends" textFill="#8da3c7" underline="true">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
                                  <effect>
-                                    <DropShadow />
+                                    <DropShadow spread="0.37" />
                                  </effect>
                                  <padding>
                                     <Insets left="5.0" />
@@ -236,7 +254,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                      <effect>
-                        <DropShadow />
+                        <DropShadow spread="0.6" />
                      </effect>
                      <padding>
                         <Insets left="30.0" />
@@ -287,7 +305,10 @@
                         </GridPane>
                      </content>
                   </ScrollPane>
-                  <Separator opacity="0.41" orientation="VERTICAL" prefHeight="200.0" />
+                  <Separator opacity="0.41" orientation="VERTICAL" prefHeight="200.0">
+                     <effect>
+                        <DropShadow spread="0.56" />
+                     </effect></Separator>
                </children>
                <padding>
                   <Insets top="10.0" />

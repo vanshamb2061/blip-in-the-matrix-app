@@ -33,8 +33,8 @@ public class loginController {
     private TextField usernameTextField;
 
     public void loginButtonOnAction(ActionEvent event) throws Exception {
-        if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
-            //sql injection
+          if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
+          //sql injection
             try
             {
                 Class.forName("com.mysql.cj.jdbc.Driver");

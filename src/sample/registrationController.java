@@ -57,8 +57,12 @@ public class registrationController {
             preStat.setString(3,ageTextField.getText());
             preStat.setString(4,usernameTextField.getText());
             preStat.setString(5,setPasswordField.getText());
-            if(firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false
-                    && ageTextField.getText().isBlank()==false && usernameTextField.getText().isBlank()==false && setPasswordField.getText().isBlank()==false) {
+            if(firstNameTextField.getText().isBlank() == false
+                    && ageTextField.getText().isBlank() == false
+                    && usernameTextField.getText().isBlank() == false
+                    && setPasswordField.getText().isBlank() == false
+                    && confirmPasswordField.getText().isBlank() == false
+                    && setPasswordField.getText().equals(setPasswordField.getText())) {
                 preStat.executeUpdate();
                 Stage stage1 = (Stage) registerButton.getScene().getWindow();
                 stage1.close();

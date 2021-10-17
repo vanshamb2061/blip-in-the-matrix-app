@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="280.0" style="-fx-border-color: green; -fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #28467d;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.selectGenre">
    <children>
-      <AnchorPane prefHeight="49.0" prefWidth="282.0" style="-fx-background-color: #087608; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: red;">
+      <AnchorPane prefHeight="49.0" prefWidth="282.0" style="-fx-background-color: #087608; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;">
          <children>
             <Label alignment="CENTER" layoutX="61.0" layoutY="7.0" prefHeight="34.0" prefWidth="142.0" text="Select genre" textFill="WHITE">
                <font>
@@ -48,7 +48,7 @@
       </VBox>
       <HBox alignment="CENTER" layoutY="342.0" prefHeight="26.0" prefWidth="282.0">
          <children>
-            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #087608;" text="Submit" textFill="WHITE">
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #087608; -fx-border-radius: 15; -fx-background-radius: 15;" text="Submit" textFill="WHITE">
                <effect>
                   <DropShadow />
                </effect>

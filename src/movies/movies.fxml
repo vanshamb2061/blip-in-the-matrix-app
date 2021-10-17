@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="293.0" prefWidth="170.0" style="-fx-background-color: #28467d; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.moviesController">
@@ -19,31 +18,31 @@
          <children>
             <AnchorPane>
                <children>
-                  <ImageView fx:id="poster" accessibleRole="BUTTON" fitHeight="255.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" onMousePressed="#mousePressedOnPoster">
+                  <ImageView fx:id="poster" accessibleRole="BUTTON" fitHeight="255.0" fitWidth="170.0" onMousePressed="#mousePressedOnPoster" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/images%20(2).jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" onMousePressed="#mousePressedOnLike">
+                  <ImageView fx:id="likeImageView" fitHeight="30.0" fitWidth="29.0" onMousePressed="#mousePressedOnLike" pickOnBounds="true">
                      <image>
-                        <Image url="@../images/filled-like%20(1).png" />
+                        <Image url="@../images/unfilledLike.png" />
                      </image>
                      <effect>
-                        <ColorAdjust brightness="-0.53" contrast="1.0" hue="1.0" saturation="1.0" />
+                        <ColorAdjust contrast="1.0" hue="1.0" saturation="1.0">
+                           <input>
+                              <DropShadow spread="0.66" />
+                           </input></ColorAdjust>
                      </effect>
                   </ImageView>
-                  <ImageView fitHeight="24.0" fitWidth="18.0" layoutX="152.0" pickOnBounds="true" preserveRatio="true" onMousePressed="#mousePressedOnCancel">
+                  <ImageView fx:id="cancelImageView" fitHeight="29.0" fitWidth="23.0" layoutX="146.0" layoutY="1.0" onMousePressed="#mousePressedOnCancel" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/external-cancel-mintab-for-ios-becris-lineal-becris.png" />
                      </image>
                      <effect>
-                        <DropShadow>
+                        <DropShadow spread="0.81">
                            <input>
                               <Glow />
                            </input>
-                           <color>
-                              <Color red="0.14522989094257355" green="0.949999988079071" />
-                           </color>
                         </DropShadow>
                      </effect>
                   </ImageView>

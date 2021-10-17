@@ -6,15 +6,15 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.ScrollBar;
 import movies.Movie;
 import movies.moviesController;
 import movies.newMovie;
@@ -55,6 +55,11 @@ public class dashboardController implements Initializable {
     @FXML
     private GridPane sideGridPane;
 
+    @FXML
+    private TextField searchMovies;
+
+    @FXML
+    private TextField searchUsername;
 
     private final List<Movie> movies = new ArrayList<>();
     private List<Movie> getData(){
@@ -162,5 +167,41 @@ public class dashboardController implements Initializable {
         loginStage.initStyle(StageStyle.UNDECORATED);
         loginStage.setScene(new Scene(root, 530, 320));
         loginStage.show();
+    }
+    @FXML
+    void keyPressedOnSearchMovies(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)){
+            System.out.println("You searched an user having username " + searchMovies.getText());
+        }
+    }
+
+    @FXML
+    void keyPressedOnSearchUsername(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)){
+            System.out.println("You searched an user having username " + searchUsername.getText());
+        }
+    }
+    public void mousePressedOnMyProfile(MouseEvent mouseEvent) {
+        System.out.println("forwarding you to your profile");
+    }
+
+    public void mousePressedOnMovies(MouseEvent mouseEvent) {
+        System.out.println("Recommending movies you may like");
+    }
+
+    public void mousePressedOnWatchList(MouseEvent mouseEvent) {
+        System.out.println("here you'll find all your saved watchlist");
+    }
+
+    public void mousePressedOnLiked(MouseEvent mouseEvent) {
+        System.out.println("Here you'll find all your liked movies");
+    }
+
+    public void mousePressedOnFriends(MouseEvent mouseEvent) {
+        System.out.println("Here is the list of all your friends");
+    }
+
+    public void mousePressedOnRefreshImageView(MouseEvent mouseEvent) {
+        System.out.println("refresh to get new recommendations");
     }
 }

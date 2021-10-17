@@ -12,18 +12,18 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="249.0" prefWidth="140.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.newMoviesController">
+<AnchorPane prefHeight="249.0" prefWidth="140.0" style="-fx-background-color: #28467d; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.newMoviesController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="140.0" style="-fx-border-radius: 20; -fx-background-radius: 20;">
          <children>
             <AnchorPane prefHeight="208.0" prefWidth="140.0">
                <children>
-                  <ImageView fx:id="poster" accessibleRole="BUTTON" fitHeight="224.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="poster" accessibleRole="BUTTON" fitHeight="224.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" onMousePressed="#mousePressedOnPoster">
                      <image>
                         <Image url="@../images/images%20(2).jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="24.0" fitWidth="27.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="27.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" onMousePressed="#mousePressedOnLike">
                      <image>
                         <Image url="@../images/filled-like%20(1).png" />
                      </image>
@@ -31,7 +31,7 @@
                         <ColorAdjust brightness="-0.53" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                   </ImageView>
-                  <ImageView fitHeight="24.0" fitWidth="18.0" layoutX="121.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="18.0" layoutX="121.0" pickOnBounds="true" preserveRatio="true" onMousePressed="#mousePressedOnCancel">
                      <image>
                         <Image url="@../images/external-cancel-mintab-for-ios-becris-lineal-becris.png" />
                      </image>
@@ -50,7 +50,7 @@
             </AnchorPane>
             <HBox prefHeight="14.0" prefWidth="170.0" style="-fx-border-radius: 20;">
                <children>
-                  <Label fx:id="titleLabel" alignment="CENTER" prefHeight="20.0" prefWidth="173.0" text="Dr Strange" textFill="#4123a4" wrapText="true">
+                  <Label fx:id="titleLabel" alignment="CENTER" prefHeight="20.0" prefWidth="173.0" text="Dr Strange" textFill="#c2d3ed" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>

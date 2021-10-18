@@ -3,9 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,21 +13,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="scene" prefHeight="300.0" prefWidth="550.0" style="-fx-border-radius: 25; -fx-background-radius: 25;" styleClass="bodybg" stylesheets="@../CSS/bodybg.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.movieInfo">
+<AnchorPane id="scene" prefHeight="338.18" prefWidth="600.0" style="-fx-border-radius: 25; -fx-background-radius: 25;" styleClass="bodybg" stylesheets="@../CSS/bodybg.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.movieInfo">
    <children>
-      <ImageView fitHeight="300.0" fitWidth="550.0" pickOnBounds="true" style="-fx-opacity: .9;">
+      <ImageView fx:id="backgroundImageView" fitHeight="338.18" fitWidth="600.0" pickOnBounds="true" style="-fx-opacity: 1;">
          <image>
-            <Image url="@../images/avengersEndgamePortrait.jpg" />
+            <Image url="@../images/kTOheVmqSBDIRGrQLv2SiSc89os.jpg" />
          </image>
          <effect>
-            <InnerShadow />
+            <Blend mode="DARKEN" />
          </effect>
       </ImageView>
-      <VBox prefHeight="300.0" prefWidth="550.0">
+      <VBox prefHeight="338.18" prefWidth="600.0">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="9.0" prefWidth="550.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="561.0">
                <children>
-                  <ImageView fx:id="cancelImageView" fitHeight="23.0" fitWidth="24.0" onMousePressed="#mousePressedOnCancel" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cancelImageView" fitHeight="23.0" fitWidth="24.0" onMousePressed="#mousePressedOnCancel2" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/external-cancel-mintab-for-ios-becris-lineal-becris.png" />
                      </image>
@@ -47,29 +47,29 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                      <effect>
-                        <DropShadow spread="0.35" />
+                        <DropShadow spread="0.63" />
                      </effect>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="196.0" prefWidth="550.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="201.0" prefWidth="550.0">
                <children>
-                  <TextArea fx:id="descriptionTextArea" editable="false" prefHeight="142.0" prefWidth="293.0" promptText="Write movie description" style="-fx-background-color: transparent;" stylesheets="@../CSS/bodybg.css" text="After half of all life is snapped away by Thanos, the Avengers are left scattered and divided. Now with a way to reverse the damage, the Avengers and their allies must assemble once more and learn to put differences aside in order to work together and set things right. Along the way, the Avengers realize that sacrifices must be made as they prepare for the ultimate final showdown with Thanos, which will result in the heroes fighting the biggest battle they have ever faced." wrapText="true">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
+                  <TextArea fx:id="descriptionTextArea" editable="false" prefHeight="142.0" prefWidth="294.0" promptText="Write movie description" style="-fx-background-color: transparent;" stylesheets="@../CSS/bodybg.css" text="After half of all life is snapped away by Thanos, the Avengers are left scattered and divided. Now with a way to reverse the damage, the Avengers and their allies must assemble once more and learn to put differences aside in order ever faced." wrapText="true">
                      <HBox.margin>
-                        <Insets left="30.0" top="10.0" />
+                        <Insets left="30.0" top="5.0" />
                      </HBox.margin>
                      <effect>
-                        <DropShadow spread="0.64">
+                        <DropShadow spread="0.8">
                            <input>
                               <ColorAdjust brightness="1.0" saturation="1.0" />
                            </input>
                         </DropShadow>
                      </effect>
                   </TextArea>
-                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="225.0">
+                  <VBox alignment="CENTER" prefHeight="158.0" prefWidth="275.0">
                      <children>
                         <ImageView fitHeight="33.0" fitWidth="36.0" onMousePressed="#mousePressedOnPlayTrailer" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -87,6 +87,9 @@
                      </children>
                   </VBox>
                </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="550.0" spacing="10.0">
                <children>
@@ -124,11 +127,7 @@
                         <Insets left="30.0" top="10.0" />
                      </HBox.margin>
                      <effect>
-                        <DropShadow spread="0.72">
-                           <input>
-                              <ColorAdjust brightness="-0.08" contrast="1.0" hue="1.0" saturation="1.0" />
-                           </input>
-                        </DropShadow>
+                        <DropShadow spread="0.7" />
                      </effect>
                   </ImageView>
                   <Label onMousePressed="#mousePressedOnAddToFavorites" text="ADD TO FAVORITES" textFill="WHITE">
@@ -154,6 +153,6 @@
       </VBox>
    </children>
    <effect>
-      <DropShadow spread="0.47" />
+      <DropShadow spread="0.67" />
    </effect>
 </AnchorPane>

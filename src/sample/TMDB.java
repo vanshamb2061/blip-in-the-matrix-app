@@ -19,51 +19,35 @@ public class TMDB{
         String genres="Action";
         boolean adult=true;
 
-        try{
-            URL url=new URL("https://api.themoviedb.org/3/discover/movie?api_key="+mykey+"&language=en-US"
-                    +"&sort_by=with_genres="+genres+"&include_adult="+adult+"&with_watch_monetization_types=free");
-            connection=(HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setDoInput(true);
+        String genre_ids;
+        String id;
+        String original_language;
+        String overview;
+        String video;
 
-            InputStream stream = connection.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-            StringBuilder response = new StringBuilder();
-            String line=null;
-            while((line=reader.readLine())!=null)
-            {
-                response.append(line);
-                response.append("\r");
-            }
-            reader.close();
-            String result = response.toString();
-            //System.out.print(result);
+        int pg_no=1;
 
+        URL url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                + "&include_adult=" + adult + "&page="+pg_no);
+        connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setDoInput(true);
 
-            JSONObject jsonObject1 = new JSONObject(result);
-            JSONArray jsonArray= jsonObject1.getJSONArray("results");
-
-            for(int i=0;i<jsonArray.length();i++)
-            {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                String genre_ids = jsonObject.getString("genre_ids");
-                String id = jsonObject.getString("id");
-                String original_language = jsonObject.getString("original_language");
-                //movie.setName( jsonObject.getString("original_title"));
-                String overview = jsonObject.getString("overview");
-                //movie.setImgSrc( "https://image.tmdb.org/t/p/w500/"+jsonObject.getString("poster_path"));
-                //movie.setYear(jsonObject.getString("release_date"));
-                String video = jsonObject.getString("video");
-                System.out.println(genre_ids+" --> "+id+" --> "+original_language);
-            }
-
-
+        InputStream stream = connection.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        StringBuilder response = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+            response.append("\r");
         }
-        catch(Exception e)
-        {
-            e.getMessage();
-        }
+        reader.close();
+        String result = response.toString();
+
+        JSONObject jsonObject1 = new JSONObject(result);
+        JSONArray jsonArray = jsonObject1.getJSONArray("results");
+
+
     }
 
 }

@@ -66,7 +66,7 @@ public class dashboardController implements Initializable {
     int Current_Pg=1;
 
     private final List<Movie> movies = new ArrayList<>();
-
+    int pg_no=1;
     private List<Movie> getData() throws Exception {
         HttpURLConnection connection = null;
         final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
@@ -95,7 +95,7 @@ public class dashboardController implements Initializable {
 
         List<Movie> movies = new ArrayList<>();
         Movie movie;
-        for(int i=0;i<jsonArray.length();i++){
+        for(int i=0;i<jsonArray.length() && i < 6;i++){
             movie = new Movie();
 
             movie.setGenre("Action");
@@ -126,10 +126,9 @@ public class dashboardController implements Initializable {
         final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
         String genres = "Action";
         boolean adult = true;
-        int pg_no=2;
 
         URL url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                + "&include_adult=" + adult + "&page="+pg_no);
+                + "&include_adult=" + adult + "&page="+Current_Pg);
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setDoInput(true);
@@ -149,7 +148,7 @@ public class dashboardController implements Initializable {
 
         List<newMovie> tryNewMovies = new ArrayList<>();
         newMovie tryNewMovie;
-        for(int i=0;i<jsonArray.length()  && i < 14;i++){
+        for(int i=0;i<jsonArray.length()  && i < 3;i++){
             tryNewMovie = new newMovie();
 
             tryNewMovie.setGenre("Action");
@@ -174,8 +173,7 @@ public class dashboardController implements Initializable {
         return tryNewMovies;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void updateMoviesOnDashboard(){
         try {
             movies.addAll(getData());
         } catch (Exception e) {
@@ -209,16 +207,16 @@ public class dashboardController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
-
-
+    }
+    public void updateSideMovieOnDashboard(){
         try {
             tryNewMovies.addAll(getTryNewMoviesData());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        col = 0;
-        row = 1;
+        int col = 0;
+        int row = 1;
         try{
             for (newMovie tryNewMovie : tryNewMovies) {
                 FXMLLoader sidefxmlLoader = new FXMLLoader();
@@ -246,7 +244,12 @@ public class dashboardController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        updateMoviesOnDashboard();
+        updateSideMovieOnDashboard();
     }
 
 
@@ -275,10 +278,10 @@ public class dashboardController implements Initializable {
 
     @FXML
     void nextButtonOnAction(ActionEvent event) throws Exception {
-        
-        if(Current_Pg<10000){
-            Current_Pg=Current_Pg+1;
-            getData();
+
+        if(Current_Pg < 10000) {
+            Current_Pg = Current_Pg + 1;
+            updateMoviesOnDashboard();
         }
     }
 
@@ -287,7 +290,7 @@ public class dashboardController implements Initializable {
 
         if(Current_Pg>1){
             Current_Pg=Current_Pg-1;
-            getData();
+            updateMoviesOnDashboard();
         }
     }
 

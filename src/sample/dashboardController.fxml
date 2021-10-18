@@ -250,6 +250,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="644.0">
                <children>
                   <Label fx:id="welcomeUserLabel" prefHeight="35.0" prefWidth="377.0" text="Hello, Ankit!" textFill="#7068a4" underline="true">
+<!--                     Instead of "Hello, Ankit", we need to use "Hello, {{First Name + Last Name}}, might need to use user object here-->
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

@@ -8,5 +8,6 @@ module WATCHLIST {
     opens sample;
     opens movies;
     opens images;
+    opens users;
 
 }

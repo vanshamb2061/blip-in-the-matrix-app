@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class TMDB extends dashboardController{
+public class TMDB{
 
     public static void main(String[] args) throws Exception
     {

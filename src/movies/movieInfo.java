@@ -1,11 +1,15 @@
 package movies;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class movieInfo {
     @FXML
@@ -46,8 +50,17 @@ public class movieInfo {
     }
 
     @FXML
-    void mousePressedOnPlayTrailer(MouseEvent event) {
-        System.out.println("Please wait..... we're playing trailer for you.");
+    void mousePressedOnPlayTrailer(MouseEvent event) throws Exception{
+        /*System.out.println("Please wait..... we're playing trailer for you.");
+
+        Parent root = FXMLLoader.load(getClass().getResource("playTrailer.fxml"));
+        Stage playTrailerStage = new Stage();
+        playTrailerStage.initStyle(StageStyle.DECORATED);
+        playTrailerStage.setTitle("play Trailer");
+        playTrailerStage.setScene(new Scene(root, 900, 500));
+        playTrailerStage.show();
+
+         */
     }
     @FXML
     void mousePressedOnCancel(MouseEvent event) {

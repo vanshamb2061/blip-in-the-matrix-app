@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="540.0" style="-fx-background-color: green; -fx-border-color: green; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.registrationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="540.0" style="-fx-background-color: #28467d; -fx-border-color: green; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.registrationController">
    <top>
       <AnchorPane prefHeight="53.0" prefWidth="600.0" style="-fx-background-color: #087608; -fx-background-radius: 20; -fx-border-color: black; -fx-border-radius: 20;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="192.0" layoutY="7.0" prefHeight="39.0" prefWidth="160.0" text="User Registration" textFill="WHITE">
+            <Label alignment="CENTER" layoutY="7.0" prefHeight="39.0" prefWidth="540.0" text="User Registration" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="23.0" />
                </font>
                <effect>
                   <DropShadow />
@@ -33,10 +33,7 @@
                   <DropShadow />
                </effect>
             </Label>
-            <TextField fx:id="firstNameTextField" layoutX="92.0" layoutY="60.0" prefHeight="26.0" prefWidth="160.0" promptText="First Name" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;">
-               <effect>
-                  <DropShadow />
-               </effect>
+            <TextField fx:id="firstNameTextField" layoutX="92.0" layoutY="60.0" prefHeight="26.0" prefWidth="160.0" promptText="First Name" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;" styleClass="textField" stylesheets="@../CSS/textField.css">
                <padding>
                   <Insets left="-1.0" />
                </padding>
@@ -46,10 +43,7 @@
                   <DropShadow />
                </effect>
             </Label>
-            <TextField fx:id="lastNameTextField" layoutX="292.0" layoutY="59.0" prefHeight="26.0" prefWidth="160.0" promptText="Last Name" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;">
-               <effect>
-                  <DropShadow />
-               </effect>
+            <TextField fx:id="lastNameTextField" layoutX="292.0" layoutY="59.0" prefHeight="26.0" prefWidth="160.0" promptText="Last Name" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;" styleClass="textField" stylesheets="@../CSS/textField.css">
                <padding>
                   <Insets left="-1.0" />
                </padding>
@@ -58,10 +52,7 @@
                <effect>
                   <DropShadow />
                </effect></Label>
-            <TextField fx:id="ageTextField" layoutX="92.0" layoutY="124.0" prefHeight="26.0" prefWidth="86.0" promptText="Age" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;">
-               <effect>
-                  <DropShadow />
-               </effect>
+            <TextField fx:id="ageTextField" layoutX="92.0" layoutY="124.0" prefHeight="26.0" prefWidth="86.0" promptText="Age" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;" styleClass="textField" stylesheets="@../CSS/textField.css">
                <padding>
                   <Insets left="-1.0" />
                </padding>
@@ -70,10 +61,7 @@
                <effect>
                   <DropShadow />
                </effect></Label>
-            <TextField fx:id="usernameTextField" layoutX="92.0" layoutY="187.0" prefHeight="26.0" prefWidth="360.0" promptText="Username" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;">
-               <effect>
-                  <DropShadow />
-               </effect>
+            <TextField fx:id="usernameTextField" layoutX="92.0" layoutY="187.0" prefHeight="26.0" prefWidth="360.0" promptText="Username" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;" styleClass="textField" stylesheets="@../CSS/textField.css">
                <padding>
                   <Insets left="-1.0" />
                </padding></TextField>
@@ -93,17 +81,11 @@
                <effect>
                   <DropShadow />
                </effect></Button>
-            <PasswordField fx:id="setPasswordField" layoutX="92.0" layoutY="253.0" prefHeight="26.0" prefWidth="360.0" promptText="Password" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;">
-               <effect>
-                  <DropShadow />
-               </effect>
+            <PasswordField fx:id="setPasswordField" layoutX="92.0" layoutY="253.0" prefHeight="26.0" prefWidth="360.0" promptText="Password" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;" styleClass="textField" stylesheets="@../CSS/textField.css">
                <padding>
                   <Insets left="-1.0" />
                </padding></PasswordField>
-            <PasswordField fx:id="confirmPasswordField" layoutX="92.0" layoutY="315.0" prefHeight="26.0" prefWidth="360.0" promptText="Confirm Password" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;">
-               <effect>
-                  <DropShadow />
-               </effect>
+            <PasswordField fx:id="confirmPasswordField" layoutX="92.0" layoutY="315.0" prefHeight="26.0" prefWidth="360.0" promptText="Confirm Password" style="-fx-border-color: transparent transparent #11115c transparent; -fx-background-color: transparent;" styleClass="textField" stylesheets="@../CSS/textField.css">
                <padding>
                   <Insets left="-1.0" />
                </padding></PasswordField>

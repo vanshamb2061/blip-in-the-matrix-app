@@ -42,7 +42,7 @@
                         <DropShadow />
                      </effect>
                   </Label>
-                  <TextField fx:id="usernameTextField" prefHeight="26.0" prefWidth="170.0" promptText="username" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;">
+                  <TextField fx:id="usernameTextField" onKeyPressed="#keyPressedOnPasswordField" prefHeight="26.0" prefWidth="170.0" promptText="username" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" text="tonyStark">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -64,7 +64,7 @@
                         <Insets top="5.0" />
                      </padding>
                   </Label>
-                  <PasswordField fx:id="enterPasswordField" prefHeight="26.0" prefWidth="170.0" promptText="password" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;">
+                  <PasswordField fx:id="enterPasswordField" onKeyPressed="#keyPressedOnPasswordField" prefHeight="26.0" prefWidth="170.0" promptText="password" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" text="3000">
                      <padding>
                         <Insets top="5.0" />
                      </padding>

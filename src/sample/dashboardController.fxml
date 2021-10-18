@@ -59,7 +59,7 @@
                   </HBox>
                   <Separator opacity="0.4" prefHeight="1.0" prefWidth="100.0">
                      <effect>
-                        <DropShadow spread="0.72" />
+                        <DropShadow spread="0.25" />
                      </effect></Separator>
                   <VBox spacing="25.0">
                      <children>
@@ -244,7 +244,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="searchMovies" onKeyPressed="#keyPressedOnSearchMovies" prefHeight="30.0" prefWidth="678.0" promptText="Search movies by its name or by actors" style="-fx-background-color: #081a4a; -fx-border-color: #081a4a; -fx-border-radius: 20; -fx-background-radius: 20;" />
+                  <TextField fx:id="searchMovies" onKeyPressed="#keyPressedOnSearchMovies" prefHeight="30.0" prefWidth="678.0" promptText="Search movies by its name or by actors" style="-fx-background-color: #081a4a; -fx-border-color: #081a4a; -fx-border-radius: 20; -fx-background-radius: 20;" styleClass="textField" stylesheets="@../CSS/textField.css" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="644.0">
@@ -295,7 +295,7 @@
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="582.0" prefWidth="644.0" spacing="15.0" style="-fx-background-color: #28467d;">
+            <HBox alignment="CENTER" prefHeight="550.0" prefWidth="636.0" spacing="15.0" style="-fx-background-color: #28467d;">
                <children>
                   <ScrollPane fx:id="mainScrollPane" opacity="0.85" pannable="true" prefHeight="580.0" prefWidth="590.0" style="-fx-background-color: #28467d; -fx-border-radius: 30;" styleClass="corner" stylesheets="@../CSS/style.css">
                      <content>
@@ -314,6 +314,34 @@
                <padding>
                   <Insets top="10.0" />
                </padding>
+            </HBox>
+            <HBox>
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="303.0">
+                     <children>
+                        <Button fx:id="prevButton" mnemonicParsing="false" onAction="#prevButtonOnAction" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="PREV" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="306.0">
+                     <children>
+                        <Button fx:id="nextButton" mnemonicParsing="false" onAction="#nextButtonOnAction" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="NEXT" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
             </HBox>
          </children>
       </VBox>

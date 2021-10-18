@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/json-20210307.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../json-20210307.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -35,5 +35,7 @@
     <orderEntry type="library" name="javafx-swt1" level="application" />
     <orderEntry type="library" name="org.json" level="application" />
     <orderEntry type="library" name="mysql-connector-java-8.0.26" level="application" />
+    <orderEntry type="library" name="javafx-media-18-ea+4" level="application" />
+    <orderEntry type="library" name="javafx-media-18-ea+4-linux" level="application" />
   </component>
 </module>

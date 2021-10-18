@@ -37,34 +37,24 @@ public class dashboardController implements Initializable {
     //code yet to write
     @FXML
     private MenuButton genresMenuBar;
-
     @FXML
     private Button logOutButton;
-
     @FXML
     private Button nextButton;
-
     @FXML
     private Button prevButton;
-
     @FXML
     private ScrollBar scrollBar;
-
     @FXML
     private Label welcomeUserLabel;
-
     @FXML
     private MenuButton yearsMenuBar;
-
     @FXML
     private GridPane mainGridPane;
-
     @FXML
     private GridPane sideGridPane;
-
     @FXML
     private TextField searchMovies;
-
     @FXML
     private TextField searchUsername;
 
@@ -76,53 +66,53 @@ public class dashboardController implements Initializable {
 
         //try
         //{
-            HttpURLConnection connection = null;
-            final String mykey = "3ddfe235acf65e0759d82a7ee3729e67";
-            String genres = "Action";
-            boolean adult = true;
-            int pg_no=1;
+        HttpURLConnection connection = null;
+        final String mykey = "3ddfe235acf65e0759d82a7ee3729e67";
+        String genres = "Action";
+        boolean adult = true;
+        int pg_no=1;
 
-            URL url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                    + "&include_adult=" + adult + "&page="+pg_no);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setDoInput(true);
+        URL url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                + "&include_adult=" + adult + "&page="+pg_no);
+        connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setDoInput(true);
 
-            InputStream stream = connection.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-            StringBuilder response = new StringBuilder();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-                response.append("\r");
-            }
-            reader.close();
-            String result = response.toString();
+        InputStream stream = connection.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        StringBuilder response = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+            response.append("\r");
+        }
+        reader.close();
+        String result = response.toString();
 
-            JSONObject jsonObject1 = new JSONObject(result);
-            JSONArray jsonArray = jsonObject1.getJSONArray("results");
+        JSONObject jsonObject1 = new JSONObject(result);
+        JSONArray jsonArray = jsonObject1.getJSONArray("results");
 
         List<Movie> movies = new ArrayList<>();
         Movie movie;
         for(int i=0;i<jsonArray.length();i++){
             movie = new Movie();
 //            movie.setName("Avengers Endgame");
-            movie.setImgSrc("/images/avengersEndgame.jpg");
-           movie.setGenre("Action");
+            movie.setImgSrc("https://cdn.shopify.com/shopifycloud/brochure/assets/content-marketing/blog/blog_header/redesign/partners-small-f4cd889e0b6714bfcc2c43b0ffb2b82d353af4eaf6549e075f0a21a794bcb96c.jpg");
+            movie.setGenre("Action");
 //            movie.setYear("2019");
 
 
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                //movie.setGenre(jsonObject.getString("genre_ids"));
-                //String id = jsonObject.getString("id");
-                //String original_language = jsonObject.getString("original_language");
-                movie.setName( jsonObject.getString("original_title"));
-                //String overview = jsonObject.getString("overview");
-                //movie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
-                movie.setYear(jsonObject.getString("release_date"));
-                //String video = jsonObject.getString("video");
-                //System.out.println(genre_ids+" --> "+id+" --> "+original_language);
+            //movie.setGenre(jsonObject.getString("genre_ids"));
+            //String id = jsonObject.getString("id");
+            //String original_language = jsonObject.getString("original_language");
+            movie.setName( jsonObject.getString("original_title"));
+            //String overview = jsonObject.getString("overview");
+            //movie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
+            movie.setYear(jsonObject.getString("release_date"));
+            //String video = jsonObject.getString("video");
+            //System.out.println(genre_ids+" --> "+id+" --> "+original_language);
 
             movies.add(movie);
         }
@@ -243,6 +233,17 @@ public class dashboardController implements Initializable {
             System.out.println("You searched an user having username " + searchUsername.getText());
         }
     }
+
+    @FXML
+    void nextButtonOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void prevButtonOnAction(ActionEvent event) {
+
+    }
+
     public void mousePressedOnMyProfile(MouseEvent mouseEvent) {
         System.out.println("forwarding you to your profile");
     }
@@ -266,4 +267,5 @@ public class dashboardController implements Initializable {
     public void mousePressedOnRefreshImageView(MouseEvent mouseEvent) {
         System.out.println("refresh to get new recommendations");
     }
+
 }

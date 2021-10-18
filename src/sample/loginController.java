@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
@@ -32,9 +34,9 @@ public class loginController {
     @FXML
     private TextField usernameTextField;
 
-    public void loginButtonOnAction(ActionEvent event) throws Exception {
-          if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
-          //sql injection
+    public void clickOnLogin(){
+        if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
+            //sql injection
             try
             {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -74,6 +76,15 @@ public class loginController {
         }else{
             errorLabel.setText("please enter username/password");
         }
+    }
+    public void keyPressedOnPasswordField(KeyEvent event) throws Exception{
+        if(event.getCode().equals(KeyCode.ENTER)){
+            System.out.println("login button pressed");
+            clickOnLogin();
+        }
+    }
+    public void loginButtonOnAction(ActionEvent event) throws Exception {
+        clickOnLogin();
     }
 
     public void signupButtonOnAction(ActionEvent event) throws Exception{

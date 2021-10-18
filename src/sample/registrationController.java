@@ -40,7 +40,6 @@ public class registrationController {
 
     public void registerButtonOnAction(ActionEvent event) throws Exception {
         //write backend code
-        // Password and Confirm Password are same or not I haven't checked it
 
         //sql injection
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -48,8 +47,7 @@ public class registrationController {
         Connection myConn = DriverManager.getConnection(url, "root", ""); //Connect to database (Requires JDBC) [Default username:root, pw empty]
         Statement statement= myConn.createStatement();
 
-        try
-        {
+        try{
             String query="INSERT INTO `userdetails`(`First Name`, `Last Name`, `Age`, `UserId`, `Password`) VALUES (?,?,?,?,?)";
             PreparedStatement preStat = myConn.prepareStatement(query);
             preStat.setString(1,firstNameTextField.getText());
@@ -57,11 +55,11 @@ public class registrationController {
             preStat.setString(3,ageTextField.getText());
             preStat.setString(4,usernameTextField.getText());
             preStat.setString(5,setPasswordField.getText());
-            if(firstNameTextField.getText().isBlank() == false
-                    && ageTextField.getText().isBlank() == false
-                    && usernameTextField.getText().isBlank() == false
-                    && setPasswordField.getText().isBlank() == false
-                    && confirmPasswordField.getText().isBlank() == false
+            if(!firstNameTextField.getText().isBlank()
+                    && !ageTextField.getText().isBlank()
+                    && !usernameTextField.getText().isBlank()
+                    && !setPasswordField.getText().isBlank()
+                    && !confirmPasswordField.getText().isBlank()
                     && setPasswordField.getText().equals(setPasswordField.getText())) {
                 preStat.executeUpdate();
                 Stage stage1 = (Stage) registerButton.getScene().getWindow();
@@ -78,10 +76,8 @@ public class registrationController {
             }
             else{
                 //Put error Label Here
+                System.out.println("Please fill all the data");
             }
-
-
-
         }
         catch(Exception e){
             System.out.println(e.getMessage());

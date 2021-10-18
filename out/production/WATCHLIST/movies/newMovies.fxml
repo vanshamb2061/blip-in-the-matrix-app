@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="249.0" prefWidth="140.0" style="-fx-background-color: #28467d; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.newMoviesController">
+<AnchorPane prefHeight="249.0" prefWidth="140.0" style="-fx-background-color: #28467d; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.newMoviesController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="140.0" style="-fx-border-radius: 20; -fx-background-radius: 20;">
          <children>
@@ -91,6 +91,6 @@
       </VBox>
    </children>
    <effect>
-      <DropShadow spread="0.12" />
+      <DropShadow />
    </effect>
 </AnchorPane>

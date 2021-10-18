@@ -1,4 +1,5 @@
 package sample;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +20,14 @@ import movies.Movie;
 import movies.moviesController;
 import movies.newMovie;
 import movies.newMoviesController;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,18 +68,69 @@ public class dashboardController implements Initializable {
     @FXML
     private TextField searchUsername;
 
+
+
     private final List<Movie> movies = new ArrayList<>();
-    private List<Movie> getData(){
+    private List<Movie> getData() throws Exception
+    {
+
+        //try
+        //{
+            HttpURLConnection connection = null;
+            final String mykey = "3ddfe235acf65e0759d82a7ee3729e67";
+            String genres = "Action";
+            boolean adult = true;
+            int pg_no=1;
+
+            URL url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                    + "&include_adult=" + adult + "&page="+pg_no);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setDoInput(true);
+
+            InputStream stream = connection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+            StringBuilder response = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+                response.append("\r");
+            }
+            reader.close();
+            String result = response.toString();
+
+            JSONObject jsonObject1 = new JSONObject(result);
+            JSONArray jsonArray = jsonObject1.getJSONArray("results");
+
         List<Movie> movies = new ArrayList<>();
         Movie movie;
-        for(int i = 0; i < 21; i++){
+        for(int i=0;i<jsonArray.length();i++){
             movie = new Movie();
-            movie.setName("Avengers Endgame");
+//            movie.setName("Avengers Endgame");
             movie.setImgSrc("/images/avengersEndgame.jpg");
-            movie.setGenre("Action");
-            movie.setYear("2019");
+           movie.setGenre("Action");
+//            movie.setYear("2019");
+
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                //movie.setGenre(jsonObject.getString("genre_ids"));
+                //String id = jsonObject.getString("id");
+                //String original_language = jsonObject.getString("original_language");
+                movie.setName( jsonObject.getString("original_title"));
+                //String overview = jsonObject.getString("overview");
+                //movie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
+                movie.setYear(jsonObject.getString("release_date"));
+                //String video = jsonObject.getString("video");
+                //System.out.println(genre_ids+" --> "+id+" --> "+original_language);
+
             movies.add(movie);
         }
+//        }
+//        catch (Exception e){
+//            e.getMessage();
+//        }
+
         return movies;
     }
 
@@ -93,7 +151,11 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        movies.addAll(getData());
+        try {
+            movies.addAll(getData());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         int col = 0, row = 1;
         try{
             for (Movie movie : movies) {

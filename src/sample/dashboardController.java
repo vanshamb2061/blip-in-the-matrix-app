@@ -63,6 +63,7 @@ public class dashboardController implements Initializable {
     private TextField searchUsername;
 
 
+    int Current_Pg=1;
 
     private final List<Movie> movies = new ArrayList<>();
 
@@ -71,10 +72,10 @@ public class dashboardController implements Initializable {
         final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
         String genres = "Action";
         boolean adult = true;
-        int pg_no=1;
+
 
         URL url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                + "&include_adult=" + adult + "&page="+pg_no);
+                + "&include_adult=" + adult + "&page="+Current_Pg);
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setDoInput(true);
@@ -274,12 +275,20 @@ public class dashboardController implements Initializable {
 
     @FXML
     void nextButtonOnAction(ActionEvent event) throws Exception {
-
+        
+        if(Current_Pg<10000){
+            Current_Pg=Current_Pg+1;
+            getData();
+        }
     }
 
     @FXML
     void prevButtonOnAction(ActionEvent event) throws Exception {
 
+        if(Current_Pg>1){
+            Current_Pg=Current_Pg-1;
+            getData();
+        }
     }
 
     public void mousePressedOnMyProfile(MouseEvent mouseEvent) {

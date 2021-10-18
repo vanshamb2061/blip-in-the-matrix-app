@@ -9,10 +9,17 @@ public class Movie {
     private int likes,dislikes;
     private int id;
 
-    public Movie(){
-        likes=0;
-        dislikes=0;
-    }
+//    public Movie(String name, String imgSrc, String color, String genre, String year, int likes, int dislikes, int it){
+//        this.id = id;
+//        this.name = name;
+//        this.imgSrc = imgSrc;
+//        this.color = color;
+//        this.genre = genre;
+//        this.year = year;
+//        this.likes=likes;
+//        this.dislikes=dislikes;
+//    }
+
     public int getId() {
         return id;
     }
@@ -55,11 +62,19 @@ public class Movie {
         this.year = year;
     }
 
-    public int getLikes(){return this.likes;}
+    //likes
+    public int getLikes(){
+        return this.likes;
+    }
     public void addLike(){
         likes=likes+1;
     }
 
-    public int getDislikes(){return this.dislikes;}
-    public void addDisLike(){dislikes=dislikes+1;}
+    //dislikes
+    public int getDislikes(){
+        return this.dislikes;
+    }
+    public void addDisLike(){
+        dislikes=dislikes+1;
+    }
 }

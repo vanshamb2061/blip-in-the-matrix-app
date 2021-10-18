@@ -12,6 +12,8 @@ public class Account extends User {
     Vector<Integer> likedMovies;
     Vector<Integer> dislikedMovies;
 
+
+
     public void addLike(Movie movieobj){
         likedMovies.add(movieobj.getId());
         likedGenres.put(movieobj.getGenre(),likedGenres.get(movieobj.getGenre())-5);

@@ -1,11 +1,21 @@
 package movies;
 
+import org.json.JSONObject;
+
 public class newMovie {
     private String name;
     private String imgSrc;
     private String color;
     private String genre;
     private String year;
+    private JSONObject jsonObject;
+
+    public JSONObject getJsonObject() {
+        return jsonObject;
+    }
+    public void setJsonObject(JSONObject jsonObject){
+        this.jsonObject = jsonObject;
+    }
 
     public String getName() {
         return name;

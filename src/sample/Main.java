@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-   // /*
+  // /*
         Parent root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root, 530, 320));
@@ -25,7 +25,7 @@ public class Main extends Application {
         dashboardStage.setTitle("watchlist");
         dashboardStage.setScene(new Scene(root, 900, 700));
         dashboardStage.show();
-//*/
+*/
     }
 
 

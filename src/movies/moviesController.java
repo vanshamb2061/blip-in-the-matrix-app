@@ -8,12 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import movies.movieInfo;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -41,7 +42,7 @@ public class moviesController{
     @FXML
     private ImageView cancelImageView;
 
-    private Movie movie;
+    protected Movie movie;
     public boolean clicked = false;
 
     public void setData(Movie movie){
@@ -49,18 +50,26 @@ public class moviesController{
         titleLabel.setText(movie.getName());
         genreLabel.setText(movie.getGenre());
         yearLabel.setText(movie.getYear());
-        Image image = new Image(getClass().getResourceAsStream(movie.getImgSrc()));
+        movie.setJsonObject(movie.getJsonObject());
+
+        // this one is to load images from local data
+       // Image image = new Image(getClass().getResourceAsStream(movie.getImgSrc()));
+        //and this one is to load images from url go to dashboardController.java to change location/url.
+        Image image = new Image(movie.getImgSrc());
         poster.setImage(image);
     }
 
 
     public void mousePressedOnPoster(MouseEvent mouseEvent) throws Exception{
         System.out.println("user clicked on movie, show him movie description");
-        Parent root = FXMLLoader.load(getClass().getResource("movieInfo.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("movieInfo.fxml"));
+        Parent root = loader.load();
+        movieInfo movieInfoController = loader.getController();
+        movieInfoController.setEverythingInMovieInfo(movie);
         Stage movieInfoStage = new Stage();
         movieInfoStage.initStyle(StageStyle.UNDECORATED);
         movieInfoStage.setTitle("Info");
-        movieInfoStage.setScene(new Scene(root, 550, 300));
+        movieInfoStage.setScene(new Scene(root, 600, 340));
         movieInfoStage.show();
     }
 
@@ -68,29 +77,20 @@ public class moviesController{
         clicked = !clicked;
         if(clicked == true) {
             System.out.println("user liked this movie, added this to his favorites");
-            Image image = new Image(("/images/redLike.png"));
+            Image image = new Image(("/images/blueLove.png"));
             likeImageView.setImage(image);
             likeImageView.setFitWidth(29);
             likeImageView.setFitHeight(30);
-            ColorAdjust c = new ColorAdjust();
-            c.setBrightness(0);
-            c.setContrast(0);
-            c.setHue(0);
-            c.setSaturation(0);
-            likeImageView.setEffect(c);
         }else{
             System.out.println("user removed this movie from his favorites");
             Image image = new Image(("/images/unfilledLike.png"));
             likeImageView.setImage(image);
             likeImageView.setFitWidth(29);
             likeImageView.setFitHeight(30);
-            ColorAdjust c = new ColorAdjust();
-            c.setBrightness(0);
-            c.setContrast(1);
-            c.setHue(1);
-            c.setSaturation(1);
-            likeImageView.setEffect(c);
         }
+        DropShadow d = new DropShadow();
+        d.setSpread(.7);
+        likeImageView.setEffect(d);
     }
 
     public void mousePressedOnCancel(MouseEvent mouseEvent){

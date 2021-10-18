@@ -21,6 +21,7 @@ import movies.moviesController;
 import movies.newMovie;
 import movies.newMoviesController;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -28,7 +29,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -61,13 +65,10 @@ public class dashboardController implements Initializable {
 
 
     private final List<Movie> movies = new ArrayList<>();
-    private List<Movie> getData() throws Exception
-    {
 
-        //try
-        //{
+    private List<Movie> getData() throws Exception {
         HttpURLConnection connection = null;
-        final String mykey = "3ddfe235acf65e0759d82a7ee3729e67";
+        final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
         String genres = "Action";
         boolean adult = true;
         int pg_no=1;
@@ -77,7 +78,6 @@ public class dashboardController implements Initializable {
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setDoInput(true);
-
         InputStream stream = connection.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         StringBuilder response = new StringBuilder();
@@ -96,44 +96,78 @@ public class dashboardController implements Initializable {
         Movie movie;
         for(int i=0;i<jsonArray.length();i++){
             movie = new Movie();
-//            movie.setName("Avengers Endgame");
-            movie.setImgSrc("https://cdn.shopify.com/shopifycloud/brochure/assets/content-marketing/blog/blog_header/redesign/partners-small-f4cd889e0b6714bfcc2c43b0ffb2b82d353af4eaf6549e075f0a21a794bcb96c.jpg");
+
             movie.setGenre("Action");
-//            movie.setYear("2019");
-
-
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            //movie.setGenre(jsonObject.getString("genre_ids"));
+            movie.setJsonObject(jsonObject);
+
+            movie.setGenre(jsonObject.getString("genre_ids"));
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             movie.setName( jsonObject.getString("original_title"));
             //String overview = jsonObject.getString("overview");
-            //movie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
-            movie.setYear(jsonObject.getString("release_date"));
+            movie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
+
+            String year = jsonObject.getString("release_date");
+            movie.setYear(year.split("-")[0]);
             //String video = jsonObject.getString("video");
             //System.out.println(genre_ids+" --> "+id+" --> "+original_language);
 
             movies.add(movie);
         }
-//        }
-//        catch (Exception e){
-//            e.getMessage();
-//        }
-
         return movies;
     }
 
     private final List<newMovie> tryNewMovies = new ArrayList<>();
-    private List<newMovie> getTryNewMoviesData(){
+    private List<newMovie> getTryNewMoviesData() throws Exception {
+        HttpURLConnection connection = null;
+        final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
+        String genres = "Action";
+        boolean adult = true;
+        int pg_no=2;
+
+        URL url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                + "&include_adult=" + adult + "&page="+pg_no);
+        connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setDoInput(true);
+        InputStream stream = connection.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        StringBuilder response = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
+            response.append("\r");
+        }
+        reader.close();
+        String result = response.toString();
+
+        JSONObject jsonObject1 = new JSONObject(result);
+        JSONArray jsonArray = jsonObject1.getJSONArray("results");
+
         List<newMovie> tryNewMovies = new ArrayList<>();
         newMovie tryNewMovie;
-        for(int i = 0; i < 5; i++){
+        for(int i=0;i<jsonArray.length()  && i < 14;i++){
             tryNewMovie = new newMovie();
-            tryNewMovie.setName("Avengers Endgame");
-            tryNewMovie.setImgSrc("/images/avengersEndgame.jpg");
+
             tryNewMovie.setGenre("Action");
-            tryNewMovie.setYear("2019");
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+            tryNewMovie.setJsonObject(jsonObject);
+
+            tryNewMovie.setGenre(jsonObject.getString("genre_ids"));
+            //String id = jsonObject.getString("id");
+            //String original_language = jsonObject.getString("original_language");
+            tryNewMovie.setName( jsonObject.getString("original_title"));
+            //String overview = jsonObject.getString("overview");
+            tryNewMovie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
+
+            String year = jsonObject.getString("release_date");
+            tryNewMovie.setYear(year.split("-")[0]);
+            //String video = jsonObject.getString("video");
+            //System.out.println(genre_ids+" --> "+id+" --> "+original_language);
+
             tryNewMovies.add(tryNewMovie);
         }
         return tryNewMovies;
@@ -176,8 +210,12 @@ public class dashboardController implements Initializable {
         }
 
 
+        try {
+            tryNewMovies.addAll(getTryNewMoviesData());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        tryNewMovies.addAll(getTryNewMoviesData());
         col = 0;
         row = 1;
         try{
@@ -235,12 +273,12 @@ public class dashboardController implements Initializable {
     }
 
     @FXML
-    void nextButtonOnAction(ActionEvent event) {
+    void nextButtonOnAction(ActionEvent event) throws Exception {
 
     }
 
     @FXML
-    void prevButtonOnAction(ActionEvent event) {
+    void prevButtonOnAction(ActionEvent event) throws Exception {
 
     }
 

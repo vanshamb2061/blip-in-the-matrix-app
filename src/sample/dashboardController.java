@@ -45,8 +45,7 @@ public class dashboardController implements Initializable {
     private Button logOutButton;
     @FXML
     private Button nextButton;
-    @FXML
-    private Button prevButton;
+
     @FXML
     private ScrollBar scrollBar;
     @FXML
@@ -95,7 +94,7 @@ public class dashboardController implements Initializable {
 
         List<Movie> movies = new ArrayList<>();
         Movie movie;
-        for(int i=0;i<jsonArray.length() && i < 6;i++){
+        for(int i=0;i<jsonArray.length() && i<18;i++){
             movie = new Movie();
 
             movie.setGenre("Action");
@@ -103,7 +102,7 @@ public class dashboardController implements Initializable {
 
             movie.setJsonObject(jsonObject);
 
-            movie.setGenre(jsonObject.getString("genre_ids"));
+            //movie.setGenre(jsonObject.getString("genre_ids"));
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             movie.setName( jsonObject.getString("original_title"));
@@ -148,7 +147,7 @@ public class dashboardController implements Initializable {
 
         List<newMovie> tryNewMovies = new ArrayList<>();
         newMovie tryNewMovie;
-        for(int i=0;i<jsonArray.length()  && i < 3;i++){
+        for(int i=0;i<jsonArray.length();i++){
             tryNewMovie = new newMovie();
 
             tryNewMovie.setGenre("Action");
@@ -156,7 +155,7 @@ public class dashboardController implements Initializable {
 
             tryNewMovie.setJsonObject(jsonObject);
 
-            tryNewMovie.setGenre(jsonObject.getString("genre_ids"));
+            //tryNewMovie.setGenre(jsonObject.getString("genre_ids"));
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             tryNewMovie.setName( jsonObject.getString("original_title"));
@@ -285,14 +284,6 @@ public class dashboardController implements Initializable {
         }
     }
 
-    @FXML
-    void prevButtonOnAction(ActionEvent event) throws Exception {
-
-        if(Current_Pg>1){
-            Current_Pg=Current_Pg-1;
-            updateMoviesOnDashboard();
-        }
-    }
 
     public void mousePressedOnMyProfile(MouseEvent mouseEvent) {
         System.out.println("forwarding you to your profile");

@@ -6,11 +6,23 @@ public class Movie {
     private String color;
     private String genre;
     private String year;
+    private int likes,dislikes;
+    private int id;
+
+    public Movie(){
+        likes=0;
+        dislikes=0;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -18,7 +30,6 @@ public class Movie {
     public String getImgSrc() {
         return imgSrc;
     }
-
     public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
     }
@@ -26,7 +37,6 @@ public class Movie {
     public String getColor() {
         return color;
     }
-
     public void setColor(String color) {
         this.color = color;
     }
@@ -34,7 +44,6 @@ public class Movie {
     public String getGenre() {
         return genre;
     }
-
     public void setGenre(String genre) {
         this.genre = genre;
     }
@@ -42,8 +51,15 @@ public class Movie {
     public String getYear() {
         return year;
     }
-
     public void setYear(String year) {
         this.year = year;
     }
+
+    public int getLikes(){return this.likes;}
+    public void addLike(){
+        likes=likes+1;
+    }
+
+    public int getDislikes(){return this.dislikes;}
+    public void addDisLike(){dislikes=dislikes+1;}
 }

@@ -12,7 +12,7 @@ import java.net.URL;
 
 public class TMDB{
 
-    public static void main(String[] args) throws Exception
+    public void api() throws Exception
     {
         HttpURLConnection connection=null;
         final String mykey = "3ddfe235acf65e0759d82a7ee3729e67";

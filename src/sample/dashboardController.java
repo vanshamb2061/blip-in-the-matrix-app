@@ -279,8 +279,8 @@ public class dashboardController implements Initializable {
     @FXML
     void nextButtonOnAction(ActionEvent event) throws Exception {
 
-        if(Current_Pg < 10000){
-            Current_Pg=Current_Pg + 1;
+        if(Current_Pg < 10000) {
+            Current_Pg = Current_Pg + 1;
             updateMoviesOnDashboard();
         }
     }
@@ -288,8 +288,8 @@ public class dashboardController implements Initializable {
     @FXML
     void prevButtonOnAction(ActionEvent event) throws Exception {
 
-        if(Current_Pg < 10000){
-            Current_Pg = Current_Pg - 1;
+        if(Current_Pg>1){
+            Current_Pg=Current_Pg-1;
             updateMoviesOnDashboard();
         }
     }

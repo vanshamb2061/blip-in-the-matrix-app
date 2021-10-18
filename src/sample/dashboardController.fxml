@@ -122,7 +122,7 @@
                            <children>
                               <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnLiked" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/filled-like.png" />
+                                    <Image url="@../images/blueLove.png" />
                                  </image>
                                  <effect>
                                     <DropShadow spread="0.34" />

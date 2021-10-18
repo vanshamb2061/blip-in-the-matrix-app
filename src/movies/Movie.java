@@ -1,11 +1,14 @@
 package movies;
 
+import org.json.JSONObject;
+
 public class Movie {
     private String name;
     private String imgSrc;
     private String color;
     private String genre;
     private String year;
+    private JSONObject jsonObject;
     private int likes,dislikes;
     private int id;
 
@@ -19,6 +22,13 @@ public class Movie {
 //        this.likes=likes;
 //        this.dislikes=dislikes;
 //    }
+
+    public JSONObject getJsonObject() {
+        return jsonObject;
+    }
+    public void setJsonObject(JSONObject jsonObject){
+        this.jsonObject = jsonObject;
+    }
 
     public int getId() {
         return id;

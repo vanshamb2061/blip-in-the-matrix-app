@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -20,7 +19,7 @@
                <children>
                   <ImageView fx:id="poster" accessibleRole="BUTTON" fitHeight="255.0" fitWidth="170.0" onMousePressed="#mousePressedOnPoster" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/images%20(2).jpg" />
+                        <Image url="@../images/avengersEndgame.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="likeImageView" fitHeight="30.0" fitWidth="29.0" onMousePressed="#mousePressedOnLike" pickOnBounds="true">
@@ -28,10 +27,7 @@
                         <Image url="@../images/unfilledLike.png" />
                      </image>
                      <effect>
-                        <ColorAdjust contrast="1.0" hue="1.0" saturation="1.0">
-                           <input>
-                              <DropShadow spread="0.66" />
-                           </input></ColorAdjust>
+                        <DropShadow spread="0.7" />
                      </effect>
                   </ImageView>
                   <ImageView fx:id="cancelImageView" fitHeight="29.0" fitWidth="23.0" layoutX="146.0" layoutY="1.0" onMousePressed="#mousePressedOnCancel" pickOnBounds="true" preserveRatio="true">

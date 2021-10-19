@@ -104,4 +104,9 @@ public class loginController {
         registrationStage.setScene(new Scene(root, 540, 550));
         registrationStage.show();
     }
+
+
+//    public void setWelcomeUserLabelInDashboardController(String text) {
+//        text="Welcome "+usernameTextField.getText();
+//    }
 }

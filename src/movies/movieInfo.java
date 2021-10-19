@@ -79,6 +79,7 @@ public class movieInfo implements Initializable {
         playTrailerStage.initStyle(StageStyle.DECORATED);
         playTrailerStage.setTitle("play Trailer");
         playTrailerStage.setScene(new Scene(root, 900, 500));
+        playTrailerStage.getIcons().add(new Image("/images/img.png"));
         playTrailerStage.show();
 
     }

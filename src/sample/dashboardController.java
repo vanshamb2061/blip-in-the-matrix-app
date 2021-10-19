@@ -100,16 +100,16 @@ public class dashboardController implements Initializable {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             movie.setJsonObject(jsonObject);
-            int genreLength = jsonObject.getString("genre_ids").length();
-            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
-            String genreString[] = str.split(",");
+//            int genreLength = jsonObject.getString("genre_ids").length();
+//            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
+//            String genreString[] = str.split(",");
             movie.setGenre("Action");
-            for(String s : genreString){
-                if(genreIdMap.get(s) != null){
-                    movie.setGenre(genreIdMap.get(s));
-                    break;
-                }
-            }
+//            for(String s : genreString){
+//                if(genreIdMap.get(s) != null){
+//                    movie.setGenre(genreIdMap.get(s));
+//                    break;
+//                }
+//            }
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             movie.setName( jsonObject.getString("original_title"));
@@ -127,6 +127,7 @@ public class dashboardController implements Initializable {
     }
 
     private final List<newMovie> tryNewMovies = new ArrayList<>();
+
     private List<newMovie> getTryNewMoviesData() throws Exception {
         HttpURLConnection connection = null;
         final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
@@ -161,16 +162,16 @@ public class dashboardController implements Initializable {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             tryNewMovie.setJsonObject(jsonObject);
-            int genreLength = jsonObject.getString("genre_ids").length();
-            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
-            String genreString[] = str.split(",");
+//            int genreLength = jsonObject.getString("genre_ids").length();
+//            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
+//            String genreString[] = str.split(",");
             tryNewMovie.setGenre("Action");
-            for(String s : genreString){
-                if(genreIdMap.get(s) != null){
-                    tryNewMovie.setGenre(genreIdMap.get(s));
-                    break;
-                }
-            }
+//            for(String s : genreString){
+//                if(genreIdMap.get(s) != null){
+//                    tryNewMovie.setGenre(genreIdMap.get(s));
+//                    break;
+//                }
+//            }
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             tryNewMovie.setName( jsonObject.getString("original_title"));
@@ -274,9 +275,16 @@ public class dashboardController implements Initializable {
         genreIdMap.put("53","Thriller");
 
         System.out.println(genreIdMap.get(18));
+
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("loginController.fxml"));
+//        Parent root = loader.load();
+//        loginController loginController = loader.getController();
+//        loginController.setWelcomeUserLabelInDashboardController(welcomeUserLabel.getText());
         updateMoviesOnDashboard();
         updateSideMovieOnDashboard();
     }
+
+
 
 
     public void logOutButtonOnAction(ActionEvent event) throws IOException {

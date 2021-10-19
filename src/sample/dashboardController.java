@@ -95,7 +95,6 @@ public class dashboardController implements Initializable {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             movie.setJsonObject(jsonObject);
-
             int genreLength = jsonObject.getString("genre_ids").length();
             String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
             String genreString[] = str.split(",");
@@ -106,7 +105,6 @@ public class dashboardController implements Initializable {
                     break;
                 }
             }
-
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             movie.setName( jsonObject.getString("original_title"));
@@ -160,7 +158,6 @@ public class dashboardController implements Initializable {
 
 
     private final List<newMovie> tryNewMovies = new ArrayList<>();
-
     private List<newMovie> getTryNewMoviesData() throws Exception {
         HttpURLConnection connection = null;
         final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
@@ -305,7 +302,6 @@ public class dashboardController implements Initializable {
             searchMoviesArray.add(movie);
         }
         return searchMoviesArray;
-
     }
     public void updateMoviesOnDashboardOnSearch(){
         try {
@@ -342,7 +338,6 @@ public class dashboardController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
-
     }
 
 

@@ -108,4 +108,9 @@ public class loginController {
         registrationStage.getIcons().add(new Image("/images/img.png"));
         registrationStage.show();
     }
+
+
+//    public void setWelcomeUserLabelInDashboardController(String text) {
+//        text="Welcome "+usernameTextField.getText();
+//    }
 }

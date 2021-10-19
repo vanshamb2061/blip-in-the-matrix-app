@@ -33,9 +33,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class dashboardController implements Initializable {
     //code yet to write
@@ -62,6 +60,7 @@ public class dashboardController implements Initializable {
     private TextField searchUsername;
 
 
+    Map<String, String > genreIdMap = new HashMap<String, String>();
     int Current_Pg=1;
 
     private final List<Movie> movies = new ArrayList<>();
@@ -94,15 +93,23 @@ public class dashboardController implements Initializable {
 
         List<Movie> movies = new ArrayList<>();
         Movie movie;
-        for(int i=0;i<jsonArray.length() && i<18;i++){
+        for(int i=0;i<jsonArray.length() && i < 18;i++){
             movie = new Movie();
 
             movie.setGenre("Action");
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             movie.setJsonObject(jsonObject);
-
-            //movie.setGenre(jsonObject.getString("genre_ids"));
+            int genreLength = jsonObject.getString("genre_ids").length();
+            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
+            String genreString[] = str.split(",");
+            movie.setGenre("Action");
+            for(String s : genreString){
+                if(genreIdMap.get(s) != null){
+                    movie.setGenre(genreIdMap.get(s));
+                    break;
+                }
+            }
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             movie.setName( jsonObject.getString("original_title"));
@@ -147,15 +154,23 @@ public class dashboardController implements Initializable {
 
         List<newMovie> tryNewMovies = new ArrayList<>();
         newMovie tryNewMovie;
-        for(int i=0;i<jsonArray.length();i++){
+        for(int i=0;i<jsonArray.length() && i < 6; i++){
             tryNewMovie = new newMovie();
 
             tryNewMovie.setGenre("Action");
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             tryNewMovie.setJsonObject(jsonObject);
-
-            //tryNewMovie.setGenre(jsonObject.getString("genre_ids"));
+            int genreLength = jsonObject.getString("genre_ids").length();
+            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
+            String genreString[] = str.split(",");
+            tryNewMovie.setGenre("Action");
+            for(String s : genreString){
+                if(genreIdMap.get(s) != null){
+                    tryNewMovie.setGenre(genreIdMap.get(s));
+                    break;
+                }
+            }
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             tryNewMovie.setName( jsonObject.getString("original_title"));
@@ -247,6 +262,18 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //hashmap initialization
+        genreIdMap.put("28","Action");
+        genreIdMap.put("35","Comedy");
+        genreIdMap.put("18","Drama");
+        genreIdMap.put("80","Crime");
+        genreIdMap.put("14","Fantasy");
+        genreIdMap.put("27","Horror");
+        genreIdMap.put("9648","Mystery");
+        genreIdMap.put("10749","Romance");
+        genreIdMap.put("53","Thriller");
+
+        System.out.println(genreIdMap.get(18));
         updateMoviesOnDashboard();
         updateSideMovieOnDashboard();
     }

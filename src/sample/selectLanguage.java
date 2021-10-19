@@ -3,33 +3,48 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class selectLanguage implements Initializable {
+
+    Map<String, Boolean> languageMap = new HashMap<String, Boolean>();
+
     @FXML
     private CheckBox englishCheckBox;
-
     @FXML
     private CheckBox hindiCheckBox;
-
     @FXML
     private Button submitButton;
-
     @FXML
     private CheckBox tamilCheckBox;
 
     List<CheckBox> languageCheckBox = new ArrayList<CheckBox>();
 
-    public void submitButtonOnAction(ActionEvent event){
+    public void submitButtonOnAction(ActionEvent event) throws IOException {
         // code to write
+
+        for(CheckBox language : languageCheckBox){
+            if(language.isSelected()){
+                languageMap.put(language.getText(), true);
+            }else{
+                languageMap.put(language.getText(), false);
+            }
+            //System.out.println(languageMap.get(language.getText()));
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("registrationPage.fxml"));
+        Parent root = loader.load();
+        registrationController registrationController = loader.getController();
+        registrationController.setLanguageInRegistrationController(languageMap);
+
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.close();
     }

@@ -65,7 +65,7 @@
                         <DropShadow />
                      </effect>
                      <HBox.margin>
-                        <Insets right="5.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                   <Label text="," textFill="#7282a6">
@@ -86,9 +86,6 @@
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
                   </Label>
                </children>
             </HBox>

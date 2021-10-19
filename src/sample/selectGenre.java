@@ -3,15 +3,16 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class selectGenre implements Initializable {
     @FXML
@@ -41,11 +42,26 @@ public class selectGenre implements Initializable {
     @FXML
     private CheckBox thrillerCheckBox;
 
-    List<CheckBox> languageCheckBox = new ArrayList<CheckBox>();
+    List<CheckBox> genreCheckBox = new ArrayList<CheckBox>();
+    Map<String, Boolean> genreMap = new HashMap<String, Boolean>();
 
-    public void submitButtonOnAction(ActionEvent event){
+
+    public void submitButtonOnAction(ActionEvent event) throws IOException {
         // code to write
         //sql injection to store data
+
+        for(CheckBox genre : genreCheckBox){
+            if(genre.isSelected()){
+                genreMap.put(genre.getText(), true);
+            }else{
+                genreMap.put(genre.getText(), false);
+            }
+            //System.out.println(genreMap.get(genre.getText()));
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("registrationPage.fxml"));
+        Parent root = loader.load();
+        registrationController registrationController = loader.getController();
+        registrationController.setGenreInRegistrationController(genreMap);
 
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.close();
@@ -54,16 +70,16 @@ public class selectGenre implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         submitButton.setDisable(true);
         final int[] cnt = {0};
-        languageCheckBox.add(actionCheckBox);
-        languageCheckBox.add(comedyCheckBox);
-        languageCheckBox.add(dramaCheckBox);
-        languageCheckBox.add(fantasyCheckBox);
-        languageCheckBox.add(horrorCheckBox);
-        languageCheckBox.add(mysteryCheckBox);
-        languageCheckBox.add(romanceCheckBox);
-        languageCheckBox.add(thrillerCheckBox);
+        genreCheckBox.add(actionCheckBox);
+        genreCheckBox.add(comedyCheckBox);
+        genreCheckBox.add(dramaCheckBox);
+        genreCheckBox.add(fantasyCheckBox);
+        genreCheckBox.add(horrorCheckBox);
+        genreCheckBox.add(mysteryCheckBox);
+        genreCheckBox.add(romanceCheckBox);
+        genreCheckBox.add(thrillerCheckBox);
 
-        for (CheckBox language : languageCheckBox) {
+        for (CheckBox language : genreCheckBox) {
             EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e)
                 {

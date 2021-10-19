@@ -6,18 +6,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 
 <AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.playTrailer">
    <children>
-      <BorderPane prefHeight="500.0" prefWidth="900.0">
-         <top>
-            <AnchorPane BorderPane.alignment="CENTER">
+      <VBox prefHeight="500.0" prefWidth="900.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="900.0">
                <children>
-                  <MediaView fx:id="mediaView" fitHeight="450.0" fitWidth="900.0" />
-                  <ImageView fx:id="cancelImageView" fitHeight="30.0" fitWidth="29.0" layoutX="872.0" onMousePressed="#mousePressedOnCancelImageView" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cancelImageView" fitHeight="29.0" fitWidth="407.0" onMousePressed="#mousePressedOnCancelImageView" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/external-cancel-mintab-for-ios-becris-lineal-becris.png" />
                      </image>
@@ -26,10 +25,13 @@
                      </effect>
                   </ImageView>
                </children>
-            </AnchorPane>
-         </top>
-         <bottom>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="900.0" spacing="100.0" style="-fx-background-color: #28467d;" BorderPane.alignment="CENTER">
+            </HBox>
+            <HBox prefHeight="420.0" prefWidth="900.0">
+               <children>
+                  <MediaView fitHeight="410.0" fitWidth="900.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="900.0" spacing="100.0" style="-fx-background-color: #28467d;">
                <children>
                   <Button fx:id="backwardButton" layoutX="526.0" layoutY="22.0" mnemonicParsing="false" onAction="#backwardButtonOnAction" prefHeight="26.0" prefWidth="100.0" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="BACKWARD" textFill="WHITE">
                      <effect>
@@ -48,7 +50,7 @@
                   </Button>
                </children>
             </HBox>
-         </bottom>
-      </BorderPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

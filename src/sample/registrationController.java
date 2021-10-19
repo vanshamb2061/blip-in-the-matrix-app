@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.Map;
 
 public class registrationController {
     @FXML
@@ -37,7 +38,7 @@ public class registrationController {
     private PasswordField setPasswordField;
     @FXML
     private PasswordField confirmPasswordField;
-
+    int selectionCnt = 0;
     public void registerButtonOnAction(ActionEvent event) throws Exception {
         //write backend code
 
@@ -60,6 +61,7 @@ public class registrationController {
                     && !usernameTextField.getText().isBlank()
                     && !setPasswordField.getText().isBlank()
                     && !confirmPasswordField.getText().isBlank()
+                    && selectionCnt > 1
                     && setPasswordField.getText().equals(setPasswordField.getText())) {
                 preStat.executeUpdate();
                 Stage stage1 = (Stage) registerButton.getScene().getWindow();
@@ -104,4 +106,17 @@ public class registrationController {
         stage.close();
     }
 
+    public void setGenreInRegistrationController(Map<String, Boolean> genreMap) {
+        for (Map.Entry<String, Boolean> entry : genreMap.entrySet()) {
+            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        }
+        selectionCnt += 1;
+    }
+
+    public void setLanguageInRegistrationController(Map<String, Boolean> languageMap) {
+        for (Map.Entry<String, Boolean> entry : languageMap.entrySet()) {
+            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        }
+        selectionCnt += 1;
+    }
 }

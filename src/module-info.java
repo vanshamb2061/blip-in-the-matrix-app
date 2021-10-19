@@ -6,6 +6,7 @@ module WATCHLIST {
     requires org.json;
     requires mysql.connector.java;
     requires javafx.media;
+    requires javafx.web;
     opens sample;
     opens movies;
     opens images;

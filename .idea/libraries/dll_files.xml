@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="dll_files">
+    <CLASSES />
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/../dll_files" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>

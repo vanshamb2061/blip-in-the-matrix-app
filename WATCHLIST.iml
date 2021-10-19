@@ -8,15 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../json-20210307.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="javafx-fxml">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/16/javafx-fxml-16.jar!/" />
@@ -32,10 +23,12 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="javafx-swt1" level="application" />
     <orderEntry type="library" name="org.json" level="application" />
     <orderEntry type="library" name="mysql-connector-java-8.0.26" level="application" />
-    <orderEntry type="library" name="javafx-media-18-ea+4" level="application" />
     <orderEntry type="library" name="javafx-media-18-ea+4-linux" level="application" />
+    <orderEntry type="library" name="javafx-graphics-18-ea+4" level="application" />
+    <orderEntry type="library" name="dll_files" level="application" />
+    <orderEntry type="library" name="javafx-web-18-ea+3-linux" level="application" />
+    <orderEntry type="library" name="System32" level="project" />
   </component>
 </module>

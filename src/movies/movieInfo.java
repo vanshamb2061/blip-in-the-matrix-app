@@ -12,6 +12,8 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import movies.Movie;
@@ -36,6 +38,7 @@ public class movieInfo implements Initializable {
     @FXML
     private Label movieLabel;
 
+    Movie movieObj;
     private boolean clicked = false;
     @FXML
     void mousePressedOnAddToFavorites(MouseEvent event) {
@@ -61,20 +64,28 @@ public class movieInfo implements Initializable {
 
     @FXML
     void mousePressedOnPlayTrailer(MouseEvent event) throws Exception{
-        /*System.out.println("Please wait..... we're playing trailer for you.");
+        System.out.println("Please wait..... we're playing trailer for you.");
 
-        Parent root = FXMLLoader.load(getClass().getResource("playTrailer.fxml"));
+        System.out.println(movieObj.getJsonObject());
+        JSONObject jsonObject = movieObj.getJsonObject();
+        String video = jsonObject.getString("video");
+        System.out.println(jsonObject);
+        System.out.println( "https://api.themoviedb.org/3/movie/297762/videos?api_key=###"+ video);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("playTrailer.fxml"));
+        Parent root = loader.load();
+        playTrailer playTrailerController = loader.getController();
+        //playTrailerController.playingTrailer(video);
         Stage playTrailerStage = new Stage();
         playTrailerStage.initStyle(StageStyle.DECORATED);
         playTrailerStage.setTitle("play Trailer");
         playTrailerStage.setScene(new Scene(root, 900, 500));
         playTrailerStage.show();
 
-         */
     }
     public void setEverythingInMovieInfo(Movie movie) throws Exception{
+        movieObj = movie;
         JSONObject jsonObject = movie.getJsonObject();
-        System.out.println(jsonObject);
+        //System.out.println(jsonObject);
         Image image = new Image("https://image.tmdb.org/t/p/w500"+jsonObject.getString("backdrop_path"));
         backgroundImageView.setImage(image);
         //movie.setGenre(jsonObject.getString("genre_ids"));

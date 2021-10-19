@@ -53,7 +53,10 @@ public class loginController {
                 ResultSet result = stm.executeQuery(sql);
 
                 if (result.next()) {
-                    Parent root = FXMLLoader.load(getClass().getResource("dashboardController.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardController.fxml"));
+                    Parent root = loader.load();
+                    dashboardController dashboardController = loader.getController();
+                    dashboardController.setUserNameInDashboardController(usernameTextField.getText());
                     Stage dashboardStage = new Stage();
                     dashboardStage.initStyle(StageStyle.DECORATED);
                     dashboardStage.setTitle("watchlist");
@@ -102,6 +105,7 @@ public class loginController {
         Stage registrationStage = new Stage();
         registrationStage.initStyle(StageStyle.UNDECORATED);
         registrationStage.setScene(new Scene(root, 540, 550));
+        registrationStage.getIcons().add(new Image("/images/img.png"));
         registrationStage.show();
     }
 }

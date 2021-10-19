@@ -51,6 +51,7 @@ public class newMoviesController {
         movieInfoStage.initStyle(StageStyle.UNDECORATED);
         movieInfoStage.setTitle("Info");
         movieInfoStage.setScene(new Scene(root, 600, 340));
+        movieInfoStage.getIcons().add(new Image("/images/img.png"));
         movieInfoStage.show();
     }
 

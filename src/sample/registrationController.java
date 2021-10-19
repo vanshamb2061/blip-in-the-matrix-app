@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
@@ -71,6 +72,7 @@ public class registrationController {
                 loginStage.initStyle(StageStyle.DECORATED);
                 loginStage.setTitle("Login Page");
                 loginStage.setScene(new Scene(root, 530, 320));
+                loginStage.getIcons().add(new Image("/images/img.png"));
                 loginStage.show();
 
                 Stage stage = (Stage) registerButton.getScene().getWindow();
@@ -91,6 +93,7 @@ public class registrationController {
         Stage selectGenreStage = new Stage();
         selectGenreStage.initStyle(StageStyle.UNDECORATED);
         selectGenreStage.setScene(new Scene(root, 280, 400));
+        selectGenreStage.getIcons().add(new Image("/images/img.png"));
         selectGenreStage.show();
     }
 
@@ -99,6 +102,7 @@ public class registrationController {
         Stage selectLanguageStage = new Stage();
         selectLanguageStage.initStyle(StageStyle.UNDECORATED);
         selectLanguageStage.setScene(new Scene(root, 230, 230));
+        selectLanguageStage.getIcons().add(new Image("/images/img.png"));
         selectLanguageStage.show();
     }
     public void closeButtonOnAction(ActionEvent event){

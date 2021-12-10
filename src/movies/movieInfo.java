@@ -97,6 +97,7 @@ public class movieInfo implements Initializable {
         descriptionTextArea.setText(overview);
         //String video = jsonObject.getString("video");
     }
+    
     public void setEverythingInMovieInfo(newMovie movie) throws Exception{
         JSONObject jsonObject = movie.getJsonObject();
         System.out.println(jsonObject);

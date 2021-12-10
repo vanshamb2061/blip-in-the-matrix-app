@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="280.0" style="-fx-border-color: green; -fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #28467d;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.selectGenre">
+   <children>
+      <AnchorPane prefHeight="49.0" prefWidth="282.0" style="-fx-background-color: #087608; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;">
+         <children>
+            <Label alignment="CENTER" layoutX="61.0" layoutY="7.0" prefHeight="34.0" prefWidth="142.0" text="Select genre" textFill="WHITE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow>
+               <input>
+                  <Glow />
+               </input>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+      <VBox layoutX="101.0" layoutY="105.0" spacing="10.0">
+         <children>
+            <CheckBox fx:id="actionCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Action" textFill="WHITE" />
+            <CheckBox fx:id="comedyCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Comedy" textFill="WHITE" />
+            <CheckBox fx:id="dramaCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Drama" textFill="WHITE" />
+            <CheckBox fx:id="fantasyCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Fantasy" textFill="WHITE" />
+            <CheckBox fx:id="horrorCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Horror" textFill="WHITE" />
+            <CheckBox fx:id="mysteryCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Mystery" textFill="WHITE" />
+            <CheckBox fx:id="romanceCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Romance" textFill="WHITE" />
+            <CheckBox fx:id="thrillerCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Thriller" textFill="WHITE" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </VBox>
+      <HBox alignment="CENTER" layoutY="342.0" prefHeight="26.0" prefWidth="282.0">
+         <children>
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #087608; -fx-border-radius: 15; -fx-background-radius: 15;" text="Submit" textFill="WHITE">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+         </children>
+      </HBox>
+      <Label alignment="CENTER" layoutX="31.0" layoutY="70.0" prefHeight="18.0" prefWidth="220.0" text="please select atleast 3 genre" textFill="WHITE" underline="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Label>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>

@@ -1,5 +1,1 @@
-# WatchList
-Contributors : Ankit 
-               Satvik
-               Shatrunjay
-               Vansh
+# WatchList_App

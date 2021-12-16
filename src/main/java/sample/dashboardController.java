@@ -415,13 +415,26 @@ public class dashboardController implements Initializable {
     }
 
     public void logOutButtonOnAction(ActionEvent event) throws IOException {
-        Stage stage = (Stage) logOutButton.getScene().getWindow();
-        stage.close();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/loginPage.fxml"));
-        Stage loginStage = new Stage();
-//        loginStage.initStyle(StageStyle.UNDECORATED);
-        loginStage.setScene(new Scene(root, 530, 320));
-        loginStage.show();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout!");
+        alert.setHeaderText("You're about to logout");
+        alert.setContentText("Do you want to exit?");
+        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/images/img.png"));
+
+        if(alert.showAndWait().get()==ButtonType.OK)
+        {
+            Stage stage = (Stage) logOutButton.getScene().getWindow();
+            System.out.println("You successfully logged out!");
+            stage.close();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/loginPage.fxml"));
+            Stage loginStage = new Stage();
+//          loginStage.initStyle(StageStyle.UNDECORATED);
+            loginStage.setScene(new Scene(root, 530, 320));
+            loginStage.show();
+        }
+
+
+
     }
 
     @Override

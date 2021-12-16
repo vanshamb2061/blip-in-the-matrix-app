@@ -40,7 +40,7 @@ public class selectLanguage implements Initializable {
             }
             //System.out.println(languageMap.get(language.getText()));
         }
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxmlFile/registrationPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/registrationPage.fxml"));
         Parent root = loader.load();
         registrationController registrationController = loader.getController();
         registrationController.setLanguageInRegistrationController(languageMap);

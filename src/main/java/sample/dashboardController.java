@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -62,6 +63,7 @@ public class dashboardController implements Initializable {
 
     private List<Movie> movies ;
     private List<Movie> getData() throws Exception {
+        //method to fetch data
         HttpURLConnection connection = null;
         final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
         boolean adult = false;
@@ -388,8 +390,12 @@ public class dashboardController implements Initializable {
         System.out.println("Recommending movies you may like");
     }
 
-    public void mousePressedOnWatchList(MouseEvent mouseEvent) {
+    public void mousePressedOnWatchList(MouseEvent mouseEvent) throws IOException {
         System.out.println("here you'll find all your saved watchlist");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/watchListPage.fxml"));
+        Stage watchListStage = new Stage();
+        watchListStage.setScene(new Scene(root));
+        watchListStage.show();
     }
 
     public void mousePressedOnLiked(MouseEvent mouseEvent) {
@@ -407,12 +413,13 @@ public class dashboardController implements Initializable {
     public void setUserNameInDashboardController(String text) {
         welcomeUserLabel.setText("Welcome " + text);
     }
+
     public void logOutButtonOnAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) logOutButton.getScene().getWindow();
         stage.close();
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/loginPage.fxml"));
         Stage loginStage = new Stage();
-        loginStage.initStyle(StageStyle.UNDECORATED);
+//        loginStage.initStyle(StageStyle.UNDECORATED);
         loginStage.setScene(new Scene(root, 530, 320));
         loginStage.show();
     }

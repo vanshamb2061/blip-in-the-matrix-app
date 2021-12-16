@@ -22,7 +22,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #28467d;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
    <children>
-      <AnchorPane prefHeight="700.0" prefWidth="100.0" style="-fx-background-color: #203763; -fx-background-radius: 5;">
+      <AnchorPane layoutX="-1.0" prefHeight="700.0" prefWidth="108.0" style="-fx-background-color: #203763; -fx-background-radius: 5;">
          <children>
             <VBox alignment="CENTER" layoutX="-2.0" layoutY="-5.0" prefHeight="370.0" prefWidth="109.0" spacing="20.0">
                <children>
@@ -177,14 +177,12 @@
                   </VBox>
                </children>
             </VBox>
-            <HBox alignment="CENTER" layoutX="16.899999618530273" layoutY="648.9000244140625" styleClass="glow-button" stylesheets="@../CSS/style.css">
-               <children>
-                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutButtonOnAction" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="Log out" textFill="WHITE">
-                     <effect>
-                        <DropShadow spread="0.27" />
-                     </effect></Button>
-               </children>
-            </HBox>
+            <HBox alignment="CENTER" layoutX="16.899999618530273" layoutY="648.9000244140625" styleClass="glow-button" stylesheets="@../CSS/style.css" />
+            <Button fx:id="logOutButton" layoutX="21.0" layoutY="399.0" mnemonicParsing="false" onAction="#logOutButtonOnAction" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="Log out" textFill="WHITE">
+               <effect>
+                  <DropShadow spread="0.27" />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
       <VBox alignment="TOP_CENTER" layoutX="728.0" layoutY="35.0" prefHeight="666.0" prefWidth="173.0" spacing="1.0" style="-fx-background-color: #28467d;">

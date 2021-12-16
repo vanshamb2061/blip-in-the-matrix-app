@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -56,12 +57,12 @@ public class registrationController {
             preStat.setString(3,ageTextField.getText());
             preStat.setString(4,usernameTextField.getText());
             preStat.setString(5,setPasswordField.getText());
-            /*if(!firstNameTextField.getText().isBlank()
-                    && !ageTextField.getText().isBlank()
-                    && !usernameTextField.getText().isBlank()
-                    && !setPasswordField.getText().isBlank()
-                    && !confirmPasswordField.getText().isBlank()
-                    && selectionCnt > 1
+            if(!firstNameTextField.getText().isEmpty()
+                    && !ageTextField.getText().isEmpty()
+                    && !usernameTextField.getText().isEmpty()
+                    && !setPasswordField.getText().isEmpty()
+                    && !confirmPasswordField.getText().isEmpty()
+//                    && selectionCnt > 1
                     && setPasswordField.getText().equals(setPasswordField.getText())) {
                 preStat.executeUpdate();
                 Stage stage1 = (Stage) registerButton.getScene().getWindow();
@@ -80,7 +81,7 @@ public class registrationController {
             else{
                 //Put error Label Here
                 System.out.println("Please fill all the data");
-            }*/
+            }
         }
         catch(Exception e){
             System.out.println(e.getMessage());
@@ -88,18 +89,18 @@ public class registrationController {
 
     }
     public void selectGenreButtonOnAction(ActionEvent event) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../../resources/fxmlFile/selectGenre.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/selectGenre.fxml"));
         Stage selectGenreStage = new Stage();
-        selectGenreStage.initStyle(StageStyle.UNDECORATED);
+//        selectGenreStage.initStyle(StageStyle.UNDECORATED);
         selectGenreStage.setScene(new Scene(root, 280, 400));
         selectGenreStage.getIcons().add(new Image("/images/img.png"));
         selectGenreStage.show();
     }
 
     public void selectLanguageButtonOnAction(ActionEvent event) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../../resources/fxmlFile/selectLanguage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/selectLanguage.fxml"));
         Stage selectLanguageStage = new Stage();
-        selectLanguageStage.initStyle(StageStyle.UNDECORATED);
+//        selectLanguageStage.initStyle(StageStyle.UNDECORATED);
         selectLanguageStage.setScene(new Scene(root, 230, 230));
         selectLanguageStage.getIcons().add(new Image("/images/img.png"));
         selectLanguageStage.show();

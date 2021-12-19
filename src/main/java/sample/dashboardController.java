@@ -419,6 +419,13 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+/*
+
+        ThreadClasses.RenderDashboardMovies setDashboardMovies = new ThreadClasses.RenderDashboardMovies(this);
+        Thread thread = new Thread(setDashboardMovies);
+*/
+
+
         prevButton.setDisable(true);
         //hashmap initialization
         genreIdMap.put("28","Action");
@@ -430,8 +437,8 @@ public class dashboardController implements Initializable {
         genreIdMap.put("9648","Mystery");
         genreIdMap.put("10749","Romance");
         genreIdMap.put("53","Thriller");
-
         movies = new ArrayList<>();
+        /*thread.start();*/
         updateMoviesOnDashboard();
         updateSideMovieOnDashboard();
     }

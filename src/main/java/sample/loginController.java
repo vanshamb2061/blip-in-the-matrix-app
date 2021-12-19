@@ -40,7 +40,7 @@ public class loginController {
             //sql injection
             try
             {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                /*Class.forName("com.mysql.cj.jdbc.Driver");
                 String url = "jdbc:mysql://localhost:3306/userinfo";
                 Connection connection = DriverManager.getConnection(url, "root", "");
 
@@ -52,7 +52,7 @@ public class loginController {
                 String sql = "select * from userdetails where UserId='" + username + "' and Password='" + password + "'";
                 ResultSet result = stm.executeQuery(sql);
 
-                if (result.next()) {
+                if (result.next()) {*/
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/dashboardController.fxml"));
                     Parent root = loader.load();
                     dashboardController dashboardController = loader.getController();
@@ -66,12 +66,12 @@ public class loginController {
 
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.close();
-                } else {
+               /* } else {
                     //If username don't exist
                     errorLabel.setText("Entered username/password is wrong");
                     usernameTextField.setText("");
                     enterPasswordField.setText("");
-                }
+                }*/
             }
             catch(Exception e)
             {

@@ -41,11 +41,9 @@ public class registrationController {
     private PasswordField confirmPasswordField;
     int selectionCnt = 0;
     public void registerButtonOnAction(ActionEvent event) throws Exception {
-        //write backend code
-
-        //sql injection
+        //SQL injection
         Class.forName("com.mysql.cj.jdbc.Driver");
-        String url = "jdbc:mysql://localhost:3306/userinfo";
+        String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection myConn = DriverManager.getConnection(url, "root", ""); //Connect to database (Requires JDBC) [Default username:root, pw empty]
         Statement statement= myConn.createStatement();
 

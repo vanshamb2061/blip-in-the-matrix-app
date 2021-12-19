@@ -24,11 +24,6 @@
    <children>
       <AnchorPane layoutX="-1.0" prefHeight="700.0" prefWidth="108.0" style="-fx-background-color: #203763; -fx-background-radius: 5;">
          <children>
-            <Button fx:id="logOutButton" layoutX="21.0" layoutY="399.0" mnemonicParsing="false" onAction="#logOutButtonOnAction" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="Log out" textFill="WHITE">
-               <effect>
-                  <DropShadow spread="0.27" />
-               </effect>
-            </Button>
             <VBox alignment="CENTER" layoutX="-2.0" layoutY="-5.0" prefHeight="370.0" prefWidth="109.0" spacing="20.0">
                <children>
                   <StackPane>
@@ -68,7 +63,33 @@
                      </effect></Separator>
                   <VBox spacing="25.0">
                      <children>
-                        <HBox style="-fx-border-color: transparent #087608 transparent transparent; -fx-border-width: 5;" styleClass="selected" stylesheets="@../CSS/style.css">
+                        <HBox style="-fx-border-color: transparent #081a4a transparent transparent;" styleClass="selected" stylesheets="@../CSS/style.css">
+                           <children>
+                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnFriends" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/group.png" />
+                                 </image>
+                                 <effect>
+                                    <DropShadow spread="0.34" />
+                                 </effect>
+                              </ImageView>
+                              <Label onMousePressed="#mousePressedOnFriends" text="Friends" textFill="#8da3c7" underline="true">
+                                 <font>
+                                    <Font name="Microsoft YaHei Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow spread="0.37" />
+                                 </effect>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox style="-fx-border-color: transparent transparent transparent transparent; -fx-border-width: 5;" styleClass="selected" stylesheets="@../CSS/style.css">
                            <children>
                               <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnMovies" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -123,7 +144,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <HBox styleClass="selected" stylesheets="@../CSS/style.css">
+                        <HBox style="-fx-border-color: transparent #087608 transparent transparent; -fx-border-width: 5;" styleClass="selected" stylesheets="@../CSS/style.css">
                            <children>
                               <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnLiked" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -149,32 +170,6 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <HBox styleClass="selected" stylesheets="@../CSS/style.css">
-                           <children>
-                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnFriends" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/group.png" />
-                                 </image>
-                                 <effect>
-                                    <DropShadow spread="0.34" />
-                                 </effect>
-                              </ImageView>
-                              <Label onMousePressed="#mousePressedOnFriends" text="Friends" textFill="#8da3c7" underline="true">
-                                 <font>
-                                    <Font name="Microsoft YaHei Bold" size="14.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow spread="0.37" />
-                                 </effect>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </HBox>
                      </children>
                      <padding>
                         <Insets top="25.0" />
@@ -183,6 +178,11 @@
                </children>
             </VBox>
             <HBox alignment="CENTER" layoutX="16.899999618530273" layoutY="648.9000244140625" styleClass="glow-button" stylesheets="@../CSS/style.css" />
+            <Button fx:id="logOutButton" layoutX="21.0" layoutY="399.0" mnemonicParsing="false" onAction="#logOutButtonOnAction" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="Log out" textFill="WHITE">
+               <effect>
+                  <DropShadow spread="0.27" />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
       <VBox alignment="TOP_CENTER" layoutX="728.0" layoutY="35.0" prefHeight="666.0" prefWidth="173.0" spacing="1.0" style="-fx-background-color: #28467d;">
@@ -248,7 +248,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="636.0">
                <children>
                   <Label fx:id="welcomeUserLabel" prefHeight="35.0" prefWidth="377.0" text="Hello, Ankit!" textFill="#7068a4" underline="true">
-<!--                     Instead of "Hello, Ankit", we need to use "Hello, {{First Name + Last Name}}, might need to use user object here-->
+                     <!--                     Instead of "Hello, Ankit", we need to use "Hello, {{First Name + Last Name}}, might need to use user object here-->
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

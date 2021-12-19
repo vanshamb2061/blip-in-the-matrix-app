@@ -58,7 +58,7 @@ public class selectGenre implements Initializable {
             }
             //System.out.println(genreMap.get(genre.getText()));
         }
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxmlFile/registrationPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/registrationPage.fxml"));
         Parent root = loader.load();
         registrationController registrationController = loader.getController();
         registrationController.setGenreInRegistrationController(genreMap);

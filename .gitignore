@@ -1,2 +1,3 @@
-target
-main/java/services/Services.java
+/target
+/target/classes
+/src/main/java/services/services.java

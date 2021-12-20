@@ -60,7 +60,7 @@ public class loginController {
                     Stage dashboardStage = new Stage();
                     dashboardStage.initStyle(StageStyle.DECORATED);
                     dashboardStage.setTitle("watchlist");
-                    dashboardStage.setScene(new Scene(root, 900, 700));
+                    dashboardStage.setScene(new Scene(root, 1025, 790));
                     dashboardStage.getIcons().add(new Image("/images/img.png"));
                     dashboardStage.show();
 

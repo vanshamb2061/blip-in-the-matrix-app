@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +17,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import movies.Movie;
 import movies.moviesController;
 import movies.newMovie;
 import movies.newMoviesController;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import services.Services;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,6 +32,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class dashboardController implements Initializable {
     //code yet to write
@@ -54,7 +56,7 @@ public class dashboardController implements Initializable {
     private TextField searchMovies;
     @FXML
     private TextField searchUsername;
-
+    Services serviceObject = new Services();
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
     int Current_Pg=1;
@@ -65,7 +67,7 @@ public class dashboardController implements Initializable {
     private List<Movie> getData() throws Exception {
         //method to fetch data
         HttpURLConnection connection = null;
-        final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
+        final String mykey = serviceObject.API_KEY;
         boolean adult = false;
 
 
@@ -128,7 +130,8 @@ public class dashboardController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        int col = 0, row = 1;
+        AtomicInteger col = new AtomicInteger();
+        int row = 1;
         try{
             for (Movie movie : movies) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -137,19 +140,22 @@ public class dashboardController implements Initializable {
                 AnchorPane anchorPane = fxmlLoader.load();
                 moviesController movieController = fxmlLoader.getController();
                 movieController.setData(movie);
-                if (col == 3) {
+                if (col.get() == 3) {
                     row++;
-                    col = 0;
+                    col.set(0);
                 }
-                mainGridPane.add(anchorPane, col++, row);
-                //set gridPane width
-                mainGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                mainGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                //set gridPane height
-                mainGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                mainGridPane.setMaxHeight(Region.USE_PREF_SIZE);
+                int finalRow = row;
+                Platform.runLater(()->{
+                    mainGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
+                    //set gridPane width
+                    mainGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    mainGridPane.setMaxWidth(Region.USE_PREF_SIZE);
+                    //set gridPane height
+                    mainGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    mainGridPane.setMaxHeight(Region.USE_PREF_SIZE);
+                });
 
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
@@ -162,7 +168,7 @@ public class dashboardController implements Initializable {
     private final List<newMovie> tryNewMovies = new ArrayList<>();
     private List<newMovie> getTryNewMoviesData() throws Exception {
         HttpURLConnection connection = null;
-        final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
+        final String mykey = serviceObject.API_KEY;
         boolean adult = true;
         URL url = new URL("https://api.themoviedb.org/3/movie/now_playing?api_key=" + mykey + "&language=en-US&page=1");
         System.out.println(url);
@@ -218,7 +224,7 @@ public class dashboardController implements Initializable {
             e.printStackTrace();
         }
 
-        int col = 0;
+        AtomicInteger col = new AtomicInteger();
         int row = 1;
         try{
             for (newMovie tryNewMovie : tryNewMovies) {
@@ -228,19 +234,23 @@ public class dashboardController implements Initializable {
                 AnchorPane anchorPane = sidefxmlLoader.load();
                 newMoviesController tryNewMovieController = sidefxmlLoader.getController();
                 tryNewMovieController.setData(tryNewMovie);
-                if (col == 1) {
+                if (col.get() == 1) {
                     row++;
-                    col = 0;
+                    col.set(0);
                 }
-                sideGridPane.add(anchorPane, col++, row);
-                //set sideGridPane width
-                sideGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                sideGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                sideGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                //set sideGridPane height
-                sideGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                sideGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                sideGridPane.setMaxHeight(Region.USE_PREF_SIZE);
+                int finalRow = row;
+                Platform.runLater(()->{
+                    sideGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
+                    //set sideGridPane width
+                    sideGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    sideGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    sideGridPane.setMaxWidth(Region.USE_PREF_SIZE);
+                    //set sideGridPane height
+                    sideGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    sideGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    sideGridPane.setMaxHeight(Region.USE_PREF_SIZE);
+                });
+
 
                 GridPane.setMargin(anchorPane, new Insets(5));
             }
@@ -254,10 +264,10 @@ public class dashboardController implements Initializable {
     private List<Movie> getSearchData() throws Exception {
 
         HttpURLConnection connection = null;
-        final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
+        final String myKey = serviceObject.API_KEY;
         boolean adult = true;
 
-        URL url = new URL("https://api.themoviedb.org/3/search/movie?api_key=" + mykey + "&language=en-US&page=1&include_adult=false" + "&query=" + searchMovies.getText());
+        URL url = new URL("https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=1&include_adult=false" + "&query=" + searchMovies.getText());
         System.out.println(url);
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
@@ -436,16 +446,32 @@ public class dashboardController implements Initializable {
 
 
     }
+    public void first(){
+        System.out.println("first function");
+        welcomeUserLabel.setText("first label");
+    }
+    public void second(){
+        System.out.println("second function");
+        welcomeUserLabel.setText("second label dhahtphd ahioffffddhhddddddddddd");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-/*
 
         ThreadClasses.RenderDashboardMovies setDashboardMovies = new ThreadClasses.RenderDashboardMovies(this);
         Thread thread = new Thread(setDashboardMovies);
-*/
 
-
+        /*new Thread(new Runnable() {
+            @Override public void run() {
+                for (int i = 1; i <= 1000000; i++) {
+                    final int counter = i;
+                    Platform.runLater(new Runnable() {
+                        @Override public void run() {
+                            bar.setProgress(counter / 1000000.0);
+                        }
+                    });
+                }
+            }).start();*/
         prevButton.setDisable(true);
         //hashmap initialization
         genreIdMap.put("28","Action");
@@ -458,9 +484,9 @@ public class dashboardController implements Initializable {
         genreIdMap.put("10749","Romance");
         genreIdMap.put("53","Thriller");
         movies = new ArrayList<>();
-        /*thread.start();*/
-        updateMoviesOnDashboard();
-        updateSideMovieOnDashboard();
+        thread.start();
+        /*updateMoviesOnDashboard();*/
+        /*updateSideMovieOnDashboard();*/
     }
 
 }

@@ -92,6 +92,7 @@ public class movieInfo implements Initializable {
         System.out.println("https://www.youtube.com/watch?v=" + jsonObject.getString("key"));
         String video = "https://www.youtube.com/watch?v=" + jsonObject.getString("key");
         System.out.println("Please wait..... we're playing trailer for you.");
+        System.out.println(video);
 /*
 
         System.out.println(movieObj.getJsonObject());
@@ -100,17 +101,26 @@ public class movieInfo implements Initializable {
         System.out.println(jsonObject);
         JSONObject js = new JSONObject("https://api.themoviedb.org/3/movie/297762/videos?api_key=201d9cf62a43a21c17cdf0f13ce41312&language=en-US");
 */
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/fxmlFile/playTrailer.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/playTrailer.fxml"));
         Parent root = loader.load();
+        Stage movieInfoStage = new Stage();
+        movieInfoStage.initStyle(StageStyle.DECORATED);
+        movieInfoStage.setTitle("Info");
+        movieInfoStage.setScene(new Scene(root, 900, 500));
+        movieInfoStage.getIcons().add(new Image("/images/img.png"));
+        movieInfoStage.show();
+/*
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/playTrailer.fxml"));
+        Parent root = loader.load();
+        *//*
         playTrailer playTrailerController = loader.getController();
-        playTrailerController.playingTrailer(video);
+        playTrailerController.playingTrailer(video);*//*
         Stage playTrailerStage = new Stage();
         playTrailerStage.initStyle(StageStyle.UNDECORATED);
         //playTrailerStage.setTitle("play Trailer");
         playTrailerStage.setScene(new Scene(root, 900, 500));
-        playTrailerStage.getIcons().add(new Image("/images/img.png"));
-        playTrailerStage.show();
+        *//*playTrailerStage.getIcons().add(new Image("/images/img.png"));*//*
+        playTrailerStage.show();*/
 
     }
     public void setEverythingInMovieInfo(Movie movie) throws Exception{

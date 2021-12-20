@@ -10,82 +10,79 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="249.0" prefWidth="140.0" style="-fx-background-color: #28467d; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.newMoviesController">
+<VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="140.0" style="-fx-border-radius: 20; -fx-background-color: #28467d; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.newMoviesController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="140.0" style="-fx-border-radius: 20; -fx-background-radius: 20;">
+      <AnchorPane prefHeight="208.0" prefWidth="140.0">
          <children>
-            <AnchorPane prefHeight="208.0" prefWidth="140.0">
-               <children>
-                  <ImageView fx:id="poster" accessibleRole="BUTTON" fitHeight="224.0" fitWidth="140.0" onMousePressed="#mousePressedOnPoster" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/drStrange.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="likeImageView" fitHeight="24.0" fitWidth="29.0" layoutY="-1.0" onMousePressed="#mousePressedOnLike" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/unfilledLike.png" />
-                     </image>
-                     <effect>
-                        <DropShadow spread="0.7" />
-                     </effect>
-                  </ImageView>
-                  <ImageView fx:id="cancelImageView" fitHeight="24.0" fitWidth="18.0" layoutX="121.0" onKeyPressed="#mousePressedOnCancel" onMousePressed="#mousePressedOnCancel" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/external-cancel-mintab-for-ios-becris-lineal-becris.png" />
-                     </image>
-                     <effect>
-                        <DropShadow spread="0.78">
-                           <input>
-                              <Glow />
-                           </input>
-                        </DropShadow>
-                     </effect>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <HBox prefHeight="14.0" prefWidth="170.0" style="-fx-border-radius: 20;">
-               <children>
-                  <Label fx:id="titleLabel" alignment="CENTER" prefHeight="20.0" prefWidth="173.0" text="Dr Strange" textFill="#c2d3ed" wrapText="true">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </Label>
-               </children></HBox>
-            <HBox prefHeight="19.0" prefWidth="140.0">
-               <children>
-                  <Label fx:id="genreLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="19.0" prefWidth="97.0" text="Action" textFill="#7282a6">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </Label>
-                  <Label text="," textFill="#7282a6">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </Label>
-                  <Label fx:id="yearLabel" prefHeight="19.0" prefWidth="96.0" style="-fx-border-radius: 20;" text="2017" textFill="#7282a6">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </Label>
-               </children>
-            </HBox>
+            <ImageView fx:id="poster" accessibleRole="BUTTON" fitHeight="224.0" fitWidth="140.0" onMousePressed="#mousePressedOnPoster" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/drStrange.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="likeImageView" fitHeight="24.0" fitWidth="29.0" layoutY="-1.0" onMousePressed="#mousePressedOnLike" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/unfilledLike.png" />
+               </image>
+               <effect>
+                  <DropShadow spread="0.7" />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="cancelImageView" fitHeight="24.0" fitWidth="18.0" layoutX="121.0" onKeyPressed="#mousePressedOnCancel" onMousePressed="#mousePressedOnCancel" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/external-cancel-mintab-for-ios-becris-lineal-becris.png" />
+               </image>
+               <effect>
+                  <DropShadow spread="0.78">
+                     <input>
+                        <Glow />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </ImageView>
          </children>
-      </VBox>
+      </AnchorPane>
+      <HBox prefHeight="14.0" prefWidth="170.0" style="-fx-border-radius: 20;">
+         <children>
+            <Label fx:id="titleLabel" alignment="CENTER" prefHeight="20.0" prefWidth="173.0" text="Dr Strange" textFill="#c2d3ed" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefHeight="19.0" prefWidth="140.0">
+         <children>
+            <Label fx:id="genreLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="19.0" prefWidth="97.0" text="Action" textFill="#7282a6">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label text="," textFill="#7282a6">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label fx:id="yearLabel" prefHeight="19.0" prefWidth="96.0" style="-fx-border-radius: 20;" text="2017" textFill="#7282a6">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+         </children>
+      </HBox>
    </children>
    <effect>
-      <DropShadow />
+      <DropShadow spread="0.2" />
    </effect>
-</AnchorPane>
+</VBox>

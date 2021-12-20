@@ -7,34 +7,59 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #28467d;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="782.0" prefWidth="972.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
    <children>
-      <AnchorPane layoutX="-1.0" prefHeight="700.0" prefWidth="108.0" style="-fx-background-color: #203763; -fx-background-radius: 5;">
-         <children>
-            <Button fx:id="logOutButton" layoutX="21.0" layoutY="399.0" mnemonicParsing="false" onAction="#logOutButtonOnAction" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="Log out" textFill="WHITE">
+      <ToolBar prefHeight="40.0" style="-fx-background-color: #081a4a;">
+         <items>
+            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="118.0" text="WATCHLIST" textAlignment="CENTER" textFill="#7068a4" underline="true">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
                <effect>
-                  <DropShadow spread="0.27" />
+                  <DropShadow spread="0.62" />
                </effect>
-            </Button>
-            <VBox alignment="CENTER" layoutX="-2.0" layoutY="-5.0" prefHeight="370.0" prefWidth="109.0" spacing="20.0">
+            </Label>
+            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="816.0" style="-fx-background-color: #081a4a; -fx-border-radius: 5;">
+               <children>
+                  <ImageView fitHeight="26.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/search-icon-png-9975.png" />
+                     </image>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="searchMovies" onKeyPressed="#keyPressedOnSearchMovies" style="-fx-background-color: #081a4a; -fx-border-color: #081a4a; -fx-border-radius: 20; -fx-background-radius: 20;" styleClass="textField" stylesheets="@../CSS/textField.css" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </items>
+      </ToolBar>
+      <SplitPane dividerPositions="0.12596732588134135, 0.8052450558899398" VBox.vgrow="ALWAYS">
+         <items>
+            <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="120.0" spacing="25.0" style="-fx-background-color: #203763; -fx-background-radius: 5;">
                <children>
                   <StackPane>
                      <children>
-                        <Circle fill="WHITE" opacity="0.11" radius="40.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" />
-                        <ImageView fitHeight="70.0" fitWidth="70.0" onMousePressed="#mousePressedOnMyProfile" pickOnBounds="true" preserveRatio="true">
+                        <Circle fill="WHITE" opacity="0.11" radius="40.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" StackPane.alignment="TOP_CENTER" />
+                        <ImageView fitHeight="70.0" fitWidth="70.0" onMousePressed="#mousePressedOnMyProfile" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
                            <image>
                               <Image url="@../images/L.png" />
                            </image>
@@ -43,34 +68,31 @@
                            </effect>
                         </ImageView>
                      </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
                      <padding>
                         <Insets bottom="-20.0" />
                      </padding>
                   </StackPane>
-                  <HBox alignment="CENTER" styleClass="selected" stylesheets="@../CSS/style.css">
-                     <children>
-                        <Label onMousePressed="#mousePressedOnMyProfile" styleClass="selected" stylesheets="@../CSS/style.css" text="My Profile" textFill="#8da3c7" underline="true">
-                           <font>
-                              <Font name="Microsoft YaHei Bold" size="14.0" />
-                           </font>
-                           <effect>
-                              <DropShadow spread="0.34" />
-                           </effect>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <Label onMousePressed="#mousePressedOnMyProfile" styleClass="selected" stylesheets="@../CSS/style.css" text="My Profile" textFill="#8da3c7" underline="true">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow spread="0.34" />
+                     </effect>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
                   <Separator opacity="0.4" prefHeight="1.0" prefWidth="100.0">
                      <effect>
                         <DropShadow spread="0.25" />
-                     </effect></Separator>
-                  <VBox spacing="25.0">
+                     </effect>
+                  </Separator>
+                  <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="112.0" spacing="25.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <HBox style="-fx-border-color: transparent #087608 transparent transparent; -fx-border-width: 5;" styleClass="selected" stylesheets="@../CSS/style.css">
+                        <HBox style="-fx-border-color: transparent #087608 transparent transparent; -fx-border-width: 5;" styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnMovies" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnMovies" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../images/streaming-movies.png" />
                                  </image>
@@ -81,7 +103,7 @@
                                     <DropShadow spread="0.34" />
                                  </effect>
                               </ImageView>
-                              <Label fx:id="moviesLabel" onMousePressed="#mousePressedOnMovies" text="Movies" textFill="#8da3c7" underline="true">
+                              <Label fx:id="moviesLabel" onMousePressed="#mousePressedOnMovies" text="Movies" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
@@ -97,9 +119,9 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <HBox prefHeight="26.0" prefWidth="90.0" styleClass="selected" stylesheets="@../CSS/style.css">
+                        <HBox prefHeight="26.0" prefWidth="90.0" styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnWatchList" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnWatchList" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../images/video-playlist.png" />
                                  </image>
@@ -107,7 +129,7 @@
                                     <DropShadow spread="0.34" />
                                  </effect>
                               </ImageView>
-                              <Label onMousePressed="#mousePressedOnWatchList" text="Watchlist" textFill="#8da3c7" underline="true">
+                              <Label onMousePressed="#mousePressedOnWatchList" prefHeight="26.0" prefWidth="81.0" text="Watchlist" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
@@ -123,9 +145,9 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <HBox styleClass="selected" stylesheets="@../CSS/style.css">
+                        <HBox styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnLiked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnLiked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../images/blueLove.png" />
                                  </image>
@@ -133,7 +155,7 @@
                                     <DropShadow spread="0.34" />
                                  </effect>
                               </ImageView>
-                              <Label onMousePressed="#mousePressedOnLiked" text="Liked" textFill="#8da3c7" underline="true">
+                              <Label onMousePressed="#mousePressedOnLiked" prefHeight="19.0" prefWidth="51.0" text="Liked" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
@@ -149,9 +171,9 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <HBox styleClass="selected" stylesheets="@../CSS/style.css">
+                        <HBox styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnFriends" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnFriends" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../images/group.png" />
                                  </image>
@@ -159,7 +181,7 @@
                                     <DropShadow spread="0.34" />
                                  </effect>
                               </ImageView>
-                              <Label onMousePressed="#mousePressedOnFriends" text="Friends" textFill="#8da3c7" underline="true">
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" onMousePressed="#mousePressedOnFriends" prefHeight="19.0" prefWidth="65.0" text="Friends" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
@@ -176,39 +198,144 @@
                            </padding>
                         </HBox>
                      </children>
-                     <padding>
-                        <Insets top="25.0" />
-                     </padding>
                   </VBox>
+                  <Pane prefHeight="264.0" prefWidth="112.0" VBox.vgrow="ALWAYS" />
+                  <HBox alignment="CENTER" prefHeight="45.0">
+                     <children>
+                        <Button fx:id="prevButton1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prevButtonOnAction" prefHeight="26.0" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="Log Out" textAlignment="CENTER" textFill="WHITE">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding></HBox>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="698.0" prefWidth="636.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="664.0" style="-fx-background-color: #28467d;">
+                     <children>
+                        <Label fx:id="welcomeUserLabel" minHeight="-Infinity" prefHeight="35.0" text="Hello, Ankit!" textFill="#7068a4" underline="true">
+                           <!--                     Instead of "Hello, Ankit", we need to use "Hello, {{First Name + Last Name}}, might need to use user object here-->
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <effect>
+                              <DropShadow spread="0.6" />
+                           </effect>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Pane prefHeight="42.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <MenuButton fx:id="yearsMenuBar" mnemonicParsing="false" style="-fx-background-color: #28467d;" text="All Years" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="2021" />
+                              <MenuItem mnemonicParsing="false" text="2020" />
+                              <MenuItem mnemonicParsing="false" text="2019" />
+                              <MenuItem mnemonicParsing="false" text="2018" />
+                              <MenuItem mnemonicParsing="false" text="2017" />
+                              <MenuItem mnemonicParsing="false" text="2016" />
+                              <MenuItem mnemonicParsing="false" text="2015" />
+                              <MenuItem mnemonicParsing="false" text="2014" />
+                              <MenuItem mnemonicParsing="false" text="2013" />
+                              <MenuItem mnemonicParsing="false" text="2012" />
+                              <MenuItem mnemonicParsing="false" text="2011" />
+                           </items>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </MenuButton>
+                        <MenuButton fx:id="genresMenuBar" mnemonicParsing="false" style="-fx-background-color: #28467d;" text="All Genres" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Action" />
+                              <MenuItem mnemonicParsing="false" text="Drama" />
+                              <MenuItem mnemonicParsing="false" text="Horror" />
+                              <MenuItem mnemonicParsing="false" text="Crime" />
+                              <MenuItem mnemonicParsing="false" text="Romance" />
+                           </items>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </MenuButton>
+                        <ImageView fx:id="refreshImageView" fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnRefreshImageView" opacity="0.54" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                           <image>
+                              <Image url="@../images/refresh.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow spread="0.85" />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <ScrollPane fx:id="mainScrollPane" minHeight="-Infinity" minWidth="-Infinity" opacity="0.85" prefHeight="616.0" prefWidth="634.0" style="-fx-background-color: #28467d; -fx-border-radius: 30;" styleClass="corner" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
+                     <content>
+                        <GridPane fx:id="mainGridPane" prefHeight="0.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+                  <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="627.0" style="-fx-background-color: #28467d;">
+                     <children>
+                        <Button fx:id="prevButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prevButtonOnAction" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="PREV" textAlignment="CENTER" textFill="WHITE">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <Button fx:id="nextButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nextButtonOnAction" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="NEXT" textAlignment="CENTER" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </HBox>
                </children>
             </VBox>
-            <HBox alignment="CENTER" layoutX="16.899999618530273" layoutY="648.9000244140625" styleClass="glow-button" stylesheets="@../CSS/style.css" />
-         </children>
-      </AnchorPane>
-      <VBox alignment="TOP_CENTER" layoutX="728.0" layoutY="35.0" prefHeight="666.0" prefWidth="173.0" spacing="1.0" style="-fx-background-color: #28467d;">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="118.0" text="Latest" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <effect>
-                  <DropShadow />
-               </effect>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Label>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="76.0" text="Releases" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Label>
-            <HBox alignment="CENTER_RIGHT" prefHeight="612.0" prefWidth="182.0" style="-fx-background-color: #28467d;">
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="173.0" spacing="1.0" style="-fx-background-color: #28467d;">
                <children>
-                  <ScrollPane fx:id="sideScrollPane" opacity="0.85" pannable="true" prefHeight="595.0" prefWidth="164.0" style="-fx-background-color: #28467d;" styleClass="corner" stylesheets="@../CSS/style.css">
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Latest" textFill="WHITE" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" text="Releases" textFill="WHITE" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Label>
+                  <ScrollPane fx:id="sideScrollPane" minHeight="-Infinity" minWidth="-Infinity" opacity="0.85" pannable="true" prefHeight="595.0" prefWidth="164.0" style="-fx-background-color: #28467d;" styleClass="corner" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                      <content>
                         <GridPane fx:id="sideGridPane" prefHeight="0.0" prefWidth="0.0" vgap="5.0">
                            <rowConstraints>
@@ -224,139 +351,8 @@
                      </padding>
                   </ScrollPane>
                </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox layoutX="108.0" prefHeight="698.0" prefWidth="636.0">
-         <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="800.0" style="-fx-background-color: #081a4a; -fx-border-radius: 5;">
-               <children>
-                  <ImageView fitHeight="26.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/search-icon-png-9975.png" />
-                     </image>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <TextField fx:id="searchMovies" onKeyPressed="#keyPressedOnSearchMovies" prefHeight="30.0" prefWidth="678.0" promptText="Search movies by its name or by actors" style="-fx-background-color: #081a4a; -fx-border-color: #081a4a; -fx-border-radius: 20; -fx-background-radius: 20;" styleClass="textField" stylesheets="@../CSS/textField.css" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="636.0">
-               <children>
-                  <Label fx:id="welcomeUserLabel" prefHeight="35.0" prefWidth="377.0" text="Hello, Ankit!" textFill="#7068a4" underline="true">
-<!--                     Instead of "Hello, Ankit", we need to use "Hello, {{First Name + Last Name}}, might need to use user object here-->
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                     <effect>
-                        <DropShadow spread="0.6" />
-                     </effect>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-                  <MenuButton fx:id="yearsMenuBar" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: #28467d;" text="All Years" textFill="WHITE">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="2021" />
-                        <MenuItem mnemonicParsing="false" text="2020" />
-                        <MenuItem mnemonicParsing="false" text="2019" />
-                        <MenuItem mnemonicParsing="false" text="2018" />
-                        <MenuItem mnemonicParsing="false" text="2017" />
-                        <MenuItem mnemonicParsing="false" text="2016" />
-                        <MenuItem mnemonicParsing="false" text="2015" />
-                        <MenuItem mnemonicParsing="false" text="2014" />
-                        <MenuItem mnemonicParsing="false" text="2013" />
-                        <MenuItem mnemonicParsing="false" text="2012" />
-                        <MenuItem mnemonicParsing="false" text="2011" />
-                     </items>
-                  </MenuButton>
-                  <MenuButton fx:id="genresMenuBar" mnemonicParsing="false" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: #28467d;" text="All Genres" textFill="WHITE">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Action" />
-                        <MenuItem mnemonicParsing="false" text="Drama" />
-                        <MenuItem mnemonicParsing="false" text="Horror" />
-                        <MenuItem mnemonicParsing="false" text="Crime" />
-                        <MenuItem mnemonicParsing="false" text="Romance" />
-                     </items>
-                  </MenuButton>
-                  <ImageView fx:id="refreshImageView" fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnRefreshImageView" opacity="0.54" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/refresh.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="550.0" prefWidth="636.0" spacing="15.0" style="-fx-background-color: #28467d;">
-               <children>
-                  <ScrollPane fx:id="mainScrollPane" opacity="0.85" pannable="true" prefHeight="580.0" prefWidth="590.0" style="-fx-background-color: #28467d; -fx-border-radius: 30;" styleClass="corner" stylesheets="@../CSS/style.css">
-                     <content>
-                        <GridPane fx:id="mainGridPane" prefHeight="0.0" prefWidth="0.0">
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                           </rowConstraints>
-                        </GridPane>
-                     </content>
-                  </ScrollPane>
-                  <Separator opacity="0.41" orientation="VERTICAL" prefHeight="200.0">
-                     <effect>
-                        <DropShadow spread="0.56" />
-                     </effect></Separator>
-               </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </HBox>
-            <HBox prefHeight="56.0" prefWidth="636.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="303.0">
-                     <children>
-                        <Button fx:id="prevButton" mnemonicParsing="false" onAction="#prevButtonOnAction" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="PREV" textAlignment="CENTER" textFill="WHITE">
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children></HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="306.0">
-                     <children>
-                        <Button fx:id="nextButton" mnemonicParsing="false" onAction="#nextButtonOnAction" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="NEXT" textAlignment="CENTER" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets right="15.0" />
-                           </HBox.margin>
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <HBox alignment="CENTER_LEFT" layoutX="744.0" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: #081a4a;">
-         <children>
-            <ImageView fitHeight="26.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/search-icon-png-9975.png" />
-               </image>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </ImageView>
-            <TextField fx:id="searchUsername" onKeyPressed="#keyPressedOnSearchUsername" prefHeight="30.0" prefWidth="136.0" promptText="Search username" style="-fx-background-color: #081a4a; -fx-border-color: #081a4a; -fx-background-radius: 20; -fx-border-radius: 20;" />
-         </children>
-      </HBox>
+            </VBox>
+         </items>
+      </SplitPane>
    </children>
-   <effect>
-      <DropShadow height="20.5" radius="9.625" width="20.0" />
-   </effect>
-</AnchorPane>
+</VBox>

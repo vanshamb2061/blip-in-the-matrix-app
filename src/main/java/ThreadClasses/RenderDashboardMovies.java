@@ -8,7 +8,7 @@ public class RenderDashboardMovies implements Runnable{
     }
     @Override
     public void run() {
-        System.out.println("hellow this is a thread");
+
         dashboardController.updateMoviesOnDashboard();
         dashboardController.updateSideMovieOnDashboard();
 

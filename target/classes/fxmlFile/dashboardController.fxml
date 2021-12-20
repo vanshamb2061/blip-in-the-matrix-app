@@ -22,14 +22,17 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="782.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="782.0" prefWidth="972.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
    <children>
       <ToolBar prefHeight="40.0" style="-fx-background-color: #081a4a;">
          <items>
-            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="118.0" text="WATCHLIST" textAlignment="CENTER" textFill="RED">
+            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="118.0" text="WATCHLIST" textAlignment="CENTER" textFill="#7068a4" underline="true">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
+               <effect>
+                  <DropShadow spread="0.62" />
+               </effect>
             </Label>
             <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="816.0" style="-fx-background-color: #081a4a; -fx-border-radius: 5;">
                <children>
@@ -218,7 +221,7 @@
             </VBox>
             <VBox prefHeight="698.0" prefWidth="636.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" style="-fx-background-color: #28467d;">
+                  <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="56.0" prefWidth="664.0" style="-fx-background-color: #28467d;">
                      <children>
                         <Label fx:id="welcomeUserLabel" minHeight="-Infinity" prefHeight="35.0" text="Hello, Ankit!" textFill="#7068a4" underline="true">
                            <!--                     Instead of "Hello, Ankit", we need to use "Hello, {{First Name + Last Name}}, might need to use user object here-->
@@ -313,7 +316,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="173.0" spacing="1.0" style="-fx-background-color: #28467d;">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="118.0" text="Latest" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Latest" textFill="WHITE" underline="true">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -324,7 +327,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="76.0" text="Releases" textFill="WHITE">
+                  <Label alignment="CENTER" text="Releases" textFill="WHITE" underline="true">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -22,7 +23,8 @@ import java.sql.Statement;
 import java.util.Map;
 
 public class likeController {
-
+    @FXML
+    private Label welcomeUserLabel;
     @FXML
     private Button backButton;
 //
@@ -36,7 +38,7 @@ public class likeController {
         try{
             JSONObject jsonObject = movieobj.getJsonObject();
             int movieid = jsonObject.getInt("id");
-            String username = "testing";
+            String username = "ankit";
             String query="INSERT INTO `movie`(`MovieID`, `Username`) VALUES (?,?)";
             PreparedStatement preStat = myConn.prepareStatement(query);
             preStat.setInt(1,movieid);
@@ -44,28 +46,6 @@ public class likeController {
             preStat.executeUpdate();
             System.out.println("movie fav added to db");
             System.out.println(movieid);
-
-
-//            movie.setJsonObject(jsonObject);
-
-
-//                Stage stage1 = (Stage) backButton.getScene().getWindow();
-//                stage1.close();
-//                Parent root = FXMLLoader.load(getClass().getResource("loginController.fxml"));
-//                Stage loginStage = new Stage();
-//                loginStage.initStyle(StageStyle.DECORATED);
-//                loginStage.setTitle("Login Page");
-//                loginStage.setScene(new Scene(root, 530, 320));
-//                loginStage.getIcons().add(new Image("/images/img.png"));
-//                loginStage.show();
-//
-//                Stage stage = (Stage) backButton.getScene().getWindow();
-//                stage.close();
-//            }
-//            else{
-//                //Put error Label Here
-//                System.out.println("Please fill all the data");
-//            }
         }
         catch(Exception e){
             System.out.println(e.getMessage());

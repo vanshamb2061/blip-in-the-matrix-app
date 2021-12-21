@@ -23,6 +23,7 @@ import movies.newMovie;
 import movies.newMoviesController;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import users.User;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,6 +31,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 
 public class dashboardController implements Initializable {
@@ -254,7 +259,7 @@ public class dashboardController implements Initializable {
     private List<Movie> getSearchData() throws Exception {
 
         HttpURLConnection connection = null;
-        final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
+        final String mykey = "52dbdefafcc6e3911db1a3409fc33e8a";
         boolean adult = true;
 
         URL url = new URL("https://api.themoviedb.org/3/search/movie?api_key=" + mykey + "&language=en-US&page=1&include_adult=false" + "&query=" + searchMovies.getText());
@@ -391,7 +396,7 @@ public class dashboardController implements Initializable {
     }
 
     public void mousePressedOnWatchList(MouseEvent mouseEvent) throws IOException {
-        System.out.println("here you'll find all your saved watchlist");
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/watchListPage.fxml"));
         Stage watchListStage = new Stage();
         watchListStage.setScene(new Scene(root));

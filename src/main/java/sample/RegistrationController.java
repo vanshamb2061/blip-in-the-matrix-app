@@ -18,7 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Map;
 
-public class registrationController {
+public class RegistrationController {
     @FXML
     private Button registerButton;
     @FXML

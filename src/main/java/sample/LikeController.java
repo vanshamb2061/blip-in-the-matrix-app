@@ -21,7 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Map;
 
-public class likeController {
+public class LikeController {
 
     @FXML
     private Button backButton;

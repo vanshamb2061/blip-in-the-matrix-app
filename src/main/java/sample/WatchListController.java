@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class watchListController {
+public class WatchListController {
     @FXML
     private Button logOutButton;
     @FXML

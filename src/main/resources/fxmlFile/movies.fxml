@@ -6,43 +6,49 @@
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="170.0" style="-fx-border-radius: 20; -fx-background-color: #28467d; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.moviesController">
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="170.0" style="-fx-border-radius: 20; -fx-background-color: #28467d; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.MoviesController">
    <children>
-      <AnchorPane>
+      <StackPane VBox.vgrow="ALWAYS">
          <children>
             <ImageView fx:id="poster" accessibleRole="BUTTON" fitHeight="255.0" fitWidth="170.0" onMousePressed="#mousePressedOnPoster" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/avengersEndgame.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="likeImageView" fitHeight="30.0" fitWidth="29.0" onMousePressed="#mousePressedOnLike" pickOnBounds="true">
-               <image>
-                  <Image url="@../images/unfilledLike.png" />
-               </image>
-               <effect>
-                  <DropShadow spread="0.7" />
-               </effect>
-            </ImageView>
-            <ImageView fx:id="cancelImageView" fitHeight="29.0" fitWidth="23.0" layoutX="146.0" layoutY="1.0" onMousePressed="#mousePressedOnCancel" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/external-cancel-mintab-for-ios-becris-lineal-becris.png" />
-               </image>
-               <effect>
-                  <DropShadow spread="0.81">
-                     <input>
-                        <Glow />
-                     </input>
-                  </DropShadow>
-               </effect>
-            </ImageView>
+            <HBox>
+               <children>
+                  <ImageView fx:id="likeImageView" fitHeight="30.0" fitWidth="29.0" onMousePressed="#mousePressedOnLike" pickOnBounds="true" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../images/unfilledLike.png" />
+                     </image>
+                     <effect>
+                        <DropShadow spread="0.7" />
+                     </effect>
+                  </ImageView>
+                  <Pane onMousePressed="#mousePressedOnPoster" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="cancelImageView" fitHeight="29.0" fitWidth="23.0" onMousePressed="#mousePressedOnCancel" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../images/external-cancel-mintab-for-ios-becris-lineal-becris.png" />
+                     </image>
+                     <effect>
+                        <DropShadow spread="0.81">
+                           <input>
+                              <Glow />
+                           </input>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+               </children>
+            </HBox>
          </children>
-      </AnchorPane>
-      <HBox prefHeight="14.0" prefWidth="170.0" style="-fx-border-radius: 20;">
+      </StackPane>
+      <HBox prefHeight="14.0" prefWidth="170.0" style="-fx-border-radius: 20;" VBox.vgrow="ALWAYS">
          <children>
             <Label fx:id="titleLabel" alignment="CENTER" prefHeight="20.0" prefWidth="170.0" text="Dr Strange" textFill="#c2d3ed" wrapText="true">
                <font>
@@ -54,7 +60,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="170.0">
+      <HBox prefHeight="100.0" prefWidth="170.0" VBox.vgrow="ALWAYS">
          <children>
             <Label fx:id="genreLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="19.0" prefWidth="97.0" text="Action" textFill="#7282a6">
                <font>

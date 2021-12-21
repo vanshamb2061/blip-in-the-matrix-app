@@ -5,9 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -18,9 +16,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import movies.Movie;
-import movies.moviesController;
-import movies.newMovie;
-import movies.newMoviesController;
+import movies.MoviesController;
+import movies.NewMovie;
+import movies.NewMoviesController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import apiKeys.Services;
@@ -34,7 +32,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class dashboardController implements Initializable {
+public class DashboardController implements Initializable {
     //code yet to write
     @FXML
     private MenuButton genresMenuBar;
@@ -138,10 +136,9 @@ public class dashboardController implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("/fxmlFile/movies.fxml"));
 
                 VBox anchorPane = fxmlLoader.load();
-                moviesController movieController = fxmlLoader.getController();
+                MoviesController movieController = fxmlLoader.getController();
                 movieController.setData(movie);
 
-/*
                 ColumnConstraints colConstraint = new ColumnConstraints();
                 colConstraint.setHgrow(Priority.SOMETIMES);
 
@@ -150,7 +147,6 @@ public class dashboardController implements Initializable {
 
                 mainGridPane.getColumnConstraints().add(colConstraint);
                 mainGridPane.getRowConstraints().add(rowConstraints);
-*/
 
                 if (col.get() == 4) {
                     row++;
@@ -164,10 +160,12 @@ public class dashboardController implements Initializable {
                     mainGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
                     mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
                     mainGridPane.setMaxWidth(Region.USE_PREF_SIZE);
+                    mainGridPane.setFillWidth(anchorPane, true);
                     //set gridPane height
                     mainGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
                     mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
                     mainGridPane.setMaxHeight(Region.USE_PREF_SIZE);
+                    mainGridPane.setFillHeight(anchorPane, true);
                 });
 
                 GridPane.setMargin(anchorPane, new Insets(10));
@@ -178,8 +176,8 @@ public class dashboardController implements Initializable {
     }
 
 
-    private final List<newMovie> tryNewMovies = new ArrayList<>();
-    private List<newMovie> getTryNewMoviesData() throws Exception {
+    private final List<NewMovie> tryNewMovies = new ArrayList<>();
+    private List<NewMovie> getTryNewMoviesData() throws Exception {
         HttpURLConnection connection = null;
         final String mykey = serviceObject.API_KEY;
         boolean adult = true;
@@ -202,10 +200,10 @@ public class dashboardController implements Initializable {
         JSONObject jsonObject1 = new JSONObject(result);
         JSONArray jsonArray = jsonObject1.getJSONArray("results");
 
-        List<newMovie> tryNewMovies = new ArrayList<>();
-        newMovie tryNewMovie;
+        List<NewMovie> tryNewMovies = new ArrayList<>();
+        NewMovie tryNewMovie;
         for(int i=0;i<jsonArray.length() && i < 20; i++){
-            tryNewMovie = new newMovie();
+            tryNewMovie = new NewMovie();
 
             tryNewMovie.setGenre("Action");
             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -240,12 +238,12 @@ public class dashboardController implements Initializable {
         AtomicInteger col = new AtomicInteger();
         int row = 1;
         try{
-            for (newMovie tryNewMovie : tryNewMovies) {
+            for (NewMovie tryNewMovie : tryNewMovies) {
                 FXMLLoader sidefxmlLoader = new FXMLLoader();
                 sidefxmlLoader.setLocation(getClass().getResource("/fxmlFile/newMovies.fxml"));
 
                 VBox anchorPane = sidefxmlLoader.load();
-                newMoviesController tryNewMovieController = sidefxmlLoader.getController();
+                NewMoviesController tryNewMovieController = sidefxmlLoader.getController();
                 tryNewMovieController.setData(tryNewMovie);
                 if (col.get() == 1) {
                     row++;
@@ -343,9 +341,9 @@ public class dashboardController implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("/fxmlFile/movies.fxml"));
 
                 VBox anchorPane = fxmlLoader.load();
-                moviesController movieController = fxmlLoader.getController();
+                MoviesController movieController = fxmlLoader.getController();
                 movieController.setData(movie);
-                if (col.get() == 6) {
+                if (col.get() == 4) {
                     row++;
                     col.set(0);
                 }
@@ -374,12 +372,21 @@ public class dashboardController implements Initializable {
     void keyPressedOnSearchMovies(KeyEvent event) throws Exception{
         if(event.getCode().equals(KeyCode.ENTER)){
             searchMoviesArray = new ArrayList<>();
+            System.out.println(searchMovies.getText()=="");
             if(searchMovies.getText() == ""){
                 movies = new ArrayList<>();
-                updateMoviesOnDashboard();
+                new Thread(new Runnable() {
+                    @Override public void run() {
+                        updateMoviesOnDashboard();
+                    }
+                }).start();
             }else{
                 System.out.println("You searched movie having name " + searchMovies.getText());
-                updateMoviesOnDashboardOnSearch();
+                new Thread(new Runnable() {
+                    @Override public void run() {
+                        updateMoviesOnDashboardOnSearch();
+                    }
+                }).start();
             }
 
         }
@@ -397,7 +404,11 @@ public class dashboardController implements Initializable {
         Current_Pg = Current_Pg + 1;
         prevButton.setDisable(false);
         movies = new ArrayList<>();
-        updateMoviesOnDashboard();
+        new Thread(new Runnable() {
+            @Override public void run() {
+                updateMoviesOnDashboard();
+            }
+        }).start();
     }
     @FXML
     void prevButtonOnAction(ActionEvent event) throws Exception{
@@ -406,7 +417,11 @@ public class dashboardController implements Initializable {
             prevButton.setDisable(true);
         }
         movies = new ArrayList<>();
-        updateMoviesOnDashboard();
+        new Thread(new Runnable() {
+            @Override public void run() {
+                updateMoviesOnDashboard();
+            }
+        }).start();
     }
 
     public void mousePressedOnMyProfile(MouseEvent mouseEvent) {

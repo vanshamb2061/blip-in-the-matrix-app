@@ -1,9 +1,11 @@
 package ThreadClasses;
 
 
+import sample.DashboardController;
+
 public class RenderDashboardMovies implements Runnable{
-    sample.dashboardController dashboardController;
-    public RenderDashboardMovies(sample.dashboardController dashboardController){
+    DashboardController dashboardController;
+    public RenderDashboardMovies(DashboardController dashboardController){
         this.dashboardController = dashboardController;
     }
     @Override

@@ -22,7 +22,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="782.0" prefWidth="972.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="782.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DashboardController">
    <children>
       <ToolBar prefHeight="40.0" style="-fx-background-color: #081a4a;">
          <items>
@@ -202,7 +202,7 @@
                   <Pane prefHeight="264.0" prefWidth="112.0" VBox.vgrow="ALWAYS" />
                   <HBox alignment="CENTER" prefHeight="45.0">
                      <children>
-                        <Button fx:id="prevButton1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prevButtonOnAction" prefHeight="26.0" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="Log Out" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="prevButton1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prevButtonOnAction" prefHeight="32.0" prefWidth="59.0" style="-fx-background-color: red; -fx-border-radius: 10; -fx-background-radius: 10;" text="Log Out" textAlignment="CENTER" textFill="WHITE">
                            <effect>
                               <DropShadow />
                            </effect>
@@ -281,7 +281,7 @@
                   </HBox>
                   <ScrollPane fx:id="mainScrollPane" minHeight="-Infinity" minWidth="-Infinity" opacity="0.85" prefHeight="616.0" prefWidth="634.0" style="-fx-background-color: #28467d; -fx-border-radius: 30;" styleClass="corner" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                      <content>
-                        <GridPane fx:id="mainGridPane" prefHeight="0.0" prefWidth="0.0">
+                        <GridPane fx:id="mainGridPane" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #28467d;">
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" />
                            </rowConstraints>

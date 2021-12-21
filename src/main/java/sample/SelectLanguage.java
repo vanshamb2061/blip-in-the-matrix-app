@@ -14,72 +14,49 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class selectGenre implements Initializable {
-    @FXML
-    private CheckBox actionCheckBox;
+public class SelectLanguage implements Initializable {
+
+    Map<String, Boolean> languageMap = new HashMap<String, Boolean>();
 
     @FXML
-    private CheckBox comedyCheckBox;
-
+    private CheckBox englishCheckBox;
     @FXML
-    private CheckBox dramaCheckBox;
-
-    @FXML
-    private CheckBox fantasyCheckBox;
-
-    @FXML
-    private CheckBox horrorCheckBox;
-
-    @FXML
-    private CheckBox mysteryCheckBox;
-
-    @FXML
-    private CheckBox romanceCheckBox;
-
+    private CheckBox hindiCheckBox;
     @FXML
     private Button submitButton;
-
     @FXML
-    private CheckBox thrillerCheckBox;
+    private CheckBox tamilCheckBox;
 
-    List<CheckBox> genreCheckBox = new ArrayList<CheckBox>();
-    Map<String, Boolean> genreMap = new HashMap<String, Boolean>();
-
+    List<CheckBox> languageCheckBox = new ArrayList<CheckBox>();
 
     public void submitButtonOnAction(ActionEvent event) throws IOException {
         // code to write
-        //sql injection to store data
 
-        for(CheckBox genre : genreCheckBox){
-            if(genre.isSelected()){
-                genreMap.put(genre.getText(), true);
+        for(CheckBox language : languageCheckBox){
+            if(language.isSelected()){
+                languageMap.put(language.getText(), true);
             }else{
-                genreMap.put(genre.getText(), false);
+                languageMap.put(language.getText(), false);
             }
-            //System.out.println(genreMap.get(genre.getText()));
+            //System.out.println(languageMap.get(language.getText()));
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/registrationPage.fxml"));
         Parent root = loader.load();
-        registrationController registrationController = loader.getController();
-        registrationController.setGenreInRegistrationController(genreMap);
+        RegistrationController registrationController = loader.getController();
+        registrationController.setLanguageInRegistrationController(languageMap);
 
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.close();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         submitButton.setDisable(true);
         final int[] cnt = {0};
-        genreCheckBox.add(actionCheckBox);
-        genreCheckBox.add(comedyCheckBox);
-        genreCheckBox.add(dramaCheckBox);
-        genreCheckBox.add(fantasyCheckBox);
-        genreCheckBox.add(horrorCheckBox);
-        genreCheckBox.add(mysteryCheckBox);
-        genreCheckBox.add(romanceCheckBox);
-        genreCheckBox.add(thrillerCheckBox);
-
-        for (CheckBox language : genreCheckBox) {
+        languageCheckBox.add(hindiCheckBox);
+        languageCheckBox.add(englishCheckBox);
+        languageCheckBox.add(tamilCheckBox);
+        for (CheckBox language : languageCheckBox) {
             EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent e)
                 {
@@ -90,7 +67,7 @@ public class selectGenre implements Initializable {
                         System.out.println(language.getText() + " is not Selected");
                         cnt[0]--;
                     }
-                    if(cnt[0] > 2){
+                    if(cnt[0] > 0){
                         submitButton.setDisable(false);
                     }else{
                         submitButton.setDisable(true);
@@ -101,5 +78,4 @@ public class selectGenre implements Initializable {
         }
         System.out.println(cnt[0]);
     }
-
 }

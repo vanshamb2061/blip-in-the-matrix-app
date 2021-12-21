@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class newMoviesController {
+public class NewMoviesController {
     @FXML
     private Label genreLabel;
 
@@ -29,9 +29,9 @@ public class newMoviesController {
     private ImageView likeImageView;
 
     private boolean clicked = false;
-    private newMovie tryNewMovie;
+    private NewMovie tryNewMovie;
 
-    public void setData(newMovie tryNewMovie){
+    public void setData(NewMovie tryNewMovie){
         this.tryNewMovie = tryNewMovie;
         titleLabel.setText(tryNewMovie.getName());
         genreLabel.setText(tryNewMovie.getGenre());
@@ -44,7 +44,7 @@ public class newMoviesController {
         System.out.println("user clicked on movie, show him movie description");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/movieInfo.fxml"));
         Parent root = loader.load();
-        movieInfo movieInfoController = loader.getController();
+        MovieInfo movieInfoController = loader.getController();
         movieInfoController.setEverythingInMovieInfo(tryNewMovie);
         Stage movieInfoStage = new Stage();
         movieInfoStage.initStyle(StageStyle.UNDECORATED);

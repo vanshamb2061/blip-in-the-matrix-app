@@ -11,9 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import sample.likeController;
 
-public class moviesController{
+public class MoviesController {
 
     @FXML
     private Label genreLabel;
@@ -55,7 +54,7 @@ public class moviesController{
         System.out.println("user clicked on movie, show him movie description");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/movieInfo.fxml"));
         Parent root = loader.load();
-        movieInfo movieInfoController = loader.getController();
+        MovieInfo movieInfoController = loader.getController();
         movieInfoController.setEverythingInMovieInfo(movie);
         Stage movieInfoStage = new Stage();
         movieInfoStage.initStyle(StageStyle.UNDECORATED);
@@ -73,7 +72,7 @@ public class moviesController{
             likeImageView.setImage(image);
             likeImageView.setFitWidth(29);
             likeImageView.setFitHeight(30);
-            likeController.addLikedMovietoDB(movie);
+            //likeController.addLikedMovietoDB(movie);
         }else{
             System.out.println("user removed this movie from his favorites");
             Image image = new Image(("/images/unfilledLike.png"));

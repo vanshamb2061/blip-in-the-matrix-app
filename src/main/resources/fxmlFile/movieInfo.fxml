@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="scene" prefHeight="338.18" prefWidth="600.0" style="-fx-border-radius: 25; -fx-background-radius: 25;" styleClass="bodybg" stylesheets="@../CSS/bodybg.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.movieInfo">
+<AnchorPane id="scene" prefHeight="338.18" prefWidth="600.0" style="-fx-border-radius: 25; -fx-background-radius: 25;" styleClass="bodybg" stylesheets="@../CSS/bodybg.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.MovieInfo">
    <children>
       <ImageView fx:id="backgroundImageView" fitHeight="338.18" fitWidth="600.0" pickOnBounds="true" style="-fx-opacity: 1;">
          <image>

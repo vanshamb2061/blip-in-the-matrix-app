@@ -15,12 +15,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-public class loginController {
+public class LoginController {
 
     @FXML
     private Button cancelButton;
@@ -55,12 +50,12 @@ public class loginController {
                 if (result.next()) {*/
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/dashboardController.fxml"));
                     Parent root = loader.load();
-                    dashboardController dashboardController = loader.getController();
+                    DashboardController dashboardController = loader.getController();
                     dashboardController.setUserNameInDashboardController(usernameTextField.getText());
                     Stage dashboardStage = new Stage();
                     dashboardStage.initStyle(StageStyle.DECORATED);
                     dashboardStage.setTitle("watchlist");
-                    dashboardStage.setScene(new Scene(root, 1025, 790));
+                    dashboardStage.setScene(new Scene(root, 1090, 790));
                     dashboardStage.getIcons().add(new Image("/images/img.png"));
                     dashboardStage.show();
 

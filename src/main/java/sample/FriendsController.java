@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
-public class friendsController {
+public class FriendsController {
     @FXML
     private MenuButton genresMenuBar;
     @FXML

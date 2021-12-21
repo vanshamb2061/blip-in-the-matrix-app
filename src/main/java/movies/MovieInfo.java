@@ -23,7 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class movieInfo implements Initializable {
+public class MovieInfo implements Initializable {
 
     @FXML
     private ImageView backgroundImageView;
@@ -104,7 +104,7 @@ public class movieInfo implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/playTrailer.fxml"));
         Parent root = loader.load();
         Stage movieInfoStage = new Stage();
-        movieInfoStage.initStyle(StageStyle.DECORATED);
+        movieInfoStage.initStyle(StageStyle.UNDECORATED);
         movieInfoStage.setTitle("Info");
         movieInfoStage.setScene(new Scene(root, 900, 500));
         movieInfoStage.getIcons().add(new Image("/images/img.png"));
@@ -137,7 +137,7 @@ public class movieInfo implements Initializable {
         descriptionTextArea.setText(overview);
         //String video = jsonObject.getString("video");
     }
-    public void setEverythingInMovieInfo(newMovie movie) throws Exception{
+    public void setEverythingInMovieInfo(NewMovie movie) throws Exception{
         JSONObject jsonObject = movie.getJsonObject();
         System.out.println(jsonObject);
         Image image = new Image("https://image.tmdb.org/t/p/w500"+jsonObject.getString("backdrop_path"));

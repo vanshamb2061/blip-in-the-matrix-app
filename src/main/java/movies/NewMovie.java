@@ -2,7 +2,7 @@ package movies;
 
 import org.json.JSONObject;
 
-public class newMovie {
+public class NewMovie {
     private String name;
     private String imgSrc;
     private String color;

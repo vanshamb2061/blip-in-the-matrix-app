@@ -25,7 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import javafx.scene.web.*;
 
-public class playTrailer implements Initializable {
+public class PlayTrailer implements Initializable {
 
     public WebView webPlayer;
     @FXML
@@ -73,6 +73,17 @@ public class playTrailer implements Initializable {
 
         stage.setScene(new Scene(webview));
         stage.show();*/
+
+
+/*        Stage stage = new Stage();
+        MediaView mediaView = new MediaView();
+        Media media = new Media("https://www.youtube.com/watch?v=6JnN1DmbqoU");
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+        mediaView.setMediaPlayer(mediaPlayer);
+        stage.setScene(new Scene(mediaView));
+        stage.show();*/
+
     }
 
 }

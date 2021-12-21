@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="140.0" style="-fx-border-radius: 20; -fx-background-color: #28467d; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.newMoviesController">
+<VBox alignment="TOP_CENTER" prefHeight="246.0" prefWidth="140.0" style="-fx-border-radius: 20; -fx-background-color: #28467d; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.NewMoviesController">
    <children>
       <AnchorPane prefHeight="208.0" prefWidth="140.0">
          <children>

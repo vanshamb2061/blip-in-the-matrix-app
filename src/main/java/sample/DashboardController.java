@@ -292,8 +292,7 @@ public class DashboardController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        AtomicInteger col = new AtomicInteger();
-        int row = 1;
+
         try{
 
             for (Movie movie : searchMoviesArray) {

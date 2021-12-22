@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import apiKeys.Services;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -39,6 +40,7 @@ public class MovieInfo implements Initializable {
     private Label movieLabel;
 
     Movie movieObj;
+    Services serviceObject = new Services();
     private boolean clicked = false;
     @FXML
     void mousePressedOnAddToFavorites(MouseEvent event) {
@@ -66,7 +68,7 @@ public class MovieInfo implements Initializable {
     void mousePressedOnPlayTrailer(MouseEvent event) throws Exception{
 
         HttpURLConnection connection = null;
-        final String mykey = "201d9cf62a43a21c17cdf0f13ce41312";
+        final String mykey = serviceObject.API_KEY;
         boolean adult = true;
 
         URL url = new URL("http://api.themoviedb.org/3/movie/550/videos?api_key=" + mykey);
@@ -94,10 +96,8 @@ public class MovieInfo implements Initializable {
         System.out.println("Please wait..... we're playing trailer for you.");
         System.out.println(video);
 /*
-
         System.out.println(movieObj.getJsonObject());
         JSONObject jsonObject = movieObj.getJsonObject();
-
         System.out.println(jsonObject);
         JSONObject js = new JSONObject("https://api.themoviedb.org/3/movie/297762/videos?api_key=201d9cf62a43a21c17cdf0f13ce41312&language=en-US");
 */

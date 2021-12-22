@@ -64,7 +64,7 @@ public class PlayTrailer implements Initializable {
         //encountering error when including webview find out why this is happening.............
 
 
-        /*Stage stage = new Stage();
+ /*       Stage stage = new Stage();
         WebView webview = new WebView();
         webview.getEngine().load(
                 "https://youtu.be/BJXl0kO0YC0"
@@ -72,9 +72,9 @@ public class PlayTrailer implements Initializable {
         webview.setPrefSize(640, 390);
 
         stage.setScene(new Scene(webview));
-        stage.show();*/
+        stage.show();
 
-
+*/
 /*        Stage stage = new Stage();
         MediaView mediaView = new MediaView();
         Media media = new Media("https://www.youtube.com/watch?v=6JnN1DmbqoU");

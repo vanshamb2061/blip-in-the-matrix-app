@@ -47,9 +47,9 @@ public class DashboardController implements Initializable {
     @FXML
     private Label welcomeUserLabel;
     @FXML
-    private GridPane mainGridPane;
+    private FlowPane mainFlowPane;
     @FXML
-    private GridPane sideGridPane;
+    private FlowPane sideFlowPane;
     @FXML
     private TextField searchMovies;
     @FXML
@@ -139,36 +139,10 @@ public class DashboardController implements Initializable {
                 MoviesController movieController = fxmlLoader.getController();
                 movieController.setData(movie);
 
-                ColumnConstraints colConstraint = new ColumnConstraints();
-                colConstraint.setHgrow(Priority.SOMETIMES);
-
-                RowConstraints rowConstraints = new RowConstraints();
-                rowConstraints.setVgrow(Priority.SOMETIMES);
-
-                mainGridPane.getColumnConstraints().add(colConstraint);
-                mainGridPane.getRowConstraints().add(rowConstraints);
-
-                if (col.get() == 4) {
-                    row++;
-                    col.set(0);
-
-                }
-                int finalRow = row;
                 Platform.runLater(()->{
-                    mainGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
-                    //set gridPane width
-                    mainGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                    mainGridPane.setFillWidth(anchorPane, true);
-                    //set gridPane height
-                    mainGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxHeight(Region.USE_PREF_SIZE);
-                    mainGridPane.setFillHeight(anchorPane, true);
+                    mainFlowPane.getChildren().add(anchorPane);
                 });
-
-                GridPane.setMargin(anchorPane, new Insets(10));
+                FlowPane.setMargin(anchorPane, new Insets(10));
             }
         }catch (IOException e){
             e.printStackTrace();
@@ -242,28 +216,14 @@ public class DashboardController implements Initializable {
                 FXMLLoader sidefxmlLoader = new FXMLLoader();
                 sidefxmlLoader.setLocation(getClass().getResource("/fxmlFile/newMovies.fxml"));
 
-                VBox anchorPane = sidefxmlLoader.load();
+                VBox vBox = sidefxmlLoader.load();
                 NewMoviesController tryNewMovieController = sidefxmlLoader.getController();
                 tryNewMovieController.setData(tryNewMovie);
-                if (col.get() == 1) {
-                    row++;
-                    col.set(0);
-                }
-                int finalRow = row;
+
                 Platform.runLater(()->{
-                    sideGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
-                    //set sideGridPane width
-                    sideGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    sideGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    sideGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                    //set sideGridPane height
-                    sideGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    sideGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    sideGridPane.setMaxHeight(Region.USE_PREF_SIZE);
+                    sideFlowPane.getChildren().add(vBox);
                 });
-
-
-                GridPane.setMargin(anchorPane, new Insets(5));
+                FlowPane.setMargin(vBox, new Insets(5));
             }
         }catch (IOException e){
             e.printStackTrace();
@@ -343,24 +303,11 @@ public class DashboardController implements Initializable {
                 VBox anchorPane = fxmlLoader.load();
                 MoviesController movieController = fxmlLoader.getController();
                 movieController.setData(movie);
-                if (col.get() == 4) {
-                    row++;
-                    col.set(0);
-                }
-                int finalRow = row;
-                Platform.runLater(()->{
-                    mainGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
-                    //set gridPane width
-                    mainGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                    //set gridPane height
-                    mainGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxHeight(Region.USE_PREF_SIZE);
-                });
 
-                GridPane.setMargin(anchorPane, new Insets(10));
+                Platform.runLater(()->{
+                    mainFlowPane.getChildren().add(anchorPane);
+                });
+                FlowPane.setMargin(anchorPane, new Insets(10));
             }
         }catch (IOException e){
             e.printStackTrace();

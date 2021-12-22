@@ -488,7 +488,9 @@ public class DashboardController implements Initializable {
 */
         Thread thread1 = new Thread(new Runnable() {
             @Override public void run() {
+                System.out.println("Trying to run updateMovies");
                 updateMoviesOnDashboard();
+                System.out.println("updateMovies Successful");
             }
         });
 

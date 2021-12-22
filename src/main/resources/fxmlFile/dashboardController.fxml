@@ -333,7 +333,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" maxWidth="370.0" minWidth="-Infinity" prefHeight="740.0" prefWidth="173.0" spacing="1.0" style="-fx-background-color: #28467d;">
                <children>
-                  <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="10.0" prefHeight="45.0" prefWidth="209.0">
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="10.0" prefHeight="34.0" prefWidth="209.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Latest" textFill="#8da3c7" underline="true">
                            <font>
@@ -359,7 +359,7 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                   </FlowPane>
-                  <ScrollPane fx:id="sideScrollPane" fitToWidth="true" maxWidth="370.0" pannable="true" style="-fx-background-color: #28467d;" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+                  <ScrollPane fx:id="sideScrollPane" fitToWidth="true" maxWidth="370.0" pannable="true" prefHeight="685.0" prefWidth="209.0" style="-fx-background-color: #28467d;" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
                      <content>
                         <!-- do not put bounds on the FlowPane size -->
                         <FlowPane fx:id="sideFlowPane" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="370.0" minHeight="-Infinity" prefWidth="600.0" style="-fx-background-color: #28467d;" />

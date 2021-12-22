@@ -57,6 +57,8 @@ public class LoginController {
                     dashboardStage.setTitle("watchlist");
                     dashboardStage.setScene(new Scene(root, 1090, 790));
                     dashboardStage.getIcons().add(new Image("/images/img.png"));
+                    dashboardStage.setMinHeight(600);
+                    dashboardStage.setMinWidth(985);
                     dashboardStage.show();
 
                     Stage stage = (Stage) loginButton.getScene().getWindow();

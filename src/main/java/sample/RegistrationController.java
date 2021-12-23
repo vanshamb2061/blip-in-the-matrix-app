@@ -69,7 +69,7 @@ public class RegistrationController {
                 Stage loginStage = new Stage();
                 loginStage.initStyle(StageStyle.DECORATED);
                 loginStage.setTitle("Login Page");
-                loginStage.setScene(new Scene(root, 530, 320));
+                loginStage.setScene(new Scene(root, 600, 350));
                 loginStage.getIcons().add(new Image("/images/img.png"));
                 loginStage.show();
 

@@ -3,6 +3,7 @@ package movies;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.json.JSONArray;
@@ -100,14 +102,16 @@ public class MovieInfo implements Initializable {
         System.out.println(movieObj.getId());
 
 
-        Stage stage = new Stage();
-        stage.setTitle("Trailer");
+        Stage trailerStage = new Stage();
+        trailerStage.setTitle("Trailer");
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
         webEngine.load(video);
         Scene scene = new Scene(webView, webView.getPrefWidth(), webView.getPrefHeight());
-        stage.setScene(scene);
-        stage.show();
+        trailerStage.setScene(scene);
+        trailerStage.initModality(Modality.APPLICATION_MODAL);
+        trailerStage.initOwner(((Node)event.getSource()).getScene().getWindow() );
+        trailerStage.show();
 
 
 
@@ -154,19 +158,7 @@ public class MovieInfo implements Initializable {
         descriptionTextArea.setText(overview);
         //String video = jsonObject.getString("video");
     }
-    /*public void setEverythingInMovieInfo(NewMovie movie) throws Exception{
-        JSONObject jsonObject = movie.getJsonObject();
-        System.out.println(jsonObject);
-        Image image = new Image("https://image.tmdb.org/t/p/w500"+jsonObject.getString("backdrop_path"));
-        backgroundImageView.setImage(image);
-        //movie.setGenre(jsonObject.getString("genre_ids"));
-        //String id = jsonObject.getString("id");
-        //String original_language = jsonObject.getString("original_language");
-        movieLabel.setText( jsonObject.getString("original_title"));
-        String overview = jsonObject.getString("overview");
-        descriptionTextArea.setText(overview);
-        //String video = jsonObject.getString("video");
-    }*/
+
     @FXML
     void mousePressedOnCancel2(MouseEvent event) {
         Stage stage = (Stage) cancelImageView.getScene().getWindow();

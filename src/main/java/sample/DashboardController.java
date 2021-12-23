@@ -47,7 +47,7 @@ public class DashboardController implements Initializable {
     @FXML
     private Label welcomeUserLabel;
     @FXML
-    private FlowPane mainFlowPane;
+    public FlowPane mainFlowPane;
     @FXML
     private FlowPane sideFlowPane;
     @FXML
@@ -398,13 +398,14 @@ public class DashboardController implements Initializable {
 
     public void mousePressedOnRefreshImageView(MouseEvent mouseEvent) {
         System.out.println("refresh to get new recommendations");
-        Thread thread1 = new Thread(new Runnable() {
+        mainFlowPane.getChildren().clear();
+        new Thread(new Runnable() {
             @Override public void run() {
                 System.out.println("Trying to run updateMovies");
                 updateMoviesOnDashboard();
                 System.out.println("updateMovies Successful");
             }
-        });
+        }).start();
     }
 
     public void setUserNameInDashboardController(String text) {
@@ -416,17 +417,17 @@ public class DashboardController implements Initializable {
         alert.setTitle("Logout!");
         alert.setHeaderText("You're about to logout");
         alert.setContentText("Do you want to exit?");
+
         ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/images/img.png"));
 
-        if(alert.showAndWait().get()==ButtonType.OK)
-        {
+        if(alert.showAndWait().get()==ButtonType.OK) {
             Stage stage = (Stage) logOutButton.getScene().getWindow();
             System.out.println("You successfully logged out!");
             stage.close();
             Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/loginPage.fxml"));
             Stage loginStage = new Stage();
 //          loginStage.initStyle(StageStyle.UNDECORATED);
-            loginStage.setScene(new Scene(root, 530, 320));
+            loginStage.setScene(new Scene(root, 600, 350));
             loginStage.show();
         }
 
@@ -472,9 +473,6 @@ public class DashboardController implements Initializable {
 
         movies = new ArrayList<>();
 
-        /*thread.start();*/
-        /*updateMoviesOnDashboard();*/
-        /*updateSideMovieOnDashboard();*/
     }
 
 }

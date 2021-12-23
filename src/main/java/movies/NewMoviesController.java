@@ -2,6 +2,7 @@ package movies;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -9,6 +10,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -49,8 +51,10 @@ public class NewMoviesController {
         Stage movieInfoStage = new Stage();
         movieInfoStage.initStyle(StageStyle.UNDECORATED);
         movieInfoStage.setTitle("Info");
-        movieInfoStage.setScene(new Scene(root, 600, 340));
+        movieInfoStage.setScene(new Scene(root, 930, 545));
         movieInfoStage.getIcons().add(new Image("/images/img.png"));
+        movieInfoStage.initModality(Modality.APPLICATION_MODAL);
+        movieInfoStage.initOwner(((Node)mouseEvent.getSource()).getScene().getWindow() );
         movieInfoStage.show();
     }
 

@@ -2,6 +2,7 @@ package movies;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -9,8 +10,14 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.DashboardController;
+
+import java.io.IOException;
 
 public class MoviesController {
 
@@ -59,8 +66,10 @@ public class MoviesController {
         Stage movieInfoStage = new Stage();
         movieInfoStage.initStyle(StageStyle.UNDECORATED);
         movieInfoStage.setTitle("Info");
-        movieInfoStage.setScene(new Scene(root, 600, 340));
+        movieInfoStage.setScene(new Scene(root, 930, 545));
         movieInfoStage.getIcons().add(new Image("/images/img.png"));
+        movieInfoStage.initModality(Modality.APPLICATION_MODAL);
+        movieInfoStage.initOwner(((Node)mouseEvent.getSource()).getScene().getWindow() );
         movieInfoStage.show();
     }
 
@@ -85,7 +94,28 @@ public class MoviesController {
         likeImageView.setEffect(d);
     }
 
-    public void mousePressedOnCancel(MouseEvent mouseEvent){
+    public void mousePressedOnCancel(MouseEvent mouseEvent) throws IOException {
+
+        //was working on this file got frustrated and spent more than half a day and then moved on
+
+/*
+        FlowPane flowPane = new(((Node)mouseEvent.getSource()).getScene())
+*//*
+        loaderController.removeDeslikedMovies(mouseEvent);*/
+        /*cancelImageView.getScene().rootNode.childNodes.filter()*/
+/*        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/dashboardController.fxml"));
+        DashboardController loaderController = loader.getController();
+        VBox vBox = (VBox) ((Node) mouseEvent.getSource()).getParent().getParent().getParent();
+        *//*loaderController.mainFlowPane.getChildren().remove(1);*//*
+        loaderController.removeDeslikedMovies();
+        System.out.println((VBox) ((Node) mouseEvent.getSource()).getParent().getParent().getParent());*/
+/*
+        gameScene.rootNode.childNodes.filter({ $0.name == "Enemy" }).forEach({ $0.removeFromParentNode() })
+*/
+/*
+        mouseEvent.getSource().getClass().getResource(""
+*/
+
         System.out.println("user disliked this movie, remove it from his feed");
     }
 }

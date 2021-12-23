@@ -9,6 +9,9 @@ public class NewMovie {
     private String genre;
     private String year;
     private JSONObject jsonObject;
+    private int likes,dislikes;
+    private int id;
+
 
     public JSONObject getJsonObject() {
         return jsonObject;
@@ -55,5 +58,28 @@ public class NewMovie {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,11 +18,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
-   <left>
-      <AnchorPane prefHeight="350.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+<HBox prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+   <children>
+      <AnchorPane prefHeight="350.0" prefWidth="220.0" HBox.hgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="320.0" fitWidth="240.0" layoutX="-2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="343.0" fitWidth="243.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/L.png" />
                </image>
@@ -26,37 +32,34 @@
             </ImageView>
          </children>
       </AnchorPane>
-   </left>
-   <right>
-      <AnchorPane prefHeight="320.0" prefWidth="312.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="320.0" prefWidth="312.0" HBox.hgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="63.0" fitWidth="158.0" layoutX="116.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="63.0" fitWidth="158.0" layoutX="143.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/download (2).png" />
+                  <Image url="@../images/download%20(2).png" />
                </image>
             </ImageView>
-            <HBox alignment="CENTER_LEFT" layoutX="5.0" layoutY="111.0">
+            <Label fx:id="errorLabel" alignment="CENTER" layoutX="128.0" layoutY="94.0" textFill="RED" />
+            <HBox layoutX="29.0" layoutY="115.0" spacing="10.0">
                <children>
-                  <Label fx:id="usernameLabel" prefHeight="26.0" prefWidth="68.0" text="username">
+                  <Label fx:id="usernameLabel" prefHeight="45.0" prefWidth="68.0" text="username">
                      <effect>
                         <DropShadow />
                      </effect>
                   </Label>
-                  <TextField fx:id="usernameTextField" onKeyPressed="#keyPressedOnPasswordField" prefHeight="26.0" prefWidth="170.0" promptText="username" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" text="tonyStark">
+                  <TextField fx:id="usernameTextField" onKeyPressed="#keyPressedOnPasswordField" prefHeight="45.0" prefWidth="174.0" promptText="username" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" text="tonyStark">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                      <padding>
                         <Insets left="-2.0" />
-                     </padding></TextField>
+                     </padding>
+                  </TextField>
                </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
             </HBox>
-            <HBox layoutX="5.0" layoutY="152.0">
+            <HBox layoutX="29.0" layoutY="156.0" spacing="10.0">
                <children>
-                  <Label fx:id="passwordLabel" prefHeight="26.0" prefWidth="66.0" text="password">
+                  <Label fx:id="passwordLabel" prefHeight="45.0" prefWidth="66.0" text="password">
                      <effect>
                         <DropShadow />
                      </effect>
@@ -64,33 +67,36 @@
                         <Insets top="5.0" />
                      </padding>
                   </Label>
-                  <PasswordField fx:id="enterPasswordField" onKeyPressed="#keyPressedOnPasswordField" prefHeight="26.0" prefWidth="170.0" promptText="password" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" text="3000">
+                  <PasswordField fx:id="enterPasswordField" onKeyPressed="#keyPressedOnPasswordField" prefHeight="45.0" prefWidth="176.0" promptText="password" style="-fx-background-color: transparent; -fx-border-color: transparent transparent black transparent;" text="3000">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </PasswordField>
                </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
             </HBox>
-            <Button fx:id="loginButton" alignment="CENTER" layoutX="34.0" layoutY="227.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #089408; -fx-border-color: black; -fx-background-radius: 15; -fx-border-radius: 15;" text="Login" textFill="WHITE">
+            <HBox layoutX="20.0" layoutY="229.0" spacing="20.0">
+               <children>
+                  <Button fx:id="loginButton" alignment="CENTER" layoutX="23.0" layoutY="227.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #089408; -fx-background-radius: 15;" text="Login" textFill="WHITE">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="signupButton" alignment="CENTER" layoutX="151.0" layoutY="227.0" mnemonicParsing="false" onAction="#signupButtonOnAction" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #089408; -fx-background-radius: 15; -fx-border-radius: 15;" text="Sign Up" textFill="WHITE">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
+            <Button fx:id="cancelButton" alignment="CENTER" layoutX="30.0" layoutY="286.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="40.0" prefWidth="263.0" style="-fx-background-color: #089408; -fx-background-radius: 15; -fx-border-radius: 15;" text="Cancel" textFill="WHITE">
                <effect>
                   <DropShadow />
-               </effect></Button>
-            <Button fx:id="cancelButton" alignment="CENTER" layoutX="34.0" layoutY="265.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="220.0" style="-fx-background-color: #089408; -fx-border-color: black; -fx-background-radius: 15; -fx-border-radius: 15;" text="Cancel" textFill="WHITE">
-               <effect>
-                  <DropShadow />
-               </effect></Button>
-            <Label fx:id="errorLabel" alignment="CENTER" layoutX="71.0" layoutY="199.0" textFill="RED" />
-            <Button fx:id="signupButton" alignment="CENTER" layoutX="151.0" layoutY="227.0" mnemonicParsing="false" onAction="#signupButtonOnAction" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #089408; -fx-border-color: black; -fx-background-radius: 15; -fx-border-radius: 15;" text="Sign Up" textFill="WHITE">
-               <effect>
-                  <DropShadow />
-               </effect></Button>
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
-   </right>
-   <effect>
-      <DropShadow spread="0.79" />
-   </effect>
-</BorderPane>
+   </children>
+</HBox>

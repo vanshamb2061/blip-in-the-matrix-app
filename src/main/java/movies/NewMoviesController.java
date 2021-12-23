@@ -29,9 +29,9 @@ public class NewMoviesController {
     private ImageView likeImageView;
 
     private boolean clicked = false;
-    private NewMovie tryNewMovie;
+    private Movie tryNewMovie;
 
-    public void setData(NewMovie tryNewMovie){
+    public void setData(Movie tryNewMovie){
         this.tryNewMovie = tryNewMovie;
         titleLabel.setText(tryNewMovie.getName());
         genreLabel.setText(tryNewMovie.getGenre());

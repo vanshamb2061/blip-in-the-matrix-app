@@ -115,7 +115,7 @@ public class DashboardController implements Initializable {
 
             String year = jsonObject.getString("release_date");
             movie.setYear(year.split("-")[0]);
-            //String video = jsonObject.getString("video");
+            movie.setId(jsonObject.getInt("id"));
             //System.out.println(genre_ids+" --> "+id+" --> "+original_language);
 
             movies.add(movie);
@@ -128,8 +128,7 @@ public class DashboardController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        AtomicInteger col = new AtomicInteger();
-        int row = 1;
+
         try{
             for (Movie movie : movies) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -142,7 +141,7 @@ public class DashboardController implements Initializable {
                 Platform.runLater(()->{
                     mainFlowPane.getChildren().add(anchorPane);
                 });
-                FlowPane.setMargin(anchorPane, new Insets(10));
+                FlowPane.setMargin(anchorPane, new Insets(15));
             }
         }catch (IOException e){
             e.printStackTrace();
@@ -150,8 +149,8 @@ public class DashboardController implements Initializable {
     }
 
 
-    private final List<NewMovie> tryNewMovies = new ArrayList<>();
-    private List<NewMovie> getTryNewMoviesData() throws Exception {
+    private final List<Movie> tryNewMovies = new ArrayList<>();
+    private List<Movie> getTryNewMoviesData() throws Exception {
         HttpURLConnection connection = null;
         final String mykey = serviceObject.API_KEY;
         boolean adult = true;
@@ -174,10 +173,10 @@ public class DashboardController implements Initializable {
         JSONObject jsonObject1 = new JSONObject(result);
         JSONArray jsonArray = jsonObject1.getJSONArray("results");
 
-        List<NewMovie> tryNewMovies = new ArrayList<>();
-        NewMovie tryNewMovie;
+        List<Movie> tryNewMovies = new ArrayList<>();
+        Movie tryNewMovie;
         for(int i=0;i<jsonArray.length() && i < 20; i++){
-            tryNewMovie = new NewMovie();
+            tryNewMovie = new Movie();
 
             tryNewMovie.setGenre("Action");
             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -198,6 +197,7 @@ public class DashboardController implements Initializable {
             tryNewMovie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
             String year = jsonObject.getString("release_date");
             tryNewMovie.setYear(year.split("-")[0]);
+            tryNewMovie.setId(jsonObject.getInt("id"));
             tryNewMovies.add(tryNewMovie);
         }
         return tryNewMovies;
@@ -209,10 +209,8 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
 
-        AtomicInteger col = new AtomicInteger();
-        int row = 1;
         try{
-            for (NewMovie tryNewMovie : tryNewMovies) {
+            for (Movie tryNewMovie : tryNewMovies) {
                 FXMLLoader sidefxmlLoader = new FXMLLoader();
                 sidefxmlLoader.setLocation(getClass().getResource("/fxmlFile/newMovies.fxml"));
 
@@ -223,7 +221,7 @@ public class DashboardController implements Initializable {
                 Platform.runLater(()->{
                     sideFlowPane.getChildren().add(vBox);
                 });
-                FlowPane.setMargin(vBox, new Insets(5));
+                FlowPane.setMargin(vBox, new Insets(15));
             }
         }catch (IOException e){
             e.printStackTrace();
@@ -321,6 +319,7 @@ public class DashboardController implements Initializable {
             System.out.println(searchMovies.getText()=="");
             if(searchMovies.getText() == ""){
                 movies = new ArrayList<>();
+                mainFlowPane.getChildren().clear();
                 new Thread(new Runnable() {
                     @Override public void run() {
                         updateMoviesOnDashboard();
@@ -328,6 +327,7 @@ public class DashboardController implements Initializable {
                 }).start();
             }else{
                 System.out.println("You searched movie having name " + searchMovies.getText());
+                mainFlowPane.getChildren().clear();
                 new Thread(new Runnable() {
                     @Override public void run() {
                         updateMoviesOnDashboardOnSearch();
@@ -350,6 +350,7 @@ public class DashboardController implements Initializable {
         Current_Pg = Current_Pg + 1;
         prevButton.setDisable(false);
         movies = new ArrayList<>();
+        mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
             @Override public void run() {
                 updateMoviesOnDashboard();
@@ -363,6 +364,7 @@ public class DashboardController implements Initializable {
             prevButton.setDisable(true);
         }
         movies = new ArrayList<>();
+        mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
             @Override public void run() {
                 updateMoviesOnDashboard();
@@ -396,6 +398,13 @@ public class DashboardController implements Initializable {
 
     public void mousePressedOnRefreshImageView(MouseEvent mouseEvent) {
         System.out.println("refresh to get new recommendations");
+        Thread thread1 = new Thread(new Runnable() {
+            @Override public void run() {
+                System.out.println("Trying to run updateMovies");
+                updateMoviesOnDashboard();
+                System.out.println("updateMovies Successful");
+            }
+        });
     }
 
     public void setUserNameInDashboardController(String text) {

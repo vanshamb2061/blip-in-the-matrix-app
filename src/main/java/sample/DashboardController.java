@@ -36,7 +36,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DashboardController implements Initializable {
     //code yet to write
     @FXML
-    private MenuButton genresMenuBar;
+    private MenuButton genresMenuButton;
     @FXML
     private Button logOutButton;
     @FXML
@@ -60,18 +60,11 @@ public class DashboardController implements Initializable {
     Map<String, String > genreIdMap = new HashMap<String, String>();
     int Current_Pg=1;
 
-
-
-    private List<Movie> movies ;
-    private List<Movie> getData() throws Exception {
+    private List<Movie> getData(String tmdbURL) throws Exception {
         //method to fetch data
         HttpURLConnection connection = null;
-        final String mykey = serviceObject.API_KEY;
-        boolean adult = false;
 
-
-        URL url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                + "&include_adult=" + adult + "&page="+Current_Pg);
+        URL url = new URL(tmdbURL);
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setDoInput(true);
@@ -123,9 +116,15 @@ public class DashboardController implements Initializable {
         }
         return movies;
     }
-    public void updateMoviesOnDashboard(){
+
+
+    private List<Movie> movies ;
+    public void updateMoviesOnDashboard(String tmdbURL){
         try {
-            movies.addAll(getData());
+            boolean adult = false;
+            final String mykey = serviceObject.API_KEY;
+            movies.addAll(getData("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                    + "&include_adult=" + adult + "&page="+Current_Pg));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,63 +148,12 @@ public class DashboardController implements Initializable {
         }
     }
 
-
     private final List<Movie> tryNewMovies = new ArrayList<>();
-    private List<Movie> getTryNewMoviesData() throws Exception {
-        HttpURLConnection connection = null;
-        final String mykey = serviceObject.API_KEY;
-        boolean adult = true;
-        URL url = new URL("https://api.themoviedb.org/3/movie/now_playing?api_key=" + mykey + "&language=en-US&page=1");
-        System.out.println(url);
-        connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        connection.setDoInput(true);
-        InputStream stream = connection.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        StringBuilder response = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            response.append(line);
-            response.append("\r");
-        }
-        reader.close();
-        String result = response.toString();
-
-        JSONObject jsonObject1 = new JSONObject(result);
-        JSONArray jsonArray = jsonObject1.getJSONArray("results");
-
-        List<Movie> tryNewMovies = new ArrayList<>();
-        Movie tryNewMovie;
-        for(int i=0;i<jsonArray.length() && i < 20; i++){
-            tryNewMovie = new Movie();
-
-            tryNewMovie.setGenre("Action");
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-            tryNewMovie.setJsonObject(jsonObject);
-            int genreLength = jsonObject.getString("genre_ids").length();
-            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
-            String genreString[] = str.split(",");
-            tryNewMovie.setGenre("Action");
-            for(String s : genreString){
-                if(genreIdMap.get(s) != null){
-                    tryNewMovie.setGenre(genreIdMap.get(s));
-                    break;
-                }
-            }
-
-            tryNewMovie.setName( jsonObject.getString("original_title"));
-            tryNewMovie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
-            String year = jsonObject.getString("release_date");
-            tryNewMovie.setYear(year.split("-")[0]);
-            tryNewMovie.setId(jsonObject.getInt("id"));
-            tryNewMovies.add(tryNewMovie);
-        }
-        return tryNewMovies;
-    }
     public void updateSideMovieOnDashboard(){
         try {
-            tryNewMovies.addAll(getTryNewMoviesData());
+            final String mykey = serviceObject.API_KEY;
+            boolean adult = true;
+            tryNewMovies.addAll(getData("https://api.themoviedb.org/3/movie/now_playing?api_key=" + mykey + "&language=en-US&page=1"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -229,65 +177,12 @@ public class DashboardController implements Initializable {
         }
     }
 
-
     private List<Movie> searchMoviesArray ;
-    private List<Movie> getSearchData() throws Exception {
-
-        HttpURLConnection connection = null;
-        final String myKey = serviceObject.API_KEY;
-        boolean adult = true;
-
-        URL url = new URL("https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=1&include_adult=false" + "&query=" + searchMovies.getText());
-        System.out.println(url);
-        connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        connection.setDoInput(true);
-        InputStream stream = connection.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        StringBuilder response = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            response.append(line);
-            response.append("\r");
-        }
-        reader.close();
-        String result = response.toString();
-
-        JSONObject jsonObject1 = new JSONObject(result);
-        JSONArray jsonArray = jsonObject1.getJSONArray("results");
-        List<Movie> searchMoviesArray = new ArrayList<>();
-        Movie movie;
-        for(int i=0;i<jsonArray.length() && i < 20;i++){
-            movie = new Movie();
-
-            movie.setGenre("Action");
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-            movie.setJsonObject(jsonObject);
-            int genreLength = jsonObject.getString("genre_ids").length();
-            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
-            String genreString[] = str.split(",");
-            movie.setGenre("Other");
-            for(String s : genreString){
-                if(genreIdMap.get(s) != null){
-                    movie.setGenre(genreIdMap.get(s));
-                    break;
-                }
-            }
-
-            movie.setName( jsonObject.getString("original_title"));
-            movie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
-
-            String year = jsonObject.getString("release_date");
-            movie.setYear(year.split("-")[0]);
-
-            searchMoviesArray.add(movie);
-        }
-        return searchMoviesArray;
-    }
     public void updateMoviesOnDashboardOnSearch(){
         try {
-            searchMoviesArray.addAll(getSearchData());
+            final String myKey = serviceObject.API_KEY;
+            boolean adult = true;
+            searchMoviesArray.addAll(getData("https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=1&include_adult=false" + "&query=" + searchMovies.getText()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -312,6 +207,19 @@ public class DashboardController implements Initializable {
         }
     }
 
+    public void updateMoviesByGenre(String id){
+        movies = new ArrayList<>();
+        mainFlowPane.getChildren().clear();
+        new Thread(new Runnable() {
+            @Override public void run() {
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
+                System.out.println(id);
+                updateMoviesOnDashboard("http://api.themoviedb.org/3/genre/"+id+ "/movies?api_key=" + mykey);
+            }
+        }).start();
+
+    }
 
     @FXML
     void keyPressedOnSearchMovies(KeyEvent event) throws Exception{
@@ -323,7 +231,10 @@ public class DashboardController implements Initializable {
                 mainFlowPane.getChildren().clear();
                 new Thread(new Runnable() {
                     @Override public void run() {
-                        updateMoviesOnDashboard();
+                        boolean adult = false;
+                        final String mykey = serviceObject.API_KEY;
+                        updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                                + "&include_adult=" + adult + "&page="+Current_Pg);
                     }
                 }).start();
             }else{
@@ -354,7 +265,10 @@ public class DashboardController implements Initializable {
         mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
             @Override public void run() {
-                updateMoviesOnDashboard();
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                        + "&include_adult=" + adult + "&page="+Current_Pg);
             }
         }).start();
     }
@@ -368,7 +282,10 @@ public class DashboardController implements Initializable {
         mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
             @Override public void run() {
-                updateMoviesOnDashboard();
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                        + "&include_adult=" + adult + "&page="+Current_Pg);
             }
         }).start();
     }
@@ -402,8 +319,11 @@ public class DashboardController implements Initializable {
         mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
             @Override public void run() {
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
                 System.out.println("Trying to run updateMovies");
-                updateMoviesOnDashboard();
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                        + "&include_adult=" + adult + "&page="+Current_Pg);
                 System.out.println("updateMovies Successful");
             }
         }).start();
@@ -431,9 +351,6 @@ public class DashboardController implements Initializable {
             loginStage.setScene(new Scene(root, 600, 350));
             loginStage.show();
         }
-
-
-
     }
 
 
@@ -445,8 +362,10 @@ public class DashboardController implements Initializable {
 */
         Thread thread1 = new Thread(new Runnable() {
             @Override public void run() {
-                System.out.println("Trying to run updateMovies");
-                updateMoviesOnDashboard();
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                        + "&include_adult=" + adult + "&page="+Current_Pg);
                 System.out.println("updateMovies Successful");
             }
         });
@@ -474,6 +393,17 @@ public class DashboardController implements Initializable {
 
         movies = new ArrayList<>();
 
+
+        genreIdMap.forEach((id, genre) -> {
+            System.out.println(id + " : " + (genre));
+            MenuItem menuItem = new MenuItem(genre);
+            menuItem.addEventHandler(ActionEvent.ACTION, action ->{
+                System.out.println(menuItem.getText() + " : is selected");
+                updateMoviesByGenre(id);
+            });
+            genresMenuButton.getItems().add(menuItem);
+
+        });
     }
 
 }

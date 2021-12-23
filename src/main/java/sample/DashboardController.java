@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import movies.Movie;
 import movies.MoviesController;
 import movies.NewMovie;
@@ -426,7 +427,7 @@ public class DashboardController implements Initializable {
             stage.close();
             Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/loginPage.fxml"));
             Stage loginStage = new Stage();
-//          loginStage.initStyle(StageStyle.UNDECORATED);
+            loginStage.initStyle(StageStyle.UNDECORATED);
             loginStage.setScene(new Scene(root, 600, 350));
             loginStage.show();
         }

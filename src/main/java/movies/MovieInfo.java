@@ -107,7 +107,7 @@ public class MovieInfo implements Initializable {
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
         webEngine.load(video);
-        Scene scene = new Scene(webView, webView.getPrefWidth(), webView.getPrefHeight());
+        Scene scene = new Scene(webView, 930, 545);
         trailerStage.setScene(scene);
         trailerStage.initModality(Modality.APPLICATION_MODAL);
         trailerStage.initOwner(((Node)event.getSource()).getScene().getWindow() );

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.media.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -21,10 +23,9 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -80,7 +81,7 @@
                         <Insets bottom="-20.0" />
                      </padding>
                   </StackPane>
-                  <Label onMousePressed="#mousePressedOnMyProfile" styleClass="selected" stylesheets="@../CSS/style.css" text="My Profile" textFill="#8da3c7" underline="true">
+                  <Label onMousePressed="#mousePressedOnMyProfile" prefHeight="54.0" prefWidth="130.0" styleClass="selected" stylesheets="@../CSS/style.css" text="My Profile" textFill="#8da3c7" underline="true">
                      <font>
                         <Font name="Microsoft YaHei Bold" size="14.0" />
                      </font>
@@ -100,7 +101,7 @@
                      <children>
                         <HBox style="-fx-border-color: transparent #087608 transparent transparent; -fx-border-width: 5;" styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnMovies" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" onMousePressed="#mousePressedOnMovies" pickOnBounds="true" preserveRatio="true" styleClass="selected" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../images/streaming-movies.png" />
                                  </image>
@@ -111,7 +112,7 @@
                                     <DropShadow spread="0.34" />
                                  </effect>
                               </ImageView>
-                              <Label fx:id="moviesLabel" onMousePressed="#mousePressedOnMovies" text="Movies" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
+                              <Label fx:id="moviesLabel" onMousePressed="#mousePressedOnMovies" prefHeight="30.0" prefWidth="100.0" text="Movies" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
@@ -127,9 +128,9 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <HBox prefHeight="26.0" prefWidth="90.0" styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
+                        <HBox styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnWatchList" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" onMousePressed="#mousePressedOnWatchList" pickOnBounds="true" preserveRatio="true" styleClass="selected" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../images/video-playlist.png" />
                                  </image>
@@ -137,7 +138,7 @@
                                     <DropShadow spread="0.34" />
                                  </effect>
                               </ImageView>
-                              <Label onMousePressed="#mousePressedOnWatchList" prefHeight="26.0" prefWidth="81.0" text="Watchlist" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
+                              <Label onMousePressed="#mousePressedOnWatchList" prefHeight="30.0" prefWidth="100.0" text="Watchlist" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
@@ -155,7 +156,7 @@
                         </HBox>
                         <HBox styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnLiked" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" onMousePressed="#mousePressedOnLiked" pickOnBounds="true" preserveRatio="true" styleClass="selected" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../images/blueLove.png" />
                                  </image>
@@ -163,7 +164,7 @@
                                     <DropShadow spread="0.34" />
                                  </effect>
                               </ImageView>
-                              <Label onMousePressed="#mousePressedOnLiked" prefHeight="19.0" prefWidth="51.0" text="Liked" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
+                              <Label onMousePressed="#mousePressedOnLiked" prefHeight="30.0" prefWidth="100.0" text="Liked" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
@@ -179,9 +180,9 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <HBox styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
+                        <HBox prefWidth="130.0" style="-fx-focus-color: red;" styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnFriends" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" onMousePressed="#mousePressedOnFriends" pickOnBounds="true" preserveRatio="true" styleClass="selected" HBox.hgrow="ALWAYS">
                                  <image>
                                     <Image url="@../images/group.png" />
                                  </image>
@@ -189,7 +190,7 @@
                                     <DropShadow spread="0.34" />
                                  </effect>
                               </ImageView>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" onMousePressed="#mousePressedOnFriends" prefHeight="19.0" prefWidth="65.0" text="Friends" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" onMousePressed="#mousePressedOnFriends" prefHeight="30.0" prefWidth="100.0" text="Friends" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>
@@ -244,19 +245,11 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="42.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <MenuButton fx:id="yearsMenuBar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #28467d;" text="All Years" textFill="#8da3c7" HBox.hgrow="ALWAYS">
+                        <MenuButton fx:id="yearsMenuBar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #28467d;" text="All Years" textFill="#8da3c7">
                            <items>
                               <MenuItem mnemonicParsing="false" text="2021" />
                               <MenuItem mnemonicParsing="false" text="2020" />
                               <MenuItem mnemonicParsing="false" text="2019" />
-                              <MenuItem mnemonicParsing="false" text="2018" />
-                              <MenuItem mnemonicParsing="false" text="2017" />
-                              <MenuItem mnemonicParsing="false" text="2016" />
-                              <MenuItem mnemonicParsing="false" text="2015" />
-                              <MenuItem mnemonicParsing="false" text="2014" />
-                              <MenuItem mnemonicParsing="false" text="2013" />
-                              <MenuItem mnemonicParsing="false" text="2012" />
-                              <MenuItem mnemonicParsing="false" text="2011" />
                            </items>
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
@@ -265,14 +258,7 @@
                               <Font name="System Italic" size="18.0" />
                            </font>
                         </MenuButton>
-                        <MenuButton fx:id="genresMenuBar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #28467d;" text="All Genres" textFill="#8da3c7" HBox.hgrow="ALWAYS">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Action" />
-                              <MenuItem mnemonicParsing="false" text="Drama" />
-                              <MenuItem mnemonicParsing="false" text="Horror" />
-                              <MenuItem mnemonicParsing="false" text="Crime" />
-                              <MenuItem mnemonicParsing="false" text="Romance" />
-                           </items>
+                        <MenuButton fx:id="genresMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #28467d;" text="All Genres" textFill="#8da3c7">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -280,7 +266,7 @@
                               <Font name="System Italic" size="18.0" />
                            </font>
                         </MenuButton>
-                        <ImageView fx:id="refreshImageView" fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnRefreshImageView" opacity="0.54" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                        <ImageView fx:id="refreshImageView" fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnRefreshImageView" opacity="0.54" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/refresh.png" />
                            </image>
@@ -312,7 +298,7 @@
                               <Insets left="15.0" />
                            </HBox.margin>
                         </Button>
-                        <Pane HBox.hgrow="ALWAYS" />
+                        <Pagination layoutX="1.0" layoutY="-3.0" HBox.hgrow="ALWAYS" />
                         <Button fx:id="nextButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nextButtonOnAction" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="NEXT" textAlignment="CENTER" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="15.0" />

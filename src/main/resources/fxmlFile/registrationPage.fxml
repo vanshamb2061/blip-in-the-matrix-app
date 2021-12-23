@@ -89,16 +89,6 @@
                <padding>
                   <Insets left="-1.0" />
                </padding></PasswordField>
-            <Button fx:id="selectGenreButton" layoutX="211.0" layoutY="125.0" mnemonicParsing="false" onAction="#selectGenreButtonOnAction" prefHeight="26.0" prefWidth="97.0" style="-fx-background-color: #097528; -fx-border-radius: 15; -fx-background-radius: 15;" text="Select genre" textFill="WHITE">
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Button>
-            <Button fx:id="selectLanguageButton" layoutX="335.0" layoutY="125.0" mnemonicParsing="false" onAction="#selectLanguageButtonOnAction" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #097528; -fx-border-radius: 15; -fx-background-radius: 15;" text="Select language" textFill="WHITE">
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Button>
          </children>
       </AnchorPane>
    </center>

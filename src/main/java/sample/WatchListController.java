@@ -47,6 +47,7 @@ public class WatchListController implements Initializable {
         stage.close();
     }
     public ResultSet findLikedMoviesInDB() throws Exception{
+        //Method to find the likedMovies IDs from DB for particular user & return ResultSet
         System.out.println("here you'll find all your saved watchlist");
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -62,7 +63,7 @@ public class WatchListController implements Initializable {
         return result;
     }
     public List<Movie> searchLikedMovies(ResultSet res) throws Exception{
-
+        //Method to take the IDs of all the liked movies and run API calls to get the movies & return the movies
         HttpURLConnection connection = null;
         final String mykey = "52dbdefafcc6e3911db1a3409fc33e8a";
         boolean adult = true;
@@ -118,6 +119,7 @@ public class WatchListController implements Initializable {
     }
 
     public void updateLikedMovies(List<Movie> likedMoviesArray){
+        //Method to display all the liked movies
         AtomicInteger col = new AtomicInteger();
         int row = 1;
         try{
@@ -173,13 +175,13 @@ public class WatchListController implements Initializable {
         return Math.max(currRating, 0);
     }
     public void updateRatings(List<Movie> likedMoviesArray) throws Exception {
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-//        String url = "jdbc:mysql://localhost:3306/watchlistproject";
-//        Connection connection = DriverManager.getConnection(url, "root", "");
-//        String username = "ambashtavansh";
-//        Statement stm = connection.createStatement();
-//        String sql = "select * from genre where Username='" + username + "'";
-//        ResultSet result = stm.executeQuery(sql);
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        String url = "jdbc:mysql://localhost:3306/watchlistproject";
+        Connection connection = DriverManager.getConnection(url, "root", "");
+        String username = "ambashtavansh";
+        Statement stm = connection.createStatement();
+        String sql = "select * from genre where Username='" + username + "'";
+        ResultSet result = stm.executeQuery(sql);
 
         for(Movie movie: likedMoviesArray){
             System.out.println(movie.getGenre());

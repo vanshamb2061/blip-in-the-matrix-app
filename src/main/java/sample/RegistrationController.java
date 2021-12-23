@@ -11,11 +11,11 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationController {
@@ -48,7 +48,7 @@ public class RegistrationController {
         Statement statement= myConn.createStatement();
 
         try{
-            String query="INSERT INTO `userdetails`(`First Name`, `Last Name`, `Age`, `UserId`, `Password`) VALUES (?,?,?,?,?)";
+            String query="INSERT INTO `user`(`First Name`, `Last Name`, `Age`, `Username`, `Password`) VALUES (?,?,?,?,?)";
             PreparedStatement preStat = myConn.prepareStatement(query);
             preStat.setString(1,firstNameTextField.getText());
             preStat.setString(2,lastNameTextField.getText());
@@ -63,18 +63,22 @@ public class RegistrationController {
 //                    && selectionCnt > 1
                     && setPasswordField.getText().equals(setPasswordField.getText())) {
                 preStat.executeUpdate();
+                System.out.println("Query executed!");
+
+                Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/selectGenre.fxml"));
+                System.out.println("FXML file loaded!");
+
+                Stage genreStage = new Stage();
+                genreStage.initStyle(StageStyle.DECORATED);
+                genreStage.setTitle("Genre Page");
+                genreStage.setScene(new Scene(root, 280, 400));
+                genreStage.getIcons().add(new Image("/images/img.png"));
+                genreStage.show();
+
+
                 Stage stage1 = (Stage) registerButton.getScene().getWindow();
                 stage1.close();
-                Parent root = FXMLLoader.load(getClass().getResource("loginController.fxml"));
-                Stage loginStage = new Stage();
-                loginStage.initStyle(StageStyle.DECORATED);
-                loginStage.setTitle("Login Page");
-                loginStage.setScene(new Scene(root, 600, 350));
-                loginStage.getIcons().add(new Image("/images/img.png"));
-                loginStage.show();
 
-                Stage stage = (Stage) registerButton.getScene().getWindow();
-                stage.close();
             }
             else{
                 //Put error Label Here
@@ -86,14 +90,8 @@ public class RegistrationController {
         }
 
     }
-    public void selectGenreButtonOnAction(ActionEvent event) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/selectGenre.fxml"));
-        Stage selectGenreStage = new Stage();
-//        selectGenreStage.initStyle(StageStyle.UNDECORATED);
-        selectGenreStage.setScene(new Scene(root, 280, 400));
-        selectGenreStage.getIcons().add(new Image("/images/img.png"));
-        selectGenreStage.show();
-    }
+
+
 
     public void selectLanguageButtonOnAction(ActionEvent event) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/selectLanguage.fxml"));
@@ -108,16 +106,23 @@ public class RegistrationController {
         stage.close();
     }
 
-    public void setGenreInRegistrationController(Map<String, Boolean> genreMap) {
+    public Map<String,Integer> setGenreInRegistrationController(Map<String, Boolean> genreMap) throws Exception {
+        Map<String,Integer> genreRating = new HashMap<String, Integer>();;
         for (Map.Entry<String, Boolean> entry : genreMap.entrySet()) {
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            if(entry.getValue())
+                genreRating.put(entry.getKey(),15);
+            else
+                genreRating.put(entry.getKey(),0);
+            System.out.println("Genre Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            System.out.println("Genre Status: " + entry.getKey() + entry.getValue() + " : " + genreRating.get(entry.getKey()));
         }
         selectionCnt += 1;
+        return genreRating;
     }
 
     public void setLanguageInRegistrationController(Map<String, Boolean> languageMap) {
         for (Map.Entry<String, Boolean> entry : languageMap.entrySet()) {
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            System.out.println("Lang Key = " + entry.getKey() + ", Value = " + entry.getValue());
         }
         selectionCnt += 1;
     }

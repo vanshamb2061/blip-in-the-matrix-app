@@ -27,10 +27,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -41,6 +38,8 @@ public class WatchListController implements Initializable {
     private GridPane mainGridPane;
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
+
+    Map<String,Integer> genreRatings = new HashMap<String,Integer>();
 
     public void backButtonOnAction(ActionEvent e){
         Stage stage = (Stage) backButton.getScene().getWindow();
@@ -59,8 +58,7 @@ public class WatchListController implements Initializable {
         Statement stm = connection.createStatement();
 
         String sql = "select * from movie where Username='" + username + "'";
-        ResultSet result = stm.executeQuery(sql);
-        return result;
+        return stm.executeQuery(sql);
     }
     public List<Movie> searchLikedMovies(ResultSet res) throws Exception{
         //Method to take the IDs of all the liked movies and run API calls to get the movies & return the movies
@@ -96,16 +94,7 @@ public class WatchListController implements Initializable {
             movie.setGenre("Action");
 
             movie.setJsonObject(jsonObject);
-            int genreLength = jsonObject.getString("genres").length();
-            String str = jsonObject.getString("genres").substring(1, genreLength-2);
-            String genreString[] = str.split(",");
-            movie.setGenre("Other");
-            for(String s : genreString){
-                if(genreIdMap.get(s) != null){
-                    movie.setGenre(genreIdMap.get(s));
-                    break;
-                }
-            }
+            System.out.println(movie.getGenre());
 
             movie.setName( jsonObject.getString("original_title"));
             movie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
@@ -183,23 +172,72 @@ public class WatchListController implements Initializable {
         String sql = "select * from genre where Username='" + username + "'";
         ResultSet result = stm.executeQuery(sql);
 
-        for(Movie movie: likedMoviesArray){
-            System.out.println(movie.getGenre());
+        String[] genresArr = {"Action","Comedy","Drama","Fantasy","Horror","Mystery","Romance","Thriller"};
+        while(result.next()){
+            for(String s:genresArr){
+                genreRatings.put(s,genreRatings.get(s)+result.getInt(s));
+                System.out.println(s);
+            }
         }
-    }
+
+
+        for(Movie movie: likedMoviesArray){
+            JSONObject jsonObject = movie.getJsonObject();
+            JSONArray arr = jsonObject.getJSONArray("genres");
+            for (int i = 0; i < arr.length(); i++)
+            {
+                String s = arr.getJSONObject(i).getString("name");
+                if(genreIdMap.get(s) != null){
+                    System.out.println("Genre: " + s + " " + genreIdMap.get(s));
+                    movie.setGenre(genreIdMap.get(s));
+                    genreRatings.put(s,genreRatings.get(s)+5);
+                }
+            }
+        }
+
+
+        for(Map.Entry<String,Integer> entry: genreRatings.entrySet()){
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+
+        String query="UPDATE genre SET Action=?, Comedy=?, Drama=?, Fantasy=?, Horror=?, Mystery=?, Romance=?, Thriller=? WHERE Username=?";
+        PreparedStatement preStat = connection.prepareStatement(query);
+        preStat.setInt(1,genreRatings.get("Action"));
+        preStat.setInt(2,genreRatings.get("Comedy"));
+        preStat.setInt(3,genreRatings.get("Drama"));
+        preStat.setInt(4,genreRatings.get("Fantasy"));
+        preStat.setInt(5,genreRatings.get("Horror"));
+        preStat.setInt(6,genreRatings.get("Mystery"));
+        preStat.setInt(7,genreRatings.get("Romance"));
+        preStat.setInt(8,genreRatings.get("Thriller"));
+        preStat.setString(9,"ambashtavansh");
+        preStat.executeUpdate();
+}
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //hashmap initialization
-        genreIdMap.put("28","Action");
-        genreIdMap.put("35","Comedy");
-        genreIdMap.put("18","Drama");
-        genreIdMap.put("80","Crime");
-        genreIdMap.put("14","Fantasy");
-        genreIdMap.put("27","Horror");
-        genreIdMap.put("9648","Mystery");
-        genreIdMap.put("10749","Romance");
-        genreIdMap.put("53","Thriller");
+        genreIdMap.put("Action","28");
+        genreIdMap.put("Comedy","35");
+        genreIdMap.put("Drama","18");
+        genreIdMap.put("Crime","80");
+        genreIdMap.put("Fantasy","14");
+        genreIdMap.put("Horror","27");
+        genreIdMap.put("Mystery","9648");
+        genreIdMap.put("Romance","10749");
+        genreIdMap.put("Thriller","53");
+
+
+        genreRatings.put("Action",0);
+        genreRatings.put("Comedy",0);
+        genreRatings.put("Drama",0);
+        genreRatings.put("Crime",0);
+        genreRatings.put("Fantasy",0);
+        genreRatings.put("Horror",0);
+        genreRatings.put("Mystery",0);
+        genreRatings.put("Romance",0);
+        genreRatings.put("Thriller",0);
+
         try {
             ResultSet res = findLikedMoviesInDB();
             List<Movie> likedMoviesArray = searchLikedMovies(res);

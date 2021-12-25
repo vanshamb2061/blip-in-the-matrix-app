@@ -16,7 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sample.DashboardController;
-
+import sample.LikeController;
 import java.io.IOException;
 
 public class MoviesController {
@@ -81,7 +81,8 @@ public class MoviesController {
             likeImageView.setImage(image);
             likeImageView.setFitWidth(29);
             likeImageView.setFitHeight(30);
-            //likeController.addLikedMovietoDB(movie);
+            LikeController likeController = new LikeController();
+            likeController.addLikedMovietoDB(movie);
         }else{
             System.out.println("user removed this movie from his favorites");
             Image image = new Image(("/images/unfilledLike.png"));

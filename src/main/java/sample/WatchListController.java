@@ -27,10 +27,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -41,6 +38,8 @@ public class WatchListController implements Initializable {
     private GridPane mainGridPane;
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
+
+    Map<String,Integer> genreRatings = new HashMap<String,Integer>();
 
     public void backButtonOnAction(ActionEvent e){
         Stage stage = (Stage) backButton.getScene().getWindow();
@@ -59,8 +58,7 @@ public class WatchListController implements Initializable {
         Statement stm = connection.createStatement();
 
         String sql = "select * from movie where Username='" + username + "'";
-        ResultSet result = stm.executeQuery(sql);
-        return result;
+        return stm.executeQuery(sql);
     }
     public List<Movie> searchLikedMovies(ResultSet res) throws Exception{
         //Method to take the IDs of all the liked movies and run API calls to get the movies & return the movies
@@ -96,16 +94,7 @@ public class WatchListController implements Initializable {
             movie.setGenre("Action");
 
             movie.setJsonObject(jsonObject);
-            int genreLength = jsonObject.getString("genres").length();
-            String str = jsonObject.getString("genres").substring(1, genreLength-2);
-            String genreString[] = str.split(",");
-            movie.setGenre("Other");
-            for(String s : genreString){
-                if(genreIdMap.get(s) != null){
-                    movie.setGenre(genreIdMap.get(s));
-                    break;
-                }
-            }
+            System.out.println(movie.getGenre());
 
             movie.setName( jsonObject.getString("original_title"));
             movie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
@@ -164,47 +153,14 @@ public class WatchListController implements Initializable {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
     }
-
-    public int changeRating(int currRating, boolean like){
-        if(like)
-            currRating+=5;
-        else
-            currRating-=2;
-        return Math.max(currRating, 0);
-    }
-    public void updateRatings(List<Movie> likedMoviesArray) throws Exception {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        String url = "jdbc:mysql://localhost:3306/watchlistproject";
-        Connection connection = DriverManager.getConnection(url, "root", "");
-        String username = "ambashtavansh";
-        Statement stm = connection.createStatement();
-        String sql = "select * from genre where Username='" + username + "'";
-        ResultSet result = stm.executeQuery(sql);
-
-        for(Movie movie: likedMoviesArray){
-            System.out.println(movie.getGenre());
-        }
-    }
-
+}
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //hashmap initialization
-        genreIdMap.put("28","Action");
-        genreIdMap.put("35","Comedy");
-        genreIdMap.put("18","Drama");
-        genreIdMap.put("80","Crime");
-        genreIdMap.put("14","Fantasy");
-        genreIdMap.put("27","Horror");
-        genreIdMap.put("9648","Mystery");
-        genreIdMap.put("10749","Romance");
-        genreIdMap.put("53","Thriller");
         try {
             ResultSet res = findLikedMoviesInDB();
             List<Movie> likedMoviesArray = searchLikedMovies(res);
             updateLikedMovies(likedMoviesArray);
-            updateRatings(likedMoviesArray);
         } catch (Exception e) {
             e.printStackTrace();
         }

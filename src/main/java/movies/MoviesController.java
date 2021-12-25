@@ -81,7 +81,8 @@ public class MoviesController {
             likeImageView.setImage(image);
             likeImageView.setFitWidth(29);
             likeImageView.setFitHeight(30);
-            LikeController.addLikedMovietoDB(movie);
+            LikeController likeController = new LikeController();
+            likeController.addLikedMovietoDB(movie);
         }else{
             System.out.println("user removed this movie from his favorites");
             Image image = new Image(("/images/unfilledLike.png"));

@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import movies.Movie;
 import movies.MoviesController;
 import movies.NewMovie;
@@ -35,7 +36,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DashboardController implements Initializable {
     //code yet to write
     @FXML
-    private MenuButton genresMenuBar;
+    private MenuButton genresMenuButton;
     @FXML
     private Button logOutButton;
     @FXML
@@ -47,9 +48,9 @@ public class DashboardController implements Initializable {
     @FXML
     private Label welcomeUserLabel;
     @FXML
-    private GridPane mainGridPane;
+    public FlowPane mainFlowPane;
     @FXML
-    private GridPane sideGridPane;
+    private FlowPane sideFlowPane;
     @FXML
     private TextField searchMovies;
     @FXML
@@ -59,18 +60,11 @@ public class DashboardController implements Initializable {
     Map<String, String > genreIdMap = new HashMap<String, String>();
     int Current_Pg=1;
 
-
-
-    private List<Movie> movies ;
-    private List<Movie> getData() throws Exception {
+    private List<Movie> getData(String tmdbURL) throws Exception {
         //method to fetch data
         HttpURLConnection connection = null;
-        final String mykey = serviceObject.API_KEY;
-        boolean adult = false;
 
-
-        URL url = new URL("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                + "&include_adult=" + adult + "&page="+Current_Pg);
+        URL url = new URL(tmdbURL);
         connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setDoInput(true);
@@ -115,21 +109,26 @@ public class DashboardController implements Initializable {
 
             String year = jsonObject.getString("release_date");
             movie.setYear(year.split("-")[0]);
-            //String video = jsonObject.getString("video");
+            movie.setId(jsonObject.getInt("id"));
             //System.out.println(genre_ids+" --> "+id+" --> "+original_language);
 
             movies.add(movie);
         }
         return movies;
     }
-    public void updateMoviesOnDashboard(){
+
+
+    private List<Movie> movies ;
+    public void updateMoviesOnDashboard(String tmdbURL){
         try {
-            movies.addAll(getData());
+            boolean adult = false;
+            final String mykey = serviceObject.API_KEY;
+            movies.addAll(getData("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                    + "&include_adult=" + adult + "&page="+Current_Pg));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        AtomicInteger col = new AtomicInteger();
-        int row = 1;
+
         try{
             for (Movie movie : movies) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -139,201 +138,55 @@ public class DashboardController implements Initializable {
                 MoviesController movieController = fxmlLoader.getController();
                 movieController.setData(movie);
 
-                ColumnConstraints colConstraint = new ColumnConstraints();
-                colConstraint.setHgrow(Priority.SOMETIMES);
-
-                RowConstraints rowConstraints = new RowConstraints();
-                rowConstraints.setVgrow(Priority.SOMETIMES);
-
-                mainGridPane.getColumnConstraints().add(colConstraint);
-                mainGridPane.getRowConstraints().add(rowConstraints);
-
-                if (col.get() == 4) {
-                    row++;
-                    col.set(0);
-
-                }
-                int finalRow = row;
                 Platform.runLater(()->{
-                    mainGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
-                    //set gridPane width
-                    mainGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                    mainGridPane.setFillWidth(anchorPane, true);
-                    //set gridPane height
-                    mainGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxHeight(Region.USE_PREF_SIZE);
-                    mainGridPane.setFillHeight(anchorPane, true);
+                    mainFlowPane.getChildren().add(anchorPane);
                 });
-
-                GridPane.setMargin(anchorPane, new Insets(10));
+                FlowPane.setMargin(anchorPane, new Insets(15));
             }
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
-
-    private final List<NewMovie> tryNewMovies = new ArrayList<>();
-    private List<NewMovie> getTryNewMoviesData() throws Exception {
-        HttpURLConnection connection = null;
-        final String mykey = serviceObject.API_KEY;
-        boolean adult = true;
-        URL url = new URL("https://api.themoviedb.org/3/movie/now_playing?api_key=" + mykey + "&language=en-US&page=1");
-        System.out.println(url);
-        connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        connection.setDoInput(true);
-        InputStream stream = connection.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        StringBuilder response = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            response.append(line);
-            response.append("\r");
-        }
-        reader.close();
-        String result = response.toString();
-
-        JSONObject jsonObject1 = new JSONObject(result);
-        JSONArray jsonArray = jsonObject1.getJSONArray("results");
-
-        List<NewMovie> tryNewMovies = new ArrayList<>();
-        NewMovie tryNewMovie;
-        for(int i=0;i<jsonArray.length() && i < 20; i++){
-            tryNewMovie = new NewMovie();
-
-            tryNewMovie.setGenre("Action");
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-            tryNewMovie.setJsonObject(jsonObject);
-            int genreLength = jsonObject.getString("genre_ids").length();
-            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
-            String genreString[] = str.split(",");
-            tryNewMovie.setGenre("Action");
-            for(String s : genreString){
-                if(genreIdMap.get(s) != null){
-                    tryNewMovie.setGenre(genreIdMap.get(s));
-                    break;
-                }
-            }
-
-            tryNewMovie.setName( jsonObject.getString("original_title"));
-            tryNewMovie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
-            String year = jsonObject.getString("release_date");
-            tryNewMovie.setYear(year.split("-")[0]);
-            tryNewMovies.add(tryNewMovie);
-        }
-        return tryNewMovies;
-    }
+    private final List<Movie> tryNewMovies = new ArrayList<>();
     public void updateSideMovieOnDashboard(){
         try {
-            tryNewMovies.addAll(getTryNewMoviesData());
+            final String mykey = serviceObject.API_KEY;
+            boolean adult = true;
+            tryNewMovies.addAll(getData("https://api.themoviedb.org/3/movie/now_playing?api_key=" + mykey + "&language=en-US&page=1"));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        AtomicInteger col = new AtomicInteger();
-        int row = 1;
         try{
-            for (NewMovie tryNewMovie : tryNewMovies) {
+            for (Movie tryNewMovie : tryNewMovies) {
                 FXMLLoader sidefxmlLoader = new FXMLLoader();
                 sidefxmlLoader.setLocation(getClass().getResource("/fxmlFile/newMovies.fxml"));
 
-                VBox anchorPane = sidefxmlLoader.load();
+                VBox vBox = sidefxmlLoader.load();
                 NewMoviesController tryNewMovieController = sidefxmlLoader.getController();
                 tryNewMovieController.setData(tryNewMovie);
-                if (col.get() == 1) {
-                    row++;
-                    col.set(0);
-                }
-                int finalRow = row;
+
                 Platform.runLater(()->{
-                    sideGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
-                    //set sideGridPane width
-                    sideGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    sideGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    sideGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                    //set sideGridPane height
-                    sideGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    sideGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    sideGridPane.setMaxHeight(Region.USE_PREF_SIZE);
+                    sideFlowPane.getChildren().add(vBox);
                 });
-
-
-                GridPane.setMargin(anchorPane, new Insets(5));
+                FlowPane.setMargin(vBox, new Insets(15));
             }
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
-
     private List<Movie> searchMoviesArray ;
-    private List<Movie> getSearchData() throws Exception {
-
-        HttpURLConnection connection = null;
-        final String myKey = serviceObject.API_KEY;
-        boolean adult = true;
-
-        URL url = new URL("https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=1&include_adult=false" + "&query=" + searchMovies.getText());
-        System.out.println(url);
-        connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
-        connection.setDoInput(true);
-        InputStream stream = connection.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        StringBuilder response = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            response.append(line);
-            response.append("\r");
-        }
-        reader.close();
-        String result = response.toString();
-
-        JSONObject jsonObject1 = new JSONObject(result);
-        JSONArray jsonArray = jsonObject1.getJSONArray("results");
-        List<Movie> searchMoviesArray = new ArrayList<>();
-        Movie movie;
-        for(int i=0;i<jsonArray.length() && i < 20;i++){
-            movie = new Movie();
-
-            movie.setGenre("Action");
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-            movie.setJsonObject(jsonObject);
-            int genreLength = jsonObject.getString("genre_ids").length();
-            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
-            String genreString[] = str.split(",");
-            movie.setGenre("Other");
-            for(String s : genreString){
-                if(genreIdMap.get(s) != null){
-                    movie.setGenre(genreIdMap.get(s));
-                    break;
-                }
-            }
-
-            movie.setName( jsonObject.getString("original_title"));
-            movie.setImgSrc( "https://image.tmdb.org/t/p/w500"+jsonObject.getString("poster_path"));
-
-            String year = jsonObject.getString("release_date");
-            movie.setYear(year.split("-")[0]);
-
-            searchMoviesArray.add(movie);
-        }
-        return searchMoviesArray;
-    }
     public void updateMoviesOnDashboardOnSearch(){
         try {
-            searchMoviesArray.addAll(getSearchData());
+            final String myKey = serviceObject.API_KEY;
+            boolean adult = true;
+            searchMoviesArray.addAll(getData("https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=1&include_adult=false" + "&query=" + searchMovies.getText()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        AtomicInteger col = new AtomicInteger();
-        int row = 1;
+
         try{
 
             for (Movie movie : searchMoviesArray) {
@@ -343,30 +196,30 @@ public class DashboardController implements Initializable {
                 VBox anchorPane = fxmlLoader.load();
                 MoviesController movieController = fxmlLoader.getController();
                 movieController.setData(movie);
-                if (col.get() == 4) {
-                    row++;
-                    col.set(0);
-                }
-                int finalRow = row;
-                Platform.runLater(()->{
-                    mainGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
-                    //set gridPane width
-                    mainGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                    //set gridPane height
-                    mainGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxHeight(Region.USE_PREF_SIZE);
-                });
 
-                GridPane.setMargin(anchorPane, new Insets(10));
+                Platform.runLater(()->{
+                    mainFlowPane.getChildren().add(anchorPane);
+                });
+                FlowPane.setMargin(anchorPane, new Insets(10));
             }
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
+    public void updateMoviesByGenre(String id){
+        movies = new ArrayList<>();
+        mainFlowPane.getChildren().clear();
+        new Thread(new Runnable() {
+            @Override public void run() {
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
+                System.out.println(id);
+                updateMoviesOnDashboard("http://api.themoviedb.org/3/genre/"+id+ "/movies?api_key=" + mykey);
+            }
+        }).start();
+
+    }
 
     @FXML
     void keyPressedOnSearchMovies(KeyEvent event) throws Exception{
@@ -375,13 +228,18 @@ public class DashboardController implements Initializable {
             System.out.println(searchMovies.getText()=="");
             if(searchMovies.getText() == ""){
                 movies = new ArrayList<>();
+                mainFlowPane.getChildren().clear();
                 new Thread(new Runnable() {
                     @Override public void run() {
-                        updateMoviesOnDashboard();
+                        boolean adult = false;
+                        final String mykey = serviceObject.API_KEY;
+                        updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                                + "&include_adult=" + adult + "&page="+Current_Pg);
                     }
                 }).start();
             }else{
                 System.out.println("You searched movie having name " + searchMovies.getText());
+                mainFlowPane.getChildren().clear();
                 new Thread(new Runnable() {
                     @Override public void run() {
                         updateMoviesOnDashboardOnSearch();
@@ -404,9 +262,13 @@ public class DashboardController implements Initializable {
         Current_Pg = Current_Pg + 1;
         prevButton.setDisable(false);
         movies = new ArrayList<>();
+        mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
             @Override public void run() {
-                updateMoviesOnDashboard();
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                        + "&include_adult=" + adult + "&page="+Current_Pg);
             }
         }).start();
     }
@@ -417,9 +279,13 @@ public class DashboardController implements Initializable {
             prevButton.setDisable(true);
         }
         movies = new ArrayList<>();
+        mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
             @Override public void run() {
-                updateMoviesOnDashboard();
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                        + "&include_adult=" + adult + "&page="+Current_Pg);
             }
         }).start();
     }
@@ -450,6 +316,17 @@ public class DashboardController implements Initializable {
 
     public void mousePressedOnRefreshImageView(MouseEvent mouseEvent) {
         System.out.println("refresh to get new recommendations");
+        mainFlowPane.getChildren().clear();
+        new Thread(new Runnable() {
+            @Override public void run() {
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
+                System.out.println("Trying to run updateMovies");
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                        + "&include_adult=" + adult + "&page="+Current_Pg);
+                System.out.println("updateMovies Successful");
+            }
+        }).start();
     }
 
     public void setUserNameInDashboardController(String text) {
@@ -461,22 +338,19 @@ public class DashboardController implements Initializable {
         alert.setTitle("Logout!");
         alert.setHeaderText("You're about to logout");
         alert.setContentText("Do you want to exit?");
+
         ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("/images/img.png"));
 
-        if(alert.showAndWait().get()==ButtonType.OK)
-        {
+        if(alert.showAndWait().get()==ButtonType.OK) {
             Stage stage = (Stage) logOutButton.getScene().getWindow();
             System.out.println("You successfully logged out!");
             stage.close();
             Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/loginPage.fxml"));
             Stage loginStage = new Stage();
-//          loginStage.initStyle(StageStyle.UNDECORATED);
-            loginStage.setScene(new Scene(root, 530, 320));
+            loginStage.initStyle(StageStyle.UNDECORATED);
+            loginStage.setScene(new Scene(root, 600, 350));
             loginStage.show();
         }
-
-
-
     }
 
 
@@ -488,8 +362,10 @@ public class DashboardController implements Initializable {
 */
         Thread thread1 = new Thread(new Runnable() {
             @Override public void run() {
-                System.out.println("Trying to run updateMovies");
-                updateMoviesOnDashboard();
+                boolean adult = false;
+                final String mykey = serviceObject.API_KEY;
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                        + "&include_adult=" + adult + "&page="+Current_Pg);
                 System.out.println("updateMovies Successful");
             }
         });
@@ -517,9 +393,17 @@ public class DashboardController implements Initializable {
 
         movies = new ArrayList<>();
 
-        /*thread.start();*/
-        /*updateMoviesOnDashboard();*/
-        /*updateSideMovieOnDashboard();*/
+
+        genreIdMap.forEach((id, genre) -> {
+            System.out.println(id + " : " + (genre));
+            MenuItem menuItem = new MenuItem(genre);
+            menuItem.addEventHandler(ActionEvent.ACTION, action ->{
+                System.out.println(menuItem.getText() + " : is selected");
+                updateMoviesByGenre(id);
+            });
+            genresMenuButton.getItems().add(menuItem);
+
+        });
     }
 
 }

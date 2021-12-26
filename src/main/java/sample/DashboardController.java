@@ -60,7 +60,7 @@ public class DashboardController implements Initializable {
     Map<String, String > genreIdMap = new HashMap<String, String>();
     int Current_Pg=1;
 
-    private List<Movie> getData(String tmdbURL) throws Exception {
+    public List<Movie> getData(String tmdbURL) throws Exception {
         //method to fetch data
         HttpURLConnection connection = null;
 
@@ -306,8 +306,12 @@ public class DashboardController implements Initializable {
         watchListStage.show();
     }
 
-    public void mousePressedOnLiked(MouseEvent mouseEvent) {
-        System.out.println("Here you'll find all your liked movies");
+    public void mousePressedOnFeed(MouseEvent mouseEvent) throws Exception {
+        System.out.println("Here you'll find all your feed movies");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/feedPage.fxml"));
+        Stage FeedStage = new Stage();
+        FeedStage.setScene(new Scene(root));
+        FeedStage.show();
     }
 
     public void mousePressedOnFriends(MouseEvent mouseEvent) {

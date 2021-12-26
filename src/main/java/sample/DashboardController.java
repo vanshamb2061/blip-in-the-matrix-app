@@ -59,6 +59,7 @@ public class DashboardController implements Initializable {
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
     int Current_Pg=1;
+    int searchPg = 1;
 
     private List<Movie> getData(String tmdbURL) throws Exception {
         //method to fetch data
@@ -92,15 +93,15 @@ public class DashboardController implements Initializable {
 
             movie.setJsonObject(jsonObject);
             int genreLength = jsonObject.getString("genre_ids").length();
-            String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
-            String genreString[] = str.split(",");
+            /*String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
+            String genreString[] = str.split(",");*/
             movie.setGenre("Other");
-            for(String s : genreString){
+            /*for(String s : genreString){
                 if(genreIdMap.get(s) != null){
                     movie.setGenre(genreIdMap.get(s));
                     break;
                 }
-            }
+            }*/
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             movie.setName( jsonObject.getString("original_title"));
@@ -123,8 +124,7 @@ public class DashboardController implements Initializable {
         try {
             boolean adult = false;
             final String mykey = serviceObject.API_KEY;
-            movies.addAll(getData("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                    + "&include_adult=" + adult + "&page="+Current_Pg));
+            movies.addAll(getData(tmdbURL));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -153,7 +153,8 @@ public class DashboardController implements Initializable {
         try {
             final String mykey = serviceObject.API_KEY;
             boolean adult = true;
-            tryNewMovies.addAll(getData("https://api.themoviedb.org/3/movie/now_playing?api_key=" + mykey + "&language=en-US&page=1"));
+            //tryNewMovies.addAll(getData("https://api.themoviedb.org/3/movie/now_playing?api_key=" + mykey + "&language=en-US&page=1"));
+            tryNewMovies.addAll(getData("https://api.themoviedb.org/3/movie/upcoming?api_key=" + mykey + "&language=en-US&page=1"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,7 +183,7 @@ public class DashboardController implements Initializable {
         try {
             final String myKey = serviceObject.API_KEY;
             boolean adult = true;
-            searchMoviesArray.addAll(getData("https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=1&include_adult=false" + "&query=" + searchMovies.getText()));
+            searchMoviesArray.addAll(getData("https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=" + searchPg + "&include_adult="+ adult + "&query=" + searchMovies.getText()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -216,6 +217,8 @@ public class DashboardController implements Initializable {
                 final String mykey = serviceObject.API_KEY;
                 System.out.println(id);
                 updateMoviesOnDashboard("http://api.themoviedb.org/3/genre/"+id+ "/movies?api_key=" + mykey);
+                //updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US&sort_by=popularity.asc&include_adult=false&include_video=false&page=1&&with_genres=" + id);
+
             }
         }).start();
 
@@ -233,8 +236,8 @@ public class DashboardController implements Initializable {
                     @Override public void run() {
                         boolean adult = false;
                         final String mykey = serviceObject.API_KEY;
-                        updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                                + "&include_adult=" + adult + "&page="+Current_Pg);
+                        updateMoviesOnDashboard("https://api.themoviedb.org/3/movie/popular?api_key="+ mykey +
+                                "&language=en-US&page=" + Current_Pg);
                     }
                 }).start();
             }else{
@@ -267,8 +270,9 @@ public class DashboardController implements Initializable {
             @Override public void run() {
                 boolean adult = false;
                 final String mykey = serviceObject.API_KEY;
-                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                        + "&include_adult=" + adult + "&page="+Current_Pg);
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/movie/popular?api_key="+ mykey +
+                        "&language=en-US&page=" + Current_Pg);
+
             }
         }).start();
     }
@@ -284,8 +288,8 @@ public class DashboardController implements Initializable {
             @Override public void run() {
                 boolean adult = false;
                 final String mykey = serviceObject.API_KEY;
-                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                        + "&include_adult=" + adult + "&page="+Current_Pg);
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/movie/popular?api_key="+ mykey +
+                        "&language=en-US&page=" + Current_Pg);
             }
         }).start();
     }
@@ -322,8 +326,8 @@ public class DashboardController implements Initializable {
                 boolean adult = false;
                 final String mykey = serviceObject.API_KEY;
                 System.out.println("Trying to run updateMovies");
-                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                        + "&include_adult=" + adult + "&page="+Current_Pg);
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/movie/popular?api_key="+ mykey +
+                        "&language=en-US&page=" + Current_Pg);
                 System.out.println("updateMovies Successful");
             }
         }).start();
@@ -362,10 +366,12 @@ public class DashboardController implements Initializable {
 */
         Thread thread1 = new Thread(new Runnable() {
             @Override public void run() {
-                boolean adult = false;
+                boolean adult = true;
                 final String mykey = serviceObject.API_KEY;
-                updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
-                        + "&include_adult=" + adult + "&page="+Current_Pg);
+                /*updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
+                        + "&include_adult=" + adult + "&page="+Current_Pg);*/
+                updateMoviesOnDashboard("https://api.themoviedb.org/3/movie/popular?api_key="+ mykey +
+                        "&language=en-US&page=" + Current_Pg);
                 System.out.println("updateMovies Successful");
             }
         });

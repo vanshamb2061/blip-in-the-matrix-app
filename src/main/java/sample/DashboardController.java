@@ -67,10 +67,12 @@ public class DashboardController implements Initializable {
     private TextField searchUsername;
     Services serviceObject = new Services();
 
+    //map to store genreID
     Map<String, String > genreIdMap = new HashMap<String, String>();
     int Current_Pg=1;
     int searchPg = 1;
 
+    //it get the all the movie data from TMDB api and set in Movies class
     public List<Movie> getData(String tmdbURL) throws Exception {
         //method to fetch data from TMDB API, gets String URL as arguement
         HttpURLConnection connection = null;
@@ -129,6 +131,7 @@ public class DashboardController implements Initializable {
     }
 
 
+    //this displays the movie list on the dashboard
     private List<Movie> movies ;
     public void updateMoviesOnDashboard(String tmdbURL){
         //Display the movies on the dashboard
@@ -159,6 +162,7 @@ public class DashboardController implements Initializable {
         }
     }
 
+    //it displays letest release of the year on right side of dahsboard
     private final List<Movie> tryNewMovies = new ArrayList<>();
     public void updateSideMovieOnDashboard(){
         //Method to display movies on the side on dashboard
@@ -190,7 +194,9 @@ public class DashboardController implements Initializable {
         }
     }
 
+    //this is used to store the movie array
     private List<Movie> searchMoviesArray ;
+    //it displays the movie list which was searched by user
     public void updateMoviesOnDashboardOnSearch(String tmdbURL){
         //Method to handle search on dashboard
         try {
@@ -221,6 +227,7 @@ public class DashboardController implements Initializable {
         }
     }
 
+    // this update dashboard by genre which is selected by user
     public void updateMoviesByGenre(String id){
         //Method to update movies by genre, takes string id as arguement
         movies = new ArrayList<>();
@@ -238,6 +245,7 @@ public class DashboardController implements Initializable {
 
     }
 
+    //this is used to search movies by its name it accepts string with no whitespace
     @FXML
     void keyPressedOnSearchMovies(KeyEvent event) throws Exception{
         //Method to handle keyevent when key pressed on search movies
@@ -270,6 +278,7 @@ public class DashboardController implements Initializable {
         }
     }
 
+    //this is used to search user by his userID
     @FXML
     void keyPressedOnSearchUsername(KeyEvent event) {
         if(event.getCode().equals(KeyCode.ENTER)){
@@ -277,6 +286,7 @@ public class DashboardController implements Initializable {
         }
     }
 
+    //this is used to navigate to next page of movie database
     @FXML
     void nextButtonOnAction(ActionEvent event) throws Exception {
         //Method for when the next Button is clicked
@@ -294,6 +304,8 @@ public class DashboardController implements Initializable {
             }
         }).start();
     }
+
+    //this is used to go to previous page of shown movies on dashboard
     @FXML
     void prevButtonOnAction(ActionEvent event) throws Exception{
         //Method for when previous button is clicked
@@ -313,14 +325,17 @@ public class DashboardController implements Initializable {
         }).start();
     }
 
+    //this is used to show the myprofiel page
     public void mousePressedOnMyProfile(MouseEvent mouseEvent) {
         System.out.println("forwarding you to your profile");
     }
 
+    //this is usd to show the movies on dashboard which is by default open from start
     public void mousePressedOnMovies(MouseEvent mouseEvent) {
         System.out.println("Recommending movies you may like");
     }
 
+    //this is used to show the wachlist movies stored by user
     public void mousePressedOnWatchList(MouseEvent mouseEvent) throws IOException {
         //Method to load new stage when watchlist is clicked on sidebar
         System.out.println("here you'll find all your saved watchlist");
@@ -330,6 +345,7 @@ public class DashboardController implements Initializable {
         watchListStage.show();
     }
 
+    //this is used to show the liked movies stored by user
     public void mousePressedOnFeed(MouseEvent mouseEvent) throws Exception {
         //Method to load new stage when feed is clicked on sidebar
         System.out.println("Here you'll find all your feed movies");
@@ -339,6 +355,7 @@ public class DashboardController implements Initializable {
         FeedStage.show();
     }
 
+    //this is used to show the playlist movies stored by user
     public void mousePressedOnPlaylist(MouseEvent mouseEvent) throws Exception {
         //Method to load new stage when playlist is clicked on sidebar
         System.out.println("Here you'll find all your playlist movies");
@@ -348,10 +365,12 @@ public class DashboardController implements Initializable {
         FeedStage.show();
     }
 
+    //this is used to get the friends list but we have not implemented it yet
     public void mousePressedOnFriends(MouseEvent mouseEvent) {
         System.out.println("Here is the list of all your friends");
     }
 
+    //this refresh the dahsboard and shows the movie list
     public void mousePressedOnRefreshImageView(MouseEvent mouseEvent) {   //Method to refresh
         System.out.println("refresh to get new recommendations");
         mainFlowPane.getChildren().clear();
@@ -367,16 +386,19 @@ public class DashboardController implements Initializable {
         }).start();
     }
 
+    //this is activated from login to change the userLabel
     public void setUserNameInDashboardController(String text) {
         welcomeUserLabel.setText("Welcome " + text);
     }
 
+    //this is used to change the page no.
     @FXML
     void mousePressedOnPagination(MouseEvent event) {
         System.out.println("pagination");
         System.out.println(pagination.getCurrentPageIndex());
 
     }
+    // it logout from the dashboard
     public void logOutButtonOnAction(ActionEvent event) throws IOException {
         //Method to log out
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -399,6 +421,7 @@ public class DashboardController implements Initializable {
     }
 
 
+    //used to initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -462,6 +485,7 @@ public class DashboardController implements Initializable {
         });
     }
 
+    // when we press enter it gets activated and shows all the list by year of release
     public void keyPressedOnSearchByYear(KeyEvent event) {
         if(event.getCode().equals(KeyCode.ENTER)){
             searchMoviesArray = new ArrayList<>();
@@ -485,7 +509,10 @@ public class DashboardController implements Initializable {
                         final String myKey = serviceObject.API_KEY;
                         boolean adult = true;
 
-                        String tmdbURL = "https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=" + searchPg + "&include_adult="+ adult  + "&primary_release_year=" + searchByYear.getText();
+                        String tmdbURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + myKey + "&language=en-US"
+                                + "&include_adult=" + adult + "&page="+ searchPg + "&include_adult="+ adult  +
+                                "&primary_release_year=" + searchByYear.getText();
+
                         updateMoviesOnDashboardOnSearch(tmdbURL);
                     }
                 }).start();

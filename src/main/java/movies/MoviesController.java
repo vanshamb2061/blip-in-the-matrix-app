@@ -46,6 +46,7 @@ public class MoviesController {
     protected Movie movie;
     public boolean clicked = false;
 
+    //it sets all the movie data when intiated
     public void setData(Movie movie){
         // Method to set data for movies
         this.movie = movie;
@@ -62,6 +63,7 @@ public class MoviesController {
     }
 
 
+    //this is used to show the movie info
     public void mousePressedOnPoster(MouseEvent mouseEvent) throws Exception{
         //Method to display poster for mouse event when user clicks on poster
         System.out.println("user clicked on movie, show him movie description");
@@ -79,6 +81,7 @@ public class MoviesController {
         movieInfoStage.show();
     }
 
+    //it added movies in liked list
     public void mousePressedOnLike(MouseEvent mouseEvent) throws Exception {
         //Method to handle mouseevent when user clicks "like"
         clicked = !clicked;
@@ -102,6 +105,7 @@ public class MoviesController {
         likeImageView.setEffect(d);
     }
 
+    //this is used to disklike the movie
     public void mousePressedOnCancel(MouseEvent mouseEvent) throws IOException {
 
         //was working on this file got frustrated and spent more than half a day and then moved on

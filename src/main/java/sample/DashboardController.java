@@ -124,7 +124,7 @@ public class DashboardController implements Initializable {
         try {
             boolean adult = false;
             final String mykey = serviceObject.API_KEY;
-            movies.addAll(getData("https://api.themoviedb.org/3/movie/upcoming?api_key=" + mykey + "&language=en-US&page=1"));
+            movies.addAll(getData(tmdbURL));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -368,10 +368,7 @@ public class DashboardController implements Initializable {
     /*    ThreadClasses.RenderDashboardMovies setDashboardMovies = new ThreadClasses.RenderDashboardMovies(this);
         Thread thread = new Thread(setDashboardMovies);
 */
-<<<<<<< HEAD
         movies = new ArrayList<>();
-=======
->>>>>>> parent of 44b7fdd (added global data storage for userID)
         Thread thread1 = new Thread(new Runnable() {
             @Override public void run() {
                 boolean adult = true;
@@ -387,7 +384,7 @@ public class DashboardController implements Initializable {
 
         Thread thread2 = new Thread(new Runnable() {
             @Override public void run() {
-                /*updateSideMovieOnDashboard();*/
+                updateSideMovieOnDashboard();
             }
         });
 

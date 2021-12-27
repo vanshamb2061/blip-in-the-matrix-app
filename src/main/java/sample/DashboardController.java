@@ -104,16 +104,23 @@ public class DashboardController implements Initializable {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             movie.setJsonObject(jsonObject);
-            int genreLength = jsonObject.getString("genre_ids").length();
-            /*String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
-            String genreString[] = str.split(",");*/
-            movie.setGenre("Other");
-            /*for(String s : genreString){
-                if(genreIdMap.get(s) != null){
-                    movie.setGenre(genreIdMap.get(s));
-                    break;
+            try{
+                int genreLength = jsonObject.getString("genre_ids").length();
+                String str = jsonObject.getString("genre_ids").substring(1, genreLength-2);
+                String genreString[] = str.split(",");
+                movie.setGenre("Other");
+                for(String s : genreString){
+                    if(genreIdMap.get(s) != null){
+                        movie.setGenre(genreIdMap.get(s));
+                        break;
+                    }
                 }
-            }*/
+            }catch (Exception e){
+                movie.setGenre("Other");
+            }
+
+
+
             //String id = jsonObject.getString("id");
             //String original_language = jsonObject.getString("original_language");
             movie.setName( jsonObject.getString("original_title"));

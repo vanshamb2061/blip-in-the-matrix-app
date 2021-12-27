@@ -157,7 +157,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <HBox styleClass="selected" stylesheets="@../CSS/style.css">
+                        <HBox styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" onMousePressed="#mousePressedOnPlaylist" pickOnBounds="true" preserveRatio="true" styleClass="selected" HBox.hgrow="ALWAYS">
                                  <image>

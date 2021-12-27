@@ -31,6 +31,11 @@
                         <DropShadow spread="0.7" />
                      </effect>
                   </ImageView>
+                  <ImageView fx:id="addToPlaylist" fitHeight="27.0" fitWidth="52.0" onMousePressed="#mousePressedOnAdd" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Plus.png" />
+                     </image>
+                  </ImageView>
                   <Pane onMousePressed="#mousePressedOnPoster" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <ImageView fx:id="cancelImageView" fitHeight="29.0" fitWidth="23.0" onMousePressed="#mousePressedOnCancel" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                      <image>

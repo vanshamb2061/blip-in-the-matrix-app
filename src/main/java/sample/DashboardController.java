@@ -318,6 +318,14 @@ public class DashboardController implements Initializable {
         FeedStage.show();
     }
 
+    public void mousePressedOnPlaylist(MouseEvent mouseEvent) throws Exception {
+        System.out.println("Here you'll find all your playlist movies");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/playlistPage.fxml"));
+        Stage FeedStage = new Stage();
+        FeedStage.setScene(new Scene(root));
+        FeedStage.show();
+    }
+
     public void mousePressedOnFriends(MouseEvent mouseEvent) {
         System.out.println("Here is the list of all your friends");
     }

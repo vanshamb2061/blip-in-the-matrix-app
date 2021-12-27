@@ -379,6 +379,8 @@ public class DashboardController implements Initializable {
             Stage stage = (Stage) logOutButton.getScene().getWindow();
             System.out.println("You successfully logged out!");
             stage.close();
+            GlobalData.setUserId("");
+            GlobalData.setUserAge(0);
             Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/loginPage.fxml"));
             Stage loginStage = new Stage();
             loginStage.initStyle(StageStyle.UNDECORATED);

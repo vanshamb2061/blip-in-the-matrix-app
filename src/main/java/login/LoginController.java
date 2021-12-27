@@ -1,5 +1,6 @@
 package login;
 
+import apiKeys.GlobalData;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,6 +18,11 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 import sample.DashboardController;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 //Method to handle login
 
@@ -41,8 +47,8 @@ public class LoginController {
             //sql injection
             try
             {
-                /*Class.forName("com.mysql.cj.jdbc.Driver");
-                String url = "jdbc:mysql://localhost:3306/userinfo";
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                String url = "jdbc:mysql://localhost:3306/watchlistproject";
                 Connection connection = DriverManager.getConnection(url, "root", "");
 
                 String username = usernameTextField.getText();
@@ -50,10 +56,14 @@ public class LoginController {
 
                 Statement stm = connection.createStatement();
 
-                String sql = "select * from userdetails where UserId='" + username + "' and Password='" + password + "'";
+                String sql = "select * from user where username='" + username + "' and Password='" + password + "'";
                 ResultSet result = stm.executeQuery(sql);
 
-                if (result.next()) {*/
+                if (result.next()) {
+                    GlobalData.setUserId(username);
+                    System.out.println(GlobalData.getUserId());
+                    System.out.println(result.getInt("Age"));
+                    GlobalData.setUserAge(result.getInt("Age"));
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/dashboardController.fxml"));
                     Parent root = loader.load();
                     DashboardController dashboardController = loader.getController();
@@ -69,12 +79,12 @@ public class LoginController {
 
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.close();
-               /* } else {
+                } else {
                     //If username don't exist
                     errorLabel.setText("Entered username/password is wrong");
                     usernameTextField.setText("");
                     enterPasswordField.setText("");
-                }*/
+                }
             }
             catch(Exception e)
             {

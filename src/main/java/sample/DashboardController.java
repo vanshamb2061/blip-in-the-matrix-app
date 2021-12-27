@@ -23,6 +23,7 @@ import movies.NewMoviesController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import apiKeys.Services;
+import apiKeys.GlobalData;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -398,6 +399,13 @@ public class DashboardController implements Initializable {
 
         thread1.start();
         thread2.start();
+
+
+        ///this is to check working of global data;
+        //this is the reason for dashboard not updating
+       /* GlobalData.setUserId("setting the value of userID");
+        System.out.println(GlobalData.getUserId());*/
+
 
         prevButton.setDisable(true);
         //hashmap initialization

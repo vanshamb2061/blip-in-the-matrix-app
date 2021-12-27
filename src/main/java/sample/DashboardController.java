@@ -35,7 +35,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 //Method to handle the following:
-//  1. All mouseevents on dashboard
+//  1. All mouseEvents on dashboard
 //  2. Fetching movies using TMDB api calls
 //  3. Loading and displaying movies
 
@@ -59,6 +59,8 @@ public class DashboardController implements Initializable {
     private FlowPane sideFlowPane;
     @FXML
     private TextField searchMovies;
+    @FXML
+    private TextField searchByYear;
     @FXML
     private Pagination pagination;
     @FXML
@@ -189,12 +191,12 @@ public class DashboardController implements Initializable {
     }
 
     private List<Movie> searchMoviesArray ;
-    public void updateMoviesOnDashboardOnSearch(){
+    public void updateMoviesOnDashboardOnSearch(String tmdbURL){
         //Method to handle search on dashboard
         try {
             final String myKey = serviceObject.API_KEY;
             boolean adult = true;
-            searchMoviesArray.addAll(getData("https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=" + searchPg + "&include_adult="+ adult + "&query=" + searchMovies.getText()));
+            searchMoviesArray.addAll(getData(tmdbURL));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -258,7 +260,9 @@ public class DashboardController implements Initializable {
                 mainFlowPane.getChildren().clear();
                 new Thread(new Runnable() {
                     @Override public void run() {
-                        updateMoviesOnDashboardOnSearch();
+                        final String myKey = serviceObject.API_KEY;
+                        boolean adult = true;
+                        updateMoviesOnDashboardOnSearch("https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=" + searchPg + "&include_adult="+ adult + "&query=" + searchMovies.getText());
                     }
                 }).start();
             }
@@ -348,8 +352,7 @@ public class DashboardController implements Initializable {
         System.out.println("Here is the list of all your friends");
     }
 
-    public void mousePressedOnRefreshImageView(MouseEvent mouseEvent)
-    {   //Method to refresh
+    public void mousePressedOnRefreshImageView(MouseEvent mouseEvent) {   //Method to refresh
         System.out.println("refresh to get new recommendations");
         mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
@@ -459,4 +462,35 @@ public class DashboardController implements Initializable {
         });
     }
 
+    public void keyPressedOnSearchByYear(KeyEvent event) {
+        if(event.getCode().equals(KeyCode.ENTER)){
+            searchMoviesArray = new ArrayList<>();
+            System.out.println(searchByYear.getText()=="");
+            if(searchByYear.getText() == ""){
+                movies = new ArrayList<>();
+                mainFlowPane.getChildren().clear();
+                new Thread(new Runnable() {
+                    @Override public void run() {
+                        boolean adult = false;
+                        final String mykey = serviceObject.API_KEY;
+                        updateMoviesOnDashboard("https://api.themoviedb.org/3/movie/popular?api_key="+ mykey +
+                                "&language=en-US&page=" + Current_Pg);
+                    }
+                }).start();
+            }else{
+                System.out.println("You searched movie having name " + searchByYear.getText());
+                mainFlowPane.getChildren().clear();
+                new Thread(new Runnable() {
+                    @Override public void run() {
+                        final String myKey = serviceObject.API_KEY;
+                        boolean adult = true;
+
+                        String tmdbURL = "https://api.themoviedb.org/3/search/movie?api_key=" + myKey + "&language=en-US&page=" + searchPg + "&include_adult="+ adult  + "&primary_release_year=" + searchByYear.getText();
+                        updateMoviesOnDashboardOnSearch(tmdbURL);
+                    }
+                }).start();
+            }
+
+        }
+    }
 }

@@ -282,7 +282,7 @@
                               <Font name="System Italic" size="18.0" />
                            </font>
                         </MenuButton>
-                        <TextField promptText="search by year" style="-fx-background-color: #081a4a; -fx-border-radius: 15; -fx-background-radius: 15;" />
+                        <TextField fx:id="searchByYear" onKeyPressed="#keyPressedOnSearchByYear" promptText="search by year" style="-fx-background-color: #081a4a; -fx-border-radius: 15; -fx-background-radius: 15; -fx-text-fill: white;" />
                         <ImageView fx:id="refreshImageView" fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnRefreshImageView" opacity="0.54" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/refresh.png" />

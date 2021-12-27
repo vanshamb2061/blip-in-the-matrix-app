@@ -127,11 +127,14 @@ public class MoviesController {
         System.out.println("user disliked this movie, remove it from his feed");
     }
 
+    //this is shifted to movieInfo
     public void mousePressedOnAdd(MouseEvent mouseEvent) throws Exception {
         //Method to handle mouseevent when user clicks on "add to playlist"
         System.out.println("Mouse pressed on add to playlist");
+        System.out.println(movie.getName());
         PlayListController playListController = new PlayListController();
         playListController.addMovietoPlaylist(movie);
+
     }
 
 }

@@ -20,6 +20,7 @@ import javafx.stage.StageStyle;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import apiKeys.Services;
+import sample.PlayListController;
 
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -50,13 +51,14 @@ public class MovieInfo implements Initializable {
 
     Movie movieObj;
     Services serviceObject = new Services();
-    private boolean clicked = false;
+    private boolean isClickedLike = false;
+    private boolean isClickedPlus = false;
     @FXML
     void mousePressedOnAddToFavorites(MouseEvent event) {
         //Method to handle mouseevent when user hits the "like"
         System.out.println("movie added to the favorites");
-        clicked = !clicked;
-        if(clicked == true) {
+        isClickedLike = !isClickedLike;
+        if(isClickedLike == true) {
             System.out.println("movie added to the favorites");
             Image image = new Image(("/images/blueLove.png"));
             likeImageView.setImage(image);
@@ -173,8 +175,29 @@ public class MovieInfo implements Initializable {
     }
 
     @FXML
-    void mousePressedOnAddToWatchList(MouseEvent event) {
-        System.out.println("movie added to watchList");
+    void mousePressedOnAddToWatchList(MouseEvent event) throws Exception {
+
+        isClickedLike = !isClickedLike;
+        if(isClickedLike == true) {
+            System.out.println("movie added to watchList");
+            Image image = new Image(("/images/addToWatchList.png"));
+            addImageView.setImage(image);
+            addImageView.setFitWidth(29);
+            addImageView.setFitHeight(30);
+        }else{
+            System.out.println("movie removed from watchList");
+            Image image = new Image(("/images/filledPlus.png"));
+            addImageView.setImage(image);
+            addImageView.setFitWidth(29);
+            addImageView.setFitHeight(30);
+        }
+        DropShadow d = new DropShadow();
+        d.setSpread(0.66);
+        addImageView.setEffect(d);
+        System.out.println(movieObj.getName());
+        /*PlayListController playListController = new PlayListController();
+        playListController.addMovietoPlaylist(movieObj);*/
+
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

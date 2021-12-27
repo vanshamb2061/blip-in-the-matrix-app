@@ -22,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import apiKeys.Services;
 
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -43,6 +44,8 @@ public class MovieInfo implements Initializable {
     private ImageView likeImageView;
     @FXML
     private Label movieLabel;
+    @FXML
+    private ImageView addImageView;
 
     Movie movieObj;
     Services serviceObject = new Services();
@@ -164,6 +167,11 @@ public class MovieInfo implements Initializable {
     void mousePressedOnCancel2(MouseEvent event) {
         Stage stage = (Stage) cancelImageView.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    void mousePressedOnAddToWatchList(MouseEvent event) {
+        System.out.println("movie added to watchList");
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

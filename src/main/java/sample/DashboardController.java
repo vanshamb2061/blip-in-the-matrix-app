@@ -55,6 +55,8 @@ public class DashboardController implements Initializable {
     @FXML
     private TextField searchMovies;
     @FXML
+    private Pagination pagination;
+    @FXML
     private TextField searchUsername;
     Services serviceObject = new Services();
 
@@ -350,6 +352,12 @@ public class DashboardController implements Initializable {
         welcomeUserLabel.setText("Welcome " + text);
     }
 
+    @FXML
+    void mousePressedOnPagination(MouseEvent event) {
+        System.out.println("pagination");
+        System.out.println(pagination.getCurrentPageIndex());
+
+    }
     public void logOutButtonOnAction(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout!");

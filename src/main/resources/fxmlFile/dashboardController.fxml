@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -22,7 +30,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DashboardController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DashboardController">
    <children>
       <ToolBar prefHeight="40.0" style="-fx-background-color: #081a4a;">
          <items>
@@ -47,7 +55,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="searchMovies" onKeyPressed="#keyPressedOnSearchMovies" style="-fx-background-color: #081a4a; -fx-border-color: #081a4a; -fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="searchMovies" onKeyPressed="#keyPressedOnSearchMovies" promptText="search Movies" style="-fx-background-color: #081a4a; -fx-border-color: #081a4a; -fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </items>
@@ -266,19 +274,6 @@
                            </padding>
                         </Label>
                         <Pane prefHeight="42.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                        <MenuButton fx:id="yearsMenuBar" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #28467d;" text="All Years" textFill="#8da3c7">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="2021" />
-                              <MenuItem mnemonicParsing="false" text="2020" />
-                              <MenuItem mnemonicParsing="false" text="2019" />
-                           </items>
-                           <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Italic" size="18.0" />
-                           </font>
-                        </MenuButton>
                         <MenuButton fx:id="genresMenuButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="39.0" prefWidth="132.0" style="-fx-background-color: #28467d;" text="All Genres" textFill="#8da3c7">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
@@ -287,6 +282,7 @@
                               <Font name="System Italic" size="18.0" />
                            </font>
                         </MenuButton>
+                        <TextField promptText="search by year" style="-fx-background-color: #081a4a; -fx-border-radius: 15; -fx-background-radius: 15;" />
                         <ImageView fx:id="refreshImageView" fitHeight="26.0" fitWidth="24.0" onMousePressed="#mousePressedOnRefreshImageView" opacity="0.54" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/refresh.png" />
@@ -319,7 +315,10 @@
                               <Insets left="15.0" />
                            </HBox.margin>
                         </Button>
-                        <Pagination layoutX="1.0" layoutY="-3.0" HBox.hgrow="ALWAYS" />
+                        <Pagination fx:id="pagination" layoutX="1.0" layoutY="-3.0" maxPageIndicatorCount="15" onMousePressed="#mousePressedOnPagination" HBox.hgrow="ALWAYS">
+                           <effect>
+                              <DropShadow />
+                           </effect></Pagination>
                         <Button fx:id="nextButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nextButtonOnAction" prefHeight="26.0" prefWidth="65.0" style="-fx-background-color: #087608; -fx-border-radius: 10; -fx-background-radius: 10;" text="NEXT" textAlignment="CENTER" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="15.0" />

@@ -158,7 +158,13 @@ public class WatchListController implements Initializable {
         try {
             ResultSet res = findLikedMoviesInDB();
             List<Movie> likedMoviesArray = searchLikedMovies(res);
-            updateLikedMovies(likedMoviesArray);
+
+            mainGridPane.getChildren().clear();
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    updateLikedMovies(likedMoviesArray);
+                }
+            }).start();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -431,7 +431,7 @@ public class DashboardController implements Initializable {
         movies = new ArrayList<>();
         Thread thread1 = new Thread(new Runnable() {
             @Override public void run() {
-                boolean adult = true;
+                boolean adult = false;
                 final String mykey = serviceObject.API_KEY;
                 /*updateSideMovieOnDashboard();*/
                 /*updateMoviesOnDashboard("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US"
@@ -457,7 +457,7 @@ public class DashboardController implements Initializable {
        /* GlobalData.setUserId("setting the value of userID");
         System.out.println(GlobalData.getUserId());*/
 
-
+        //preButon visibility set to false
         prevButton.setDisable(true);
         //hashmap initialization
         genreIdMap.put("28","Action");
@@ -473,6 +473,7 @@ public class DashboardController implements Initializable {
         movies = new ArrayList<>();
 
 
+        //this adds action listener on genre menubutton and gets activate on click
         genreIdMap.forEach((id, genre) -> {
             System.out.println(id + " : " + (genre));
             MenuItem menuItem = new MenuItem(genre);
@@ -481,6 +482,24 @@ public class DashboardController implements Initializable {
                 updateMoviesByGenre(id);
             });
             genresMenuButton.getItems().add(menuItem);
+
+        });
+
+        //this function add action listener on pagination and get activated on clicked and
+        // shows the movies list fo given page
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) ->{
+            Current_Pg = (int) newIndex + 1;
+            movies = new ArrayList<>();
+            mainFlowPane.getChildren().clear();
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    boolean adult = true;
+                    final String mykey = serviceObject.API_KEY;
+                    updateMoviesOnDashboard("https://api.themoviedb.org/3/movie/popular?api_key="+ mykey +
+                            "&language=en-US&page=" + Current_Pg);
+                    System.out.println("updateMovies Successful");
+                }
+            }).start();
 
         });
     }
@@ -507,7 +526,7 @@ public class DashboardController implements Initializable {
                 new Thread(new Runnable() {
                     @Override public void run() {
                         final String myKey = serviceObject.API_KEY;
-                        boolean adult = true;
+                        boolean adult = false;
 
                         String tmdbURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + myKey + "&language=en-US"
                                 + "&include_adult=" + adult + "&page="+ searchPg + "&include_adult="+ adult  +

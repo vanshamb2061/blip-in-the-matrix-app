@@ -1,6 +1,5 @@
 package movies;
 
-import apiKeys.GlobalData;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -176,6 +175,5 @@ public class MovieInfo implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        System.out.println(GlobalData.getUserId());
     }
 }

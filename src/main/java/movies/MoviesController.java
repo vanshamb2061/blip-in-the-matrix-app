@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sample.DashboardController;
 import sample.LikeController;
+import sample.PlayListController;
+
 import java.io.IOException;
 
 public class MoviesController {
@@ -119,4 +121,13 @@ public class MoviesController {
 
         System.out.println("user disliked this movie, remove it from his feed");
     }
+
+    public void mousePressedOnAdd(MouseEvent mouseEvent) throws Exception {
+        System.out.println("Mouse pressed on add to playlist");
+        PlayListController playListController = new PlayListController();
+        playListController.addMovietoPlaylist(movie);
+
+
+    }
+
 }

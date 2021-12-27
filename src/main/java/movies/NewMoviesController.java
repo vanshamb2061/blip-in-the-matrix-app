@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sample.LikeController;
 
 //Class to handle mouseevents on newmovies
 
@@ -62,7 +63,7 @@ public class NewMoviesController {
         movieInfoStage.show();
     }
 
-    public void mousePressedOnLike(MouseEvent mouseEvent) {
+    public void mousePressedOnLike(MouseEvent mouseEvent) throws Exception {
         //Method to handle mouse event when user clicks on like
         clicked = !clicked;
         if(clicked == true) {
@@ -71,6 +72,9 @@ public class NewMoviesController {
             likeImageView.setImage(image);
             likeImageView.setFitWidth(29);
             likeImageView.setFitHeight(24);
+
+            LikeController likeController = new LikeController();
+            likeController.addLikedMovietoDB(tryNewMovie);
         }else{
             System.out.println("user removed this movie from his favorites");
             Image image = new Image(("/images/unfilledLike.png"));

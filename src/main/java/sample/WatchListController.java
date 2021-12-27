@@ -163,7 +163,13 @@ public class WatchListController implements Initializable {
             welcomeUserLabel.setText("Welcome to your Watchlist");
             ResultSet res = findLikedMoviesInDB();
             List<Movie> likedMoviesArray = searchLikedMovies(res);
-            updateLikedMovies(likedMoviesArray);
+
+            mainGridPane.getChildren().clear();
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    updateLikedMovies(likedMoviesArray);
+                }
+            }).start();
         } catch (Exception e) {
             e.printStackTrace();
         }

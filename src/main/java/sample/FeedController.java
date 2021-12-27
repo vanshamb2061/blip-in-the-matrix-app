@@ -140,7 +140,15 @@ public class FeedController implements Initializable {
             genreRatings = genreMapController.getMap(username);
             genreIdMap = genreMapController.getStringtoIDMap();
             searchFeed();
-            updateFeedMovies();
+
+            mainGridPane.getChildren().clear();
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    boolean adult = false;
+                    final String mykey = serviceObject.API_KEY;
+                    updateFeedMovies();
+                }
+            }).start();
         } catch (Exception e) {
             e.printStackTrace();
         }

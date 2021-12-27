@@ -176,7 +176,13 @@ public class PlayListController implements Initializable {
             welcomeUserLabel.setText("Welcome to your Playlist");
             ResultSet res = findPlaylistMoviesInDB();
             List<Movie> playlistArr = searchPlaylist(res);
-            updatePlaylistMovies(playlistArr);
+
+            mainGridPane.getChildren().clear();
+            new Thread(new Runnable() {
+                @Override public void run() {
+                    updatePlaylistMovies(playlistArr);
+                }
+            }).start();
         } catch (Exception e) {
             e.printStackTrace();
         }

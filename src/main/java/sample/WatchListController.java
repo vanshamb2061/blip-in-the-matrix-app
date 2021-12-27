@@ -1,5 +1,6 @@
 package sample;
 
+import apiKeys.GlobalData;
 import apiKeys.Services;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -44,6 +45,8 @@ public class WatchListController implements Initializable {
 
     Map<String,Integer> genreRatings = new HashMap<String,Integer>();
 
+    String username = GlobalData.getUserId();
+
     Services serviceObject = new Services();
 
     public void backButtonOnAction(ActionEvent e){
@@ -58,7 +61,6 @@ public class WatchListController implements Initializable {
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection connection = DriverManager.getConnection(url, "root", "");
 
-        String username = "ambashtavansh";
 
         Statement stm = connection.createStatement();
 

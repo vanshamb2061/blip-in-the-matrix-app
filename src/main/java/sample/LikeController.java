@@ -1,4 +1,5 @@
 package sample;
+import apiKeys.GlobalData;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,6 +33,8 @@ public class LikeController implements Initializable {
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
+    String username = GlobalData.getUserId();
+
     public void addLikedMovietoDB(Movie movieobj) throws Exception {
         //Method to add movie to the DB
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -40,7 +43,6 @@ public class LikeController implements Initializable {
         Statement statement= myConn.createStatement();
             JSONObject jsonObject = movieobj.getJsonObject();
             int movieid = jsonObject.getInt("id");
-            String username = "ambashtavansh";
             String query="INSERT INTO `movie`(`MovieID`, `Username`) VALUES (?,?)";
             PreparedStatement preStat = myConn.prepareStatement(query);
             System.out.println("Query written");
@@ -79,7 +81,6 @@ public class LikeController implements Initializable {
         Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection connection = DriverManager.getConnection(url, "root", "");
-        String username = "ambashtavansh";
         Statement stm = connection.createStatement();
         String sql = "select * from genre where Username='" + username + "'";
         ResultSet result = stm.executeQuery(sql);
@@ -127,7 +128,7 @@ public class LikeController implements Initializable {
         preStat.setInt(6,genreRatings.get("Mystery"));
         preStat.setInt(7,genreRatings.get("Romance"));
         preStat.setInt(8,genreRatings.get("Thriller"));
-        preStat.setString(9,"ambashtavansh");
+        preStat.setString(9,username);
         System.out.println("DB Change done!");
         preStat.executeUpdate();
     }

@@ -1,4 +1,5 @@
 package sample;
+import apiKeys.GlobalData;
 import apiKeys.Services;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -33,6 +34,9 @@ public class PlayListController implements Initializable {
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
     Map<String,Integer> genreRatings = new HashMap<String,Integer>();
+
+    String username = GlobalData.getUserId();
+
     Services serviceObject = new Services();
 
     public void backButtonOnAction(ActionEvent e){
@@ -49,7 +53,6 @@ public class PlayListController implements Initializable {
         Statement statement= myConn.createStatement();
         JSONObject jsonObject = movieobj.getJsonObject();
         int movieid = jsonObject.getInt("id");
-        String username = "ambashtavansh";
         String query="INSERT INTO `playlist`(`MovieID`, `Username`) VALUES (?,?)";
         PreparedStatement preStat = myConn.prepareStatement(query);
         System.out.println("Query written");
@@ -69,8 +72,6 @@ public class PlayListController implements Initializable {
 
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection connection = DriverManager.getConnection(url, "root", "");
-
-        String username = "ambashtavansh";
 
         Statement stm = connection.createStatement();
 

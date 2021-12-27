@@ -1,5 +1,6 @@
 package sample;
 
+import apiKeys.GlobalData;
 import apiKeys.Services;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -46,6 +47,8 @@ public class FeedController implements Initializable {
 
     Services serviceObject = new Services();
 
+    String username = GlobalData.getUserId();
+
     public void backButtonOnAction(ActionEvent e){
         //Method to handle event when back button is clicked
         Stage stage = (Stage) backButton.getScene().getWindow();
@@ -53,7 +56,6 @@ public class FeedController implements Initializable {
     }
     public List<Movie> searchFeed() throws Exception{
         //Method to fetch movies for feed using API
-        String username = "ambashtavansh";
 
         List<String> genreArr = new ArrayList<String>();
         for (Map.Entry<String,Integer> entry : genreRatings.entrySet())
@@ -131,7 +133,7 @@ public class FeedController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         GenreMapController genreMapController = new GenreMapController();
         try {
-            genreRatings = genreMapController.getMap("ambashtavansh");
+            genreRatings = genreMapController.getMap(username);
             genreIdMap = genreMapController.getStringtoIDMap();
             searchFeed();
             updateFeedMovies();

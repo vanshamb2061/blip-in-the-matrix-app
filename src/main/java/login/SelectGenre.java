@@ -1,5 +1,6 @@
 package login;
 
+import apiKeys.GlobalData;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -53,9 +54,11 @@ public class SelectGenre implements Initializable {
     List<CheckBox> genreCheckBox = new ArrayList<CheckBox>();
     Map<String, Boolean> genreMap = new HashMap<String, Boolean>();
     Map<String,Integer> genreRating = new HashMap<String,Integer>();
+    String username = GlobalData.getUserId();
 
 
     public void submitButtonOnAction(ActionEvent event) throws Exception {
+        System.out.println("Username: " + username);
         //Method to enter selected genres in map
         for(CheckBox genre : genreCheckBox){
             if(genre.isSelected()){
@@ -67,21 +70,22 @@ public class SelectGenre implements Initializable {
         }
 
         setGenreInRegistrationController();
-        saveGenres("ambashtavansh");
+        saveGenres(username);
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/loginPage.fxml"));
-        Stage loginStage = new Stage();
-        loginStage.initStyle(StageStyle.DECORATED);
-        loginStage.setTitle("Login Page");
-        loginStage.setScene(new Scene(root, 530, 320));
-        loginStage.getIcons().add(new Image("/images/img.png"));
-        loginStage.show();
+//        Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/loginPage.fxml"));
+//        Stage loginStage = new Stage();
+//        loginStage.initStyle(StageStyle.DECORATED);
+//        loginStage.setTitle("Login Page");
+//        loginStage.setScene(new Scene(root, 530, 320));
+//        loginStage.getIcons().add(new Image("/images/img.png"));
+//        loginStage.show();
 
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.close();
     }
 
     public void setGenreInRegistrationController() throws Exception {
+        System.out.println("Username: " + username);
         for (Map.Entry<String, Boolean> entry : genreMap.entrySet()) {
             if(entry.getValue())
                 genreRating.put(entry.getKey(),15);
@@ -95,6 +99,7 @@ public class SelectGenre implements Initializable {
 
     public void saveGenres(String username) throws Exception {
         //Method to enter saved genres in DB
+        System.out.println("Username: " + username);
         Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection myConn = DriverManager.getConnection(url, "root", ""); //Connect to database (Requires JDBC) [Default username:root, pw empty]
@@ -125,6 +130,7 @@ public class SelectGenre implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Username: " + username);
         submitButton.setDisable(true);
         final int[] cnt = {0};
         genreCheckBox.add(actionCheckBox);

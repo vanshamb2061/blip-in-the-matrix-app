@@ -1,4 +1,5 @@
 package sample;
+import apiKeys.GlobalData;
 import apiKeys.Services;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -7,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import movies.Movie;
@@ -29,10 +31,15 @@ public class PlayListController implements Initializable {
     private Button backButton;
     @FXML
     private GridPane mainGridPane;
+    @FXML
+    private Label welcomeUserLabel;
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
     Map<String,Integer> genreRatings = new HashMap<String,Integer>();
+
+    String username = GlobalData.getUserId();
+
     Services serviceObject = new Services();
 
     public void backButtonOnAction(ActionEvent e){
@@ -49,7 +56,6 @@ public class PlayListController implements Initializable {
         Statement statement= myConn.createStatement();
         JSONObject jsonObject = movieobj.getJsonObject();
         int movieid = jsonObject.getInt("id");
-        String username = "ambashtavansh";
         String query="INSERT INTO `playlist`(`MovieID`, `Username`) VALUES (?,?)";
         PreparedStatement preStat = myConn.prepareStatement(query);
         System.out.println("Query written");
@@ -69,8 +75,6 @@ public class PlayListController implements Initializable {
 
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection connection = DriverManager.getConnection(url, "root", "");
-
-        String username = "ambashtavansh";
 
         Statement stm = connection.createStatement();
 
@@ -169,6 +173,7 @@ public class PlayListController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            welcomeUserLabel.setText("Welcome to your Playlist");
             ResultSet res = findPlaylistMoviesInDB();
             List<Movie> playlistArr = searchPlaylist(res);
 

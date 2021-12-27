@@ -1,5 +1,6 @@
 package sample;
 
+import apiKeys.GlobalData;
 import apiKeys.Services;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -39,10 +40,14 @@ public class WatchListController implements Initializable {
     private Button backButton;
     @FXML
     private GridPane mainGridPane;
+    @FXML
+    private Label welcomeUserLabel;
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
     Map<String,Integer> genreRatings = new HashMap<String,Integer>();
+
+    String username = GlobalData.getUserId();
 
     Services serviceObject = new Services();
 
@@ -58,7 +63,6 @@ public class WatchListController implements Initializable {
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection connection = DriverManager.getConnection(url, "root", "");
 
-        String username = "ambashtavansh";
 
         Statement stm = connection.createStatement();
 
@@ -156,6 +160,7 @@ public class WatchListController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            welcomeUserLabel.setText("Welcome to your Watchlist");
             ResultSet res = findLikedMoviesInDB();
             List<Movie> likedMoviesArray = searchLikedMovies(res);
 

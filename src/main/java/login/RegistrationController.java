@@ -1,4 +1,5 @@
 package login;
+import apiKeys.GlobalData;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,6 +45,7 @@ public class RegistrationController {
     int selectionCnt = 0;
     public void registerButtonOnAction(ActionEvent event) throws Exception {
         //Method to handle registration
+        String username = usernameTextField.getText();
         Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection myConn = DriverManager.getConnection(url, "root", ""); //Connect to database (Requires JDBC) [Default username:root, pw empty]
@@ -66,6 +68,7 @@ public class RegistrationController {
                     && setPasswordField.getText().equals(setPasswordField.getText())) {
                 preStat.executeUpdate();
                 System.out.println("Query executed!");
+                GlobalData.setUserId(username);
 
                 Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/selectGenre.fxml"));
                 System.out.println("FXML file loaded!");

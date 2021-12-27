@@ -11,7 +11,7 @@ public class GlobalData {
         return userId;
     }
 
-    public static void setUserAge(String userAge){
+    public static void setUserAge(Integer userAge){
         userAge = userAge;
     }
     public static Integer getUserAge(){

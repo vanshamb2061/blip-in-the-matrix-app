@@ -1,4 +1,4 @@
-package sample;
+package login;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,15 +13,12 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.*;
-
-import sample.RegistrationController;
 
 //Class to select preferred genres after registration
 

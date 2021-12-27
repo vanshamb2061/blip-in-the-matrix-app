@@ -1,4 +1,4 @@
-package sample;
+package login;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
+import sample.DashboardController;
 
 //Method to handle login
 

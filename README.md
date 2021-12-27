@@ -51,11 +51,17 @@ and copy following code in that file
 
 **Search By Movie Name**
 1. User can Search Movies by its Name
-![image](https://user-images.githubusercontent.com/72067719/147487720-5a43213b-342d-4ba8-b459-9141e0439c23.png)
+![image](https://user-images.githubusercontent.com/72067719/147489167-6c0fe8a7-ec8d-45bb-a5ca-9c2d75be8e48.png)
+
+**Search By Genre**
+1. User can Search Movies based on Genre type of the Movie
+![image](https://user-images.githubusercontent.com/72067719/147489252-9ec82e9b-43a9-4c5a-9ad4-97e719711793.png)
+![image](https://user-images.githubusercontent.com/72067719/147489262-96d4de29-53df-4888-86db-d9e042ee32cb.png)
 
 **Search By Release Year**
 1. User can Search Movies by its Year of Release
-![image](https://user-images.githubusercontent.com/72067719/147487766-d7f382dd-f6f0-4626-b31d-a9454277f4c1.png)
+![image](https://user-images.githubusercontent.com/72067719/147489386-f1f37f47-6cb3-4d93-bd0a-9009a96fa89a.png)
+
 
 **Movie Info**
 1. When User clicks on movie poster this page shows him full detail of movies

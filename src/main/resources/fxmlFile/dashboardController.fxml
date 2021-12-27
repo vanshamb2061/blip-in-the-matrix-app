@@ -72,17 +72,21 @@
                         <Insets bottom="-20.0" />
                      </padding>
                   </StackPane>
-                  <Label onMousePressed="#mousePressedOnMyProfile" prefHeight="54.0" prefWidth="130.0" styleClass="selected" stylesheets="@../CSS/style.css" text="My Profile" textFill="#8da3c7" underline="true">
-                     <font>
-                        <Font name="Microsoft YaHei Bold" size="14.0" />
-                     </font>
-                     <effect>
-                        <DropShadow spread="0.34" />
-                     </effect>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
+                  <HBox styleClass="selected">
+                     <children>
+                        <Label onMousePressed="#mousePressedOnMyProfile" prefHeight="54.0" prefWidth="130.0" styleClass="selected" stylesheets="@../CSS/style.css" text="My Profile" textFill="#8da3c7" underline="true">
+                           <font>
+                              <Font name="Microsoft YaHei Bold" size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow spread="0.34" />
+                           </effect>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
                   <Separator opacity="0.4" prefHeight="1.0" prefWidth="100.0">
                      <effect>
                         <DropShadow spread="0.25" />

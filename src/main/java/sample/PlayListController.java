@@ -1,4 +1,5 @@
 package sample;
+import apiKeys.Services;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +33,7 @@ public class PlayListController implements Initializable {
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
     Map<String,Integer> genreRatings = new HashMap<String,Integer>();
+    Services serviceObject = new Services();
 
     public void backButtonOnAction(ActionEvent e){
         Stage stage = (Stage) backButton.getScene().getWindow();
@@ -78,7 +80,7 @@ public class PlayListController implements Initializable {
     public List<Movie> searchPlaylist(ResultSet res) throws Exception{
         //Method to take the IDs of all the playlist movies and run API calls to get the movies & return the movies
         HttpURLConnection connection = null;
-        final String mykey = "52dbdefafcc6e3911db1a3409fc33e8a";
+        final String mykey = serviceObject.API_KEY;
         boolean adult = true;
         List<Movie> playlistArr = new ArrayList<>();
 

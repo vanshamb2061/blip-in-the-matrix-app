@@ -2,6 +2,8 @@ package movies;
 
 import org.json.JSONObject;
 
+//Class to get and set attributes like name, img, genre etc.
+
 public class Movie {
     private String name;
     private String imgSrc;
@@ -11,17 +13,6 @@ public class Movie {
     private JSONObject jsonObject;
     private int likes,dislikes;
     private int id;
-
-//    public Movie(String name, String imgSrc, String color, String genre, String year, int likes, int dislikes, int it){
-//        this.id = id;
-//        this.name = name;
-//        this.imgSrc = imgSrc;
-//        this.color = color;
-//        this.genre = genre;
-//        this.year = year;
-//        this.likes=likes;
-//        this.dislikes=dislikes;
-//    }
 
     public JSONObject getJsonObject() {
         return jsonObject;

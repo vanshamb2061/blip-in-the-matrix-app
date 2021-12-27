@@ -1,4 +1,4 @@
-package sample;
+package login;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.*;
 
-import sample.RegistrationController;
+//Class to select preferred genres after registration
 
 public class SelectGenre implements Initializable {
     @FXML
@@ -57,9 +56,7 @@ public class SelectGenre implements Initializable {
 
 
     public void submitButtonOnAction(ActionEvent event) throws Exception {
-        // code to write
-        //sql injection to store data
-
+        //Method to enter selected genres in map
         for(CheckBox genre : genreCheckBox){
             if(genre.isSelected()){
                 genreMap.put(genre.getText(), true);
@@ -97,6 +94,7 @@ public class SelectGenre implements Initializable {
     }
 
     public void saveGenres(String username) throws Exception {
+        //Method to enter saved genres in DB
         Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection myConn = DriverManager.getConnection(url, "root", ""); //Connect to database (Requires JDBC) [Default username:root, pw empty]

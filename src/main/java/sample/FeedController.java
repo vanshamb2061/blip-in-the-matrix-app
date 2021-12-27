@@ -1,5 +1,6 @@
 package sample;
 
+import apiKeys.Services;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +27,11 @@ import java.sql.Statement;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+//Method to do the following:
+//  1. Decide preferred genres on the basis of ratings in DB
+//  2. Fetch movies for those genres using APIs
+//  3. Display the movies
+
 public class FeedController implements Initializable {
     @FXML
     private Button backButton;
@@ -38,11 +44,15 @@ public class FeedController implements Initializable {
 
     List<Movie> feedMovies = new ArrayList<Movie>();
 
+    Services serviceObject = new Services();
+
     public void backButtonOnAction(ActionEvent e){
+        //Method to handle event when back button is clicked
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
     }
     public List<Movie> searchFeed() throws Exception{
+        //Method to fetch movies for feed using API
         String username = "ambashtavansh";
 
         List<String> genreArr = new ArrayList<String>();
@@ -56,7 +66,7 @@ public class FeedController implements Initializable {
         for(String genre:genreArr)
         {
             System.out.println(genre);
-            final String mykey = "52dbdefafcc6e3911db1a3409fc33e8a";
+            final String mykey = serviceObject.API_KEY;
             String tmdbURL = ("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US" + "&with_genres=" + genre + "&page=" + currPage);
             System.out.println(tmdbURL);
             DashboardController dashboardController = new DashboardController();

@@ -1,5 +1,6 @@
 package sample;
 
+import apiKeys.Services;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +32,8 @@ import java.sql.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+//Class to fetch liked movies from DB and use API calls and display them
+
 public class WatchListController implements Initializable {
     @FXML
     private Button backButton;
@@ -40,6 +43,8 @@ public class WatchListController implements Initializable {
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
     Map<String,Integer> genreRatings = new HashMap<String,Integer>();
+
+    Services serviceObject = new Services();
 
     public void backButtonOnAction(ActionEvent e){
         Stage stage = (Stage) backButton.getScene().getWindow();
@@ -63,7 +68,7 @@ public class WatchListController implements Initializable {
     public List<Movie> searchLikedMovies(ResultSet res) throws Exception{
         //Method to take the IDs of all the liked movies and run API calls to get the movies & return the movies
         HttpURLConnection connection = null;
-        final String mykey = "52dbdefafcc6e3911db1a3409fc33e8a";
+        final String mykey = serviceObject.API_KEY;
         boolean adult = true;
         List<Movie> likedMoviesArray = new ArrayList<>();
 

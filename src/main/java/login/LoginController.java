@@ -1,4 +1,4 @@
-package sample;
+package login;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +16,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
+import sample.DashboardController;
+
+//Method to handle login
 
 public class LoginController {
 
@@ -33,6 +36,7 @@ public class LoginController {
     private TextField usernameTextField;
 
     public void clickOnLogin(){
+        //Method to check if the login details are entered correctly
         if(usernameTextField.getText().isEmpty() == false && enterPasswordField.getText().isEmpty() == false){
             //sql injection
             try
@@ -100,6 +104,7 @@ public class LoginController {
     }
 
     public void createRegistrationPage() throws Exception{
+        //Method to load registration page
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/registrationPage.fxml"));
         Stage registrationStage = new Stage();
         registrationStage.initStyle(StageStyle.UNDECORATED);

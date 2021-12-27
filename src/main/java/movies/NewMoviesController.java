@@ -14,6 +14,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+//Class to handle mouseevents on newmovies
+
 public class NewMoviesController {
     @FXML
     private Label genreLabel;
@@ -34,6 +36,7 @@ public class NewMoviesController {
     private Movie tryNewMovie;
 
     public void setData(Movie tryNewMovie){
+        //Method to set data for new movie
         this.tryNewMovie = tryNewMovie;
         titleLabel.setText(tryNewMovie.getName());
         genreLabel.setText(tryNewMovie.getGenre());
@@ -43,6 +46,7 @@ public class NewMoviesController {
     }
 
     public void mousePressedOnPoster(MouseEvent mouseEvent) throws Exception{
+        //Method to handle mouseevent when user clicks on poster
         System.out.println("user clicked on movie, show him movie description");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/movieInfo.fxml"));
         Parent root = loader.load();
@@ -59,6 +63,7 @@ public class NewMoviesController {
     }
 
     public void mousePressedOnLike(MouseEvent mouseEvent) {
+        //Method to handle mouse event when user clicks on like
         clicked = !clicked;
         if(clicked == true) {
             System.out.println("user liked this movie, added this to his favorites");

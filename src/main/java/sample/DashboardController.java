@@ -34,6 +34,11 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+//Method to handle the following:
+//  1. All mouseevents on dashboard
+//  2. Fetching movies using TMDB api calls
+//  3. Loading and displaying movies
+
 public class DashboardController implements Initializable {
     //code yet to write
     @FXML
@@ -65,7 +70,7 @@ public class DashboardController implements Initializable {
     int searchPg = 1;
 
     public List<Movie> getData(String tmdbURL) throws Exception {
-        //method to fetch data
+        //method to fetch data from TMDB API, gets String URL as arguement
         HttpURLConnection connection = null;
 
         URL url = new URL(tmdbURL);
@@ -124,6 +129,7 @@ public class DashboardController implements Initializable {
 
     private List<Movie> movies ;
     public void updateMoviesOnDashboard(String tmdbURL){
+        //Display the movies on the dashboard
         try {
             boolean adult = false;
             final String mykey = serviceObject.API_KEY;
@@ -153,6 +159,7 @@ public class DashboardController implements Initializable {
 
     private final List<Movie> tryNewMovies = new ArrayList<>();
     public void updateSideMovieOnDashboard(){
+        //Method to display movies on the side on dashboard
         try {
             final String mykey = serviceObject.API_KEY;
             boolean adult = true;
@@ -183,6 +190,7 @@ public class DashboardController implements Initializable {
 
     private List<Movie> searchMoviesArray ;
     public void updateMoviesOnDashboardOnSearch(){
+        //Method to handle search on dashboard
         try {
             final String myKey = serviceObject.API_KEY;
             boolean adult = true;
@@ -212,6 +220,7 @@ public class DashboardController implements Initializable {
     }
 
     public void updateMoviesByGenre(String id){
+        //Method to update movies by genre, takes string id as arguement
         movies = new ArrayList<>();
         mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
@@ -229,6 +238,7 @@ public class DashboardController implements Initializable {
 
     @FXML
     void keyPressedOnSearchMovies(KeyEvent event) throws Exception{
+        //Method to handle keyevent when key pressed on search movies
         if(event.getCode().equals(KeyCode.ENTER)){
             searchMoviesArray = new ArrayList<>();
             System.out.println(searchMovies.getText()=="");
@@ -265,6 +275,7 @@ public class DashboardController implements Initializable {
 
     @FXML
     void nextButtonOnAction(ActionEvent event) throws Exception {
+        //Method for when the next Button is clicked
         Current_Pg = Current_Pg + 1;
         prevButton.setDisable(false);
         movies = new ArrayList<>();
@@ -281,6 +292,7 @@ public class DashboardController implements Initializable {
     }
     @FXML
     void prevButtonOnAction(ActionEvent event) throws Exception{
+        //Method for when previous button is clicked
         Current_Pg = Current_Pg - 1;
         if(Current_Pg == 1){
             prevButton.setDisable(true);
@@ -306,6 +318,7 @@ public class DashboardController implements Initializable {
     }
 
     public void mousePressedOnWatchList(MouseEvent mouseEvent) throws IOException {
+        //Method to load new stage when watchlist is clicked on sidebar
         System.out.println("here you'll find all your saved watchlist");
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/watchListPage.fxml"));
         Stage watchListStage = new Stage();
@@ -314,6 +327,7 @@ public class DashboardController implements Initializable {
     }
 
     public void mousePressedOnFeed(MouseEvent mouseEvent) throws Exception {
+        //Method to load new stage when feed is clicked on sidebar
         System.out.println("Here you'll find all your feed movies");
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/feedPage.fxml"));
         Stage FeedStage = new Stage();
@@ -322,6 +336,7 @@ public class DashboardController implements Initializable {
     }
 
     public void mousePressedOnPlaylist(MouseEvent mouseEvent) throws Exception {
+        //Method to load new stage when playlist is clicked on sidebar
         System.out.println("Here you'll find all your playlist movies");
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/playlistPage.fxml"));
         Stage FeedStage = new Stage();
@@ -333,7 +348,8 @@ public class DashboardController implements Initializable {
         System.out.println("Here is the list of all your friends");
     }
 
-    public void mousePressedOnRefreshImageView(MouseEvent mouseEvent) {
+    public void mousePressedOnRefreshImageView(MouseEvent mouseEvent)
+    {   //Method to refresh
         System.out.println("refresh to get new recommendations");
         mainFlowPane.getChildren().clear();
         new Thread(new Runnable() {
@@ -359,6 +375,7 @@ public class DashboardController implements Initializable {
 
     }
     public void logOutButtonOnAction(ActionEvent event) throws IOException {
+        //Method to log out
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout!");
         alert.setHeaderText("You're about to logout");

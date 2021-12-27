@@ -1,6 +1,3 @@
 /target
 /target/classes
 /src/main/java/apiKeys/Services.java
-/src/main/java/apiKeys/Flow.java
-/src/main/java/apiKeys/FlowPaneController.java
-/src/main/resources/fxmlFile/flowpane.fxml

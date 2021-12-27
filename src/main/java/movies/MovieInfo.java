@@ -20,6 +20,7 @@ import javafx.stage.StageStyle;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import apiKeys.Services;
+import sample.PlayListController;
 
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -49,14 +50,19 @@ public class MovieInfo implements Initializable {
     private ImageView addImageView;
 
     Movie movieObj;
+
+    //this is used to get apiKeys which is store secretly
     Services serviceObject = new Services();
-    private boolean clicked = false;
+    private boolean isClickedLike = false;
+    private boolean isClickedPlus = false;
+
+    // this is used to add movies to in favorite list of user
     @FXML
     void mousePressedOnAddToFavorites(MouseEvent event) {
         //Method to handle mouseevent when user hits the "like"
         System.out.println("movie added to the favorites");
-        clicked = !clicked;
-        if(clicked == true) {
+        isClickedLike = !isClickedLike;
+        if(isClickedLike == true) {
             System.out.println("movie added to the favorites");
             Image image = new Image(("/images/blueLove.png"));
             likeImageView.setImage(image);
@@ -74,6 +80,8 @@ public class MovieInfo implements Initializable {
         likeImageView.setEffect(d);
     }
 
+    //this is used to play trailer it creates a new scene and play trailer
+    // this is done using webView
     @FXML
     void mousePressedOnPlayTrailer(MouseEvent event) throws Exception{
         //Method to play trailer on mousevent when user hits play
@@ -150,6 +158,9 @@ public class MovieInfo implements Initializable {
         playTrailerStage.show();*/
 
     }
+
+    //this function is called from dashboard to set the bakcground image name and everything which is shown on scene
+    //this also sends the movieObject from movies controller when clicked
     public void setEverythingInMovieInfo(Movie movie) throws Exception{
         //Method to set everything for movie object
         movieObj = movie;
@@ -166,16 +177,43 @@ public class MovieInfo implements Initializable {
         //String video = jsonObject.getString("video");
     }
 
+
+    // this is used to close the movieINfo page
     @FXML
     void mousePressedOnCancel2(MouseEvent event) {
         Stage stage = (Stage) cancelImageView.getScene().getWindow();
         stage.close();
     }
 
+    //this fun activate when we click add to watchlist this is used to store the clicked movie into watchlist data
     @FXML
-    void mousePressedOnAddToWatchList(MouseEvent event) {
-        System.out.println("movie added to watchList");
+    void mousePressedOnAddToWatchList(MouseEvent event) throws Exception {
+
+        isClickedLike = !isClickedLike;
+        if(isClickedLike == true) {
+            System.out.println("movie added to watchList");
+            Image image = new Image(("images/filledPlusIcon.png"));
+            addImageView.setImage(image);
+            addImageView.setFitWidth(29);
+            addImageView.setFitHeight(30);
+        }else{
+            System.out.println("movie removed from watchList");
+            Image image = new Image("images/unFilledPlusIcon.png");
+            addImageView.setImage(image);
+            addImageView.setFitWidth(29);
+            addImageView.setFitHeight(30);
+        }
+        DropShadow d = new DropShadow();
+        d.setSpread(0.66);
+        addImageView.setEffect(d);
+        System.out.println(movieObj.getName());
+        PlayListController playListController = new PlayListController();
+        playListController.addMovietoPlaylist(movieObj);
+
     }
+
+    //this function is used to initalize when first start
+    //currently it is empty
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

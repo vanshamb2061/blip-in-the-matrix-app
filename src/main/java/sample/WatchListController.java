@@ -40,6 +40,8 @@ public class WatchListController implements Initializable {
     private Button backButton;
     @FXML
     private GridPane mainGridPane;
+    @FXML
+    private Label welcomeUserLabel;
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
@@ -158,6 +160,7 @@ public class WatchListController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            welcomeUserLabel.setText("Welcome to your Watchlist");
             ResultSet res = findLikedMoviesInDB();
             List<Movie> likedMoviesArray = searchLikedMovies(res);
             updateLikedMovies(likedMoviesArray);

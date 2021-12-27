@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import movies.Movie;
@@ -30,6 +31,8 @@ public class PlayListController implements Initializable {
     private Button backButton;
     @FXML
     private GridPane mainGridPane;
+    @FXML
+    private Label welcomeUserLabel;
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
@@ -170,6 +173,7 @@ public class PlayListController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            welcomeUserLabel.setText("Welcome to your Playlist");
             ResultSet res = findPlaylistMoviesInDB();
             List<Movie> playlistArr = searchPlaylist(res);
             updatePlaylistMovies(playlistArr);

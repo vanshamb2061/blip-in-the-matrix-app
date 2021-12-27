@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import movies.Movie;
@@ -38,6 +39,8 @@ public class FeedController implements Initializable {
     private Button backButton;
     @FXML
     private GridPane mainGridPane;
+    @FXML
+    private Label welcomeUserLabel;
 
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
@@ -133,6 +136,7 @@ public class FeedController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         GenreMapController genreMapController = new GenreMapController();
         try {
+            welcomeUserLabel.setText("Welcome to your Feed");
             genreRatings = genreMapController.getMap(username);
             genreIdMap = genreMapController.getStringtoIDMap();
             searchFeed();

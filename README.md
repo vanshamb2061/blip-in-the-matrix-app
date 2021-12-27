@@ -32,6 +32,22 @@ and copy following code in that file
 ![img_3.png](img_3.png)
 4. Backend inserts a record in the "genre" table to keep track of genre ratings (which influence the feed) when user clicks "Submit".
 
+
+**Dashboard**
+1. Home page of the dashboard fetches the latest movies from the TMDB API and displays them on the screen
+![img_4.png](img_4.png)
+2. Multiple pages are displayed and can be navigated using the "Next" and "Previous" button
+3. Sidebar has multiple options like "Movies", "Watchlist", "Feed", "Friends", "Playlist"
+
+**Watchlist**
+1. Watchlist page shows all of the user's liked movies.
+![img_5.png](img_5.png)
+
+**Feed**
+1. Feed page shows movies based upon the user's like history and preferred genres (taken at the time of signup).
+![img_6.png](img_6.png)
+
+
 package apiKeys;
 
 public class Services {

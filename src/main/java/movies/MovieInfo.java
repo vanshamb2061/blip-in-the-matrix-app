@@ -20,6 +20,7 @@ import javafx.stage.StageStyle;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import apiKeys.Services;
+import sample.LikeController;
 import sample.PlayListController;
 
 import java.awt.event.ActionEvent;
@@ -58,7 +59,7 @@ public class MovieInfo implements Initializable {
 
     // this is used to add movies to in favorite list of user
     @FXML
-    void mousePressedOnAddToFavorites(MouseEvent event) {
+    void mousePressedOnAddToFavorites(MouseEvent event) throws Exception {
         //Method to handle mouseevent when user hits the "like"
         System.out.println("movie added to the favorites");
         isClickedLike = !isClickedLike;
@@ -68,6 +69,9 @@ public class MovieInfo implements Initializable {
             likeImageView.setImage(image);
             likeImageView.setFitWidth(29);
             likeImageView.setFitHeight(30);
+
+            LikeController likeController = new LikeController();
+            likeController.addLikedMovietoDB(movieObj);
         }else{
             System.out.println("movie removed from his favorites");
             Image image = new Image(("/images/unfilledLike.png"));

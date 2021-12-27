@@ -18,6 +18,8 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+//Class to handle registrations
+
 public class RegistrationController {
     @FXML
     private Button registerButton;
@@ -41,7 +43,7 @@ public class RegistrationController {
     private PasswordField confirmPasswordField;
     int selectionCnt = 0;
     public void registerButtonOnAction(ActionEvent event) throws Exception {
-        //SQL injection
+        //Method to handle registration
         Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection myConn = DriverManager.getConnection(url, "root", ""); //Connect to database (Requires JDBC) [Default username:root, pw empty]

@@ -28,6 +28,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+//Class for movie info
+
 public class MovieInfo implements Initializable {
 
     @FXML
@@ -48,6 +50,7 @@ public class MovieInfo implements Initializable {
     private boolean clicked = false;
     @FXML
     void mousePressedOnAddToFavorites(MouseEvent event) {
+        //Method to handle mouseevent when user hits the "like"
         System.out.println("movie added to the favorites");
         clicked = !clicked;
         if(clicked == true) {
@@ -70,7 +73,7 @@ public class MovieInfo implements Initializable {
 
     @FXML
     void mousePressedOnPlayTrailer(MouseEvent event) throws Exception{
-
+        //Method to play trailer on mousevent when user hits play
         HttpURLConnection connection = null;
         final String mykey = serviceObject.API_KEY;
         boolean adult = true;
@@ -145,6 +148,7 @@ public class MovieInfo implements Initializable {
 
     }
     public void setEverythingInMovieInfo(Movie movie) throws Exception{
+        //Method to set everything for movie object
         movieObj = movie;
         JSONObject jsonObject = movie.getJsonObject();
         //System.out.println(jsonObject);

@@ -26,6 +26,11 @@ import java.sql.Statement;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+//Method to do the following:
+//  1. Decide preferred genres on the basis of ratings in DB
+//  2. Fetch movies for those genres using APIs
+//  3. Display the movies
+
 public class FeedController implements Initializable {
     @FXML
     private Button backButton;
@@ -39,10 +44,12 @@ public class FeedController implements Initializable {
     List<Movie> feedMovies = new ArrayList<Movie>();
 
     public void backButtonOnAction(ActionEvent e){
+        //Method to handle event when back button is clicked
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
     }
     public List<Movie> searchFeed() throws Exception{
+        //Method to fetch movies for feed using API
         String username = "ambashtavansh";
 
         List<String> genreArr = new ArrayList<String>();

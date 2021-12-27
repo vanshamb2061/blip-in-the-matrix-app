@@ -39,7 +39,7 @@ public class PlayListController implements Initializable {
     }
 
     public void addMovietoPlaylist(Movie movieobj) throws Exception {
-        //SQL injection
+        //Add movie to playlist table in DB
         System.out.println("addMovietoPlaylist Entered");
         Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
@@ -76,7 +76,7 @@ public class PlayListController implements Initializable {
         return stm.executeQuery(sql);
     }
     public List<Movie> searchPlaylist(ResultSet res) throws Exception{
-        //Method to take the IDs of all the liked movies and run API calls to get the movies & return the movies
+        //Method to take the IDs of all the playlist movies and run API calls to get the movies & return the movies
         HttpURLConnection connection = null;
         final String mykey = "52dbdefafcc6e3911db1a3409fc33e8a";
         boolean adult = true;
@@ -116,7 +116,7 @@ public class PlayListController implements Initializable {
     }
 
     public void updatePlaylistMovies(List<Movie> playlistArr){
-        //Method to display all the liked movies
+        //Method to display all the playlist movies
         AtomicInteger col = new AtomicInteger();
         int row = 1;
         try{

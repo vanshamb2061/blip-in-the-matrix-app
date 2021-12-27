@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+//Class to handle likes
+
 public class LikeController implements Initializable {
 
     Map<String, Integer > genreRatings = new HashMap<String, Integer>();
@@ -31,7 +33,7 @@ public class LikeController implements Initializable {
     Map<String, String > genreIdMap = new HashMap<String, String>();
 
     public void addLikedMovietoDB(Movie movieobj) throws Exception {
-        //SQL injection
+        //Method to add movie to the DB
         Class.forName("com.mysql.cj.jdbc.Driver");
         String url = "jdbc:mysql://localhost:3306/watchlistproject";
         Connection myConn = DriverManager.getConnection(url, "root", ""); //Connect to database (Requires JDBC) [Default username:root, pw empty]
@@ -52,6 +54,7 @@ public class LikeController implements Initializable {
     }
 
     public void updateRatings(Movie movie) throws Exception {
+        //Method to update Ratings for each liked movie
         genreRatings.put("Action",0);
         genreRatings.put("Comedy",0);
         genreRatings.put("Drama",0);

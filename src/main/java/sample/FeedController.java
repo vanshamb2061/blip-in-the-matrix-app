@@ -1,5 +1,6 @@
 package sample;
 
+import apiKeys.Services;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,6 +44,8 @@ public class FeedController implements Initializable {
 
     List<Movie> feedMovies = new ArrayList<Movie>();
 
+    Services serviceObject = new Services();
+
     public void backButtonOnAction(ActionEvent e){
         //Method to handle event when back button is clicked
         Stage stage = (Stage) backButton.getScene().getWindow();
@@ -63,7 +66,7 @@ public class FeedController implements Initializable {
         for(String genre:genreArr)
         {
             System.out.println(genre);
-            final String mykey = "52dbdefafcc6e3911db1a3409fc33e8a";
+            final String mykey = serviceObject.API_KEY;
             String tmdbURL = ("https://api.themoviedb.org/3/discover/movie?api_key=" + mykey + "&language=en-US" + "&with_genres=" + genre + "&page=" + currPage);
             System.out.println(tmdbURL);
             DashboardController dashboardController = new DashboardController();

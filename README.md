@@ -48,6 +48,24 @@ and copy following code in that file
 ![img_6.png](img_6.png)
 
 
+
+**Search By Movie Name**
+1. User can Search Movies by its Name
+![image](https://user-images.githubusercontent.com/72067719/147487720-5a43213b-342d-4ba8-b459-9141e0439c23.png)
+
+**Search By Release Year**
+1. User can Search Movies by its Year of Release
+![image](https://user-images.githubusercontent.com/72067719/147487766-d7f382dd-f6f0-4626-b31d-a9454277f4c1.png)
+
+**Movie Info**
+1. When User clicks on movie poster this page shows him full detail of movies
+2. Here User can also add Movies to its playlist, watchList
+![image](https://user-images.githubusercontent.com/72067719/147487794-246ee4db-3ce9-446c-91c5-4a0f1a6b72f8.png)
+
+**Trailer**
+1. This page shows Trailer of selected Movie
+![image](https://user-images.githubusercontent.com/72067719/147487810-bd35b68b-24e1-4892-a3a3-3994b1be5825.png)
+
 package apiKeys;
 
 public class Services {

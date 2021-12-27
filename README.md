@@ -10,6 +10,11 @@ To fetch the movie data you have to register on TMDB and generate an  api_key
 Now create a package inside src/main/java named as **apiKeys**
 Create a java class file inside the apiKeys package named as **Services.java**
 and copy following code in that file
+package apiKeys;
+
+1.   public class Services {
+    final public String API_KEY = "{name of your apiKey}";
+}
 
 **Login**
 ![img.png](img.png)
@@ -72,9 +77,4 @@ and copy following code in that file
 1. This page shows Trailer of selected Movie
 ![image](https://user-images.githubusercontent.com/72067719/147487810-bd35b68b-24e1-4892-a3a3-3994b1be5825.png)
 
-package apiKeys;
 
-public class Services {
-    final public String API_KEY = "{name of your apiKey}";
-}
-**

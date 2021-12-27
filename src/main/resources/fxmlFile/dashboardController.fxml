@@ -151,15 +151,15 @@
                         </HBox>
                         <HBox styleClass="selected" stylesheets="@../CSS/style.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" onMousePressed="#mousePressedOnLiked" pickOnBounds="true" preserveRatio="true" styleClass="selected" HBox.hgrow="ALWAYS">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="selected" HBox.hgrow="ALWAYS">
                                  <image>
-                                    <Image url="@../images/blueLove.png" />
+                                    <Image url="@../images/refresh.png" />
                                  </image>
                                  <effect>
                                     <DropShadow spread="0.34" />
                                  </effect>
                               </ImageView>
-                              <Label onMousePressed="#mousePressedOnLiked" prefHeight="30.0" prefWidth="100.0" text="Liked" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
+                              <Label onMousePressed="#mousePressedOnFeed" prefHeight="30.0" prefWidth="100.0" text="Feed" textFill="#8da3c7" underline="true" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font name="Microsoft YaHei Bold" size="14.0" />
                                  </font>

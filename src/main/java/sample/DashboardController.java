@@ -23,6 +23,7 @@ import movies.NewMoviesController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import apiKeys.Services;
+import apiKeys.GlobalData;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -364,6 +365,7 @@ public class DashboardController implements Initializable {
     /*    ThreadClasses.RenderDashboardMovies setDashboardMovies = new ThreadClasses.RenderDashboardMovies(this);
         Thread thread = new Thread(setDashboardMovies);
 */
+        System.out.println();
         Thread thread1 = new Thread(new Runnable() {
             @Override public void run() {
                 boolean adult = true;
@@ -384,7 +386,8 @@ public class DashboardController implements Initializable {
 
         thread1.start();
         thread2.start();
-
+        GlobalData.setUserId("check kr rha vro");
+        System.out.println(GlobalData.getUserId());
         prevButton.setDisable(true);
         //hashmap initialization
         genreIdMap.put("28","Action");

@@ -131,13 +131,13 @@
                <children>
                   <ImageView fx:id="addImageView" fitHeight="30.0" fitWidth="29.0" onMousePressed="#mousePressedOnAddToWatchList" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/addToWatchList.png" />
+                        <Image url="@../images/unFilledPlusIcon.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="30.0" top="10.0" />
                      </HBox.margin>
                      <effect>
-                        <DropShadow spread="0.61" />
+                        <DropShadow spread="0.66" />
                      </effect>
                   </ImageView>
                   <Label onMousePressed="#mousePressedOnAddToWatchList" text="ADD TO WATCHLIST" textFill="WHITE">

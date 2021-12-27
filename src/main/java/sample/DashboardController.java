@@ -335,7 +335,7 @@ public class DashboardController implements Initializable {
         System.out.println("Recommending movies you may like");
     }
 
-    //this is used to show the wachlist movies stored by user
+    //this is used to show the Liked movies stored by user
     public void mousePressedOnWatchList(MouseEvent mouseEvent) throws IOException {
         //Method to load new stage when watchlist is clicked on sidebar
         System.out.println("here you'll find all your saved watchlist");
@@ -345,7 +345,8 @@ public class DashboardController implements Initializable {
         watchListStage.show();
     }
 
-    //this is used to show the liked movies stored by user
+    //this is used to show the feed stored by user
+    //Feed is the personalized list of movies fetched from TMDB based upon user's like history
     public void mousePressedOnFeed(MouseEvent mouseEvent) throws Exception {
         //Method to load new stage when feed is clicked on sidebar
         System.out.println("Here you'll find all your feed movies");
@@ -370,7 +371,7 @@ public class DashboardController implements Initializable {
         System.out.println("Here is the list of all your friends");
     }
 
-    //this refresh the dahsboard and shows the movie list
+    //this refresh the dashboard and shows the movie list
     public void mousePressedOnRefreshImageView(MouseEvent mouseEvent) {   //Method to refresh
         System.out.println("refresh to get new recommendations");
         mainFlowPane.getChildren().clear();
@@ -396,7 +397,6 @@ public class DashboardController implements Initializable {
     void mousePressedOnPagination(MouseEvent event) {
         System.out.println("pagination");
         System.out.println(pagination.getCurrentPageIndex());
-
     }
     // it logout from the dashboard
     public void logOutButtonOnAction(ActionEvent event) throws IOException {

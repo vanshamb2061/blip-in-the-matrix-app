@@ -21,6 +21,8 @@ import sample.PlayListController;
 
 import java.io.IOException;
 
+//Class to handle mouse events on movies
+
 public class MoviesController {
 
     @FXML
@@ -45,6 +47,7 @@ public class MoviesController {
     public boolean clicked = false;
 
     public void setData(Movie movie){
+        // Method to set data for movies
         this.movie = movie;
         titleLabel.setText(movie.getName());
         genreLabel.setText(movie.getGenre());
@@ -60,6 +63,7 @@ public class MoviesController {
 
 
     public void mousePressedOnPoster(MouseEvent mouseEvent) throws Exception{
+        //Method to display poster for mouse event when user clicks on poster
         System.out.println("user clicked on movie, show him movie description");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/movieInfo.fxml"));
         Parent root = loader.load();
@@ -76,6 +80,7 @@ public class MoviesController {
     }
 
     public void mousePressedOnLike(MouseEvent mouseEvent) throws Exception {
+        //Method to handle mouseevent when user clicks "like"
         clicked = !clicked;
         if(clicked == true) {
             System.out.println("user liked this movie, added this to his favorites");
@@ -123,11 +128,10 @@ public class MoviesController {
     }
 
     public void mousePressedOnAdd(MouseEvent mouseEvent) throws Exception {
+        //Method to handle mouseevent when user clicks on "add to playlist"
         System.out.println("Mouse pressed on add to playlist");
         PlayListController playListController = new PlayListController();
         playListController.addMovietoPlaylist(movie);
-
-
     }
 
 }

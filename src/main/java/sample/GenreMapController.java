@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+//Class to handle GenreMap as it is needed by multiple methods in other classes
+
 public class GenreMapController {
 
     Map<String, Integer > genreRatings = new HashMap<String, Integer>();
@@ -18,6 +20,7 @@ public class GenreMapController {
     Map<String, String > genreIdtoStringMap = new HashMap<String, String>();
 
     public Map<String,String> getStringtoIDMap(){
+        //Send map to link genre names and genre ids
         genreStringtoIdMap.put("Action","28");
         genreStringtoIdMap.put("Comedy","35");
         genreStringtoIdMap.put("Drama","18");
@@ -31,6 +34,7 @@ public class GenreMapController {
     }
 
     public Map<String, Integer> getMap(String username) throws Exception {
+        //Method to fetch genre ratigns for a user from DB and return it in the form of map
         genreRatings.put("Action",0);
         genreRatings.put("Comedy",0);
         genreRatings.put("Drama",0);

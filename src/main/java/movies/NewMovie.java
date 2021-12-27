@@ -2,6 +2,8 @@ package movies;
 
 import org.json.JSONObject;
 
+//Class to get & set data for new movies
+
 public class NewMovie {
     private String name;
     private String imgSrc;

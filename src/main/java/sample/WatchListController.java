@@ -31,6 +31,8 @@ import java.sql.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+//Class to fetch liked movies from DB and use API calls and display them
+
 public class WatchListController implements Initializable {
     @FXML
     private Button backButton;

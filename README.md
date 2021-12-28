@@ -46,14 +46,19 @@ public class Services {
 2. Multiple pages are displayed and can be navigated using the "Next" and "Previous" button
 3. Sidebar has multiple options like "Movies", "Watchlist", "Feed", "Friends", "Playlist"
 
-**Watchlist**
-1. Watchlist page shows all of the user's liked movies.
-![img_5.png](src/main/resources/images/img_5.png)
-
 **Feed**
 1. Feed page shows movies based upon the user's like history and preferred genres (taken at the time of signup).
-![img_6.png](src/main/resources/images/img_6.png)
+![image](https://user-images.githubusercontent.com/72067719/147543852-ee391f01-198f-4f57-92a6-c5257a82b5b2.png)
 
+
+**Watchlist**
+1. Watchlist page shows all of the user's liked movies.
+![image](https://user-images.githubusercontent.com/72067719/147543827-0aa5d3a2-a728-4125-944c-a18afbb2fca8.png)
+
+
+**Playlist**
+1. Playlist page shows all of the user's add to playlist movies.
+![image](https://user-images.githubusercontent.com/72067719/147543990-ab8b940e-491f-4472-92c3-42fb6e53afef.png)
 
 
 **Search By Movie Name**

@@ -1,4 +1,4 @@
-# WatchList_App by Team Ek Mistri Do Majdur
+# WatchList
 
 1. A desktop App where a user will get recommendations based on their preferences (taken at the time of registration) & like history.
 2. Users can like and view their favourite movies using the "watchlist" feature on the sidebar

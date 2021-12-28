@@ -38,7 +38,7 @@ public class FeedController implements Initializable {
     @FXML
     private Button backButton;
     @FXML
-    private GridPane mainGridPane;
+    private FlowPane mainFlowPane;
     @FXML
     private Label welcomeUserLabel;
 
@@ -86,8 +86,7 @@ public class FeedController implements Initializable {
 
     public void updateFeedMovies(){
         //Method to display all the liked movies
-        AtomicInteger col = new AtomicInteger();
-        int row = 1;
+
         try{
             for (Movie movie : feedMovies) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -97,36 +96,11 @@ public class FeedController implements Initializable {
                 MoviesController movieController = fxmlLoader.getController();
                 movieController.setData(movie);
 
-                ColumnConstraints colConstraint = new ColumnConstraints();
-                colConstraint.setHgrow(Priority.SOMETIMES);
-
-                RowConstraints rowConstraints = new RowConstraints();
-                rowConstraints.setVgrow(Priority.SOMETIMES);
-
-                mainGridPane.getColumnConstraints().add(colConstraint);
-                mainGridPane.getRowConstraints().add(rowConstraints);
-
-                if (col.get() == 4) {
-                    row++;
-                    col.set(0);
-
-                }
-                int finalRow = row;
                 Platform.runLater(()->{
-                    mainGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
-                    //set gridPane width
-                    mainGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                    mainGridPane.setFillWidth(anchorPane, true);
-                    //set gridPane height
-                    mainGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxHeight(Region.USE_PREF_SIZE);
-                    mainGridPane.setFillHeight(anchorPane, true);
+                    mainFlowPane.getChildren().add(anchorPane);
                 });
 
-                GridPane.setMargin(anchorPane, new Insets(10));
+                FlowPane.setMargin(anchorPane, new Insets(15));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -141,7 +115,7 @@ public class FeedController implements Initializable {
             genreIdMap = genreMapController.getStringtoIDMap();
             searchFeed();
 
-            mainGridPane.getChildren().clear();
+            mainFlowPane.getChildren().clear();
             new Thread(new Runnable() {
                 @Override public void run() {
                     boolean adult = false;

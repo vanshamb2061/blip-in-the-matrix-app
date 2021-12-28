@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,6 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import movies.Movie;
@@ -332,7 +334,7 @@ public class DashboardController implements Initializable {
         }).start();
     }
 
-    //this is used to show the myprofiel page
+    //this is used to show the myProfile page
     public void mousePressedOnMyProfile(MouseEvent mouseEvent) {
         System.out.println("forwarding you to your profile");
     }
@@ -349,6 +351,10 @@ public class DashboardController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/watchListPage.fxml"));
         Stage watchListStage = new Stage();
         watchListStage.setScene(new Scene(root));
+        watchListStage.setTitle("WatchList Page");
+        watchListStage.getIcons().add(new Image("/images/img.png"));
+        watchListStage.initModality(Modality.APPLICATION_MODAL);
+        watchListStage.initOwner(((Node)mouseEvent.getSource()).getScene().getWindow() );
         watchListStage.show();
     }
 
@@ -360,6 +366,10 @@ public class DashboardController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/feedPage.fxml"));
         Stage FeedStage = new Stage();
         FeedStage.setScene(new Scene(root));
+        FeedStage.setTitle("Feed Page");
+        FeedStage.getIcons().add(new Image("/images/img.png"));
+        FeedStage.initModality(Modality.APPLICATION_MODAL);
+        FeedStage.initOwner(((Node)mouseEvent.getSource()).getScene().getWindow() );
         FeedStage.show();
     }
 
@@ -368,9 +378,13 @@ public class DashboardController implements Initializable {
         //Method to load new stage when playlist is clicked on sidebar
         System.out.println("Here you'll find all your playlist movies");
         Parent root = FXMLLoader.load(getClass().getResource("/fxmlFile/playlistPage.fxml"));
-        Stage FeedStage = new Stage();
-        FeedStage.setScene(new Scene(root));
-        FeedStage.show();
+        Stage playListStage = new Stage();
+        playListStage.setScene(new Scene(root));
+        playListStage.setTitle("Playlist Page");
+        playListStage.getIcons().add(new Image("/images/img.png"));
+        playListStage.initModality(Modality.APPLICATION_MODAL);
+        playListStage.initOwner(((Node)mouseEvent.getSource()).getScene().getWindow() );
+        playListStage.show();
     }
 
     //this is used to get the friends list but we have not implemented it yet

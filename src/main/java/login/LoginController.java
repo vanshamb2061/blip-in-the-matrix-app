@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 import sample.DashboardController;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,9 +42,9 @@ public class LoginController {
     @FXML
     private TextField usernameTextField;
 
-    public void clickOnLogin(){
+    public void clickOnLogin() throws IOException {
         //Method to check if the login details are entered correctly
-        if(usernameTextField.getText().isEmpty() == false && enterPasswordField.getText().isEmpty() == false){
+        if(!usernameTextField.getText().isEmpty() && !enterPasswordField.getText().isEmpty()){
             //sql injection
             try
             {
@@ -64,7 +65,7 @@ public class LoginController {
                     System.out.println(GlobalData.getUserId());
                     System.out.println(result.getInt("Age"));
                     GlobalData.setUserAge(result.getInt("Age"));
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/dashboardController.fxml"));
+                  FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxmlFile/dashboardController.fxml"));
                     Parent root = loader.load();
                     DashboardController dashboardController = loader.getController();
                     dashboardController.setUserNameInDashboardController(usernameTextField.getText());

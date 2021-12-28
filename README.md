@@ -12,14 +12,15 @@ Create a java class file inside the apiKeys package named as **Services.java**
 and copy following code in that file
 package apiKeys;
 
-1.   public class Services {
+public class Services {
     final public String API_KEY = "{name of your apiKey}";
 }
 
 **Login**
-<img width="451" alt="image" src="https://user-images.githubusercontent.com/59662860/147526509-78961076-4482-44d6-9706-cc19c9d03f56.png">
+
 
 1. User is supposed to enter the username and password here
+<img  alt="image" src="https://user-images.githubusercontent.com/59662860/147526509-78961076-4482-44d6-9706-cc19c9d03f56.png">
 2. After clicking "login", backend checks the "user" table in the database and verifies the details.
 
 - In case, the details don't match, the following messages shows up:

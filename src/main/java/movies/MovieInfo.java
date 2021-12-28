@@ -193,8 +193,8 @@ public class MovieInfo implements Initializable {
     @FXML
     void mousePressedOnAddToWatchList(MouseEvent event) throws Exception {
 
-        isClickedLike = !isClickedLike;
-        if(isClickedLike == true) {
+        isClickedPlus = !isClickedPlus;
+        if(isClickedPlus == true) {
             System.out.println("movie added to watchList");
             Image image = new Image(("images/filledPlusIcon.png"));
             addImageView.setImage(image);
@@ -216,7 +216,7 @@ public class MovieInfo implements Initializable {
 
     }
 
-    //this function is used to initalize when first start
+    //this function is used to initialize when first start
     //currently it is empty
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -30,7 +30,7 @@ public class PlayListController implements Initializable {
     @FXML
     private Button backButton;
     @FXML
-    private GridPane mainGridPane;
+    private FlowPane mainFlowPane;
     @FXML
     private Label welcomeUserLabel;
 
@@ -123,8 +123,6 @@ public class PlayListController implements Initializable {
 
     public void updatePlaylistMovies(List<Movie> playlistArr){
         //Method to display all the playlist movies
-        AtomicInteger col = new AtomicInteger();
-        int row = 1;
         try{
             for (Movie movie : playlistArr) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -133,37 +131,11 @@ public class PlayListController implements Initializable {
                 VBox anchorPane = fxmlLoader.load();
                 MoviesController movieController = fxmlLoader.getController();
                 movieController.setData(movie);
-
-                ColumnConstraints colConstraint = new ColumnConstraints();
-                colConstraint.setHgrow(Priority.SOMETIMES);
-
-                RowConstraints rowConstraints = new RowConstraints();
-                rowConstraints.setVgrow(Priority.SOMETIMES);
-
-                mainGridPane.getColumnConstraints().add(colConstraint);
-                mainGridPane.getRowConstraints().add(rowConstraints);
-
-                if (col.get() == 4) {
-                    row++;
-                    col.set(0);
-
-                }
-                int finalRow = row;
                 Platform.runLater(()->{
-                    mainGridPane.add(anchorPane, col.getAndIncrement(), finalRow);
-                    //set gridPane width
-                    mainGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxWidth(Region.USE_PREF_SIZE);
-                    mainGridPane.setFillWidth(anchorPane, true);
-                    //set gridPane height
-                    mainGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    mainGridPane.setMaxHeight(Region.USE_PREF_SIZE);
-                    mainGridPane.setFillHeight(anchorPane, true);
+                    mainFlowPane.getChildren().add(anchorPane);
                 });
 
-                GridPane.setMargin(anchorPane, new Insets(10));
+                FlowPane.setMargin(anchorPane, new Insets(15));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -177,7 +149,7 @@ public class PlayListController implements Initializable {
             ResultSet res = findPlaylistMoviesInDB();
             List<Movie> playlistArr = searchPlaylist(res);
 
-            mainGridPane.getChildren().clear();
+            mainFlowPane.getChildren().clear();
             new Thread(new Runnable() {
                 @Override public void run() {
                     updatePlaylistMovies(playlistArr);

@@ -17,7 +17,8 @@ package apiKeys;
 }
 
 **Login**
-![img.png](img.png)
+<img width="451" alt="image" src="https://user-images.githubusercontent.com/59662860/147526509-78961076-4482-44d6-9706-cc19c9d03f56.png">
+
 1. User is supposed to enter the username and password here
 2. After clicking "login", backend checks the "user" table in the database and verifies the details.
 
